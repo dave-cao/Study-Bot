@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-//send a message when a role is added
+//send a message when a role is added...doesnt work atm lol
 exports.run = async (client, oldMember, newMember) => {
     const messagechannel = msg.guild.channels.find('name', 'bot-tests');
     if (oldMember.roles.size < newMember.roles.size) {
@@ -70,30 +70,64 @@ client.on('message', message => {
 //People comments
 client.on('message', message => {
     if (message.content === 'Christina' || message.content === 'christina' || message.content === 'CHRISTINA') {
-        computerOptions = ['A creature known to occupy the habitat known as the "Bedroom". This fascinating creature does not set a foot off the bed; in a perpetual state of lying down. This creature is known to have found a loop hole to the Grinding arithmetic. Able to gain levels while doing nothing. Essentially a bug in the system!'];
+
+        const christinaEmbed = new Discord.MessageEmbed()
+        .setColor(`#90ee90`)
+        .setTitle(`The Bedbug`)
+        .setDescription(`A creature known to occupy the habitat known as the "Bedroom". This fascinating creature does not set a foot off the bed; in a perpetual state of lying down. This creature is known to have found a loop hole to the Grinding arithmetic. Able to gain levels while doing nothing. Essentially a bug in the system!`)
+        .addFields(
+            { name: `Name`, value: `\`\`\`Christeenie\`\`\` - *princess of the Fragul Tribe, in the world of Tona*` },
+            { name: `Class`, value: `\`\`\`Forest Fairy (Healer)\`\`\` - *Escaped from her own realm to explore the mysteries of our world. Resilient and sharp, with a mind that can pierce through problems, and a tongue that can cut through people.*` },
+            { name: `Strength`, value: `\`\`\`5\`\`\``, inline: true },
+            { name: `Magic`, value: `\`\`\`30\`\`\``, inline: true },
+            { name: `Intellect`, value: `\`\`\`15\`\`\``, inline: true },
+        )
+        .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804095808634355762/forestFairy.jpg`)
+        computerOptions = [christinaEmbed];
         const computerNumber = Math.floor(Math.random() * 1);
         message.channel.send(computerOptions[computerNumber])
     } else if (message.content === `Nolan` || message.content === `nolan` || message.content === 'Lord Nolan' || message.content === 'NOLAN') {
-        computerOptions = [
-            `A deep and philosophical creature once you get get to know it. A people pleaser, sometimes a pushover, but one of the **kindest and compassionate creatures known in existence**. Do not be afraid to share your stories with it, for this creature is understanding. 
+        const nolanImbed = new Discord.MessageEmbed()
+            .setColor(`#C0C0C0`)
+            .setTitle(`The Silent Sky`)
+            .setDescription(`Open and all encompassing. A being that can accomodate many things and people. Throw a rock at the sky and there is no ripples. Though there may be long nights and rainy days, the sun will always rise up again.
+
+            A deep and philosophical creature once you get get to know it. A people pleaser, sometimes a pushover, but one of the **kindest and compassionate creatures known in existence**. Do not be afraid to share your stories with it, for this creature is understanding. 
         
-            It can be found either on a red chair or the couch, where it is usually seen with a book in hand or a game controller. For reference, a snapshot of this creature can be found in <#793591458656813066> where you may witness it on the hunt for better grades (red sweater).
-        
-            *Note: An **Honorary Member** of the Grind Time server.*`
-        ];
+            It can be found either on a red chair or the couch, where it is usually seen with a book in hand or a game controller. For reference, a snapshot of this creature can be found in <#793591458656813066> where you may witness it on the hunt for better grades (red sweater)`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Null\`\`\` - *Travelling through many worlds and many millenia. He has already forgotten his name...his past. His only purpose is to continue to raise the dead. For what? Even he doesn't know...*`},
+                { name: 'Class', value: `\`\`\`Abyssal Necromancer\`\`\` - *Allies rise up and join you again to celebrate a new day, only to stab you in the back and drag you down...down back into the abyss.*`},
+                { name: `Strength`, value: '\`\`\`10\`\`\`', inline: true },
+                { name: `Darkness`, value: '\`\`\`30\`\`\`', inline: true },
+                { name: `Wisdom`, value: '\`\`\`10\`\`\`', inline: true },
+                
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804518654917214278/37182850275_63c04ccc22_c.jpg`)
+            .setFooter(`An Honorary Member of the Grind Time server`)
+        computerOptions = [nolanImbed];
         const computerNumber = Math.floor(Math.random() * 1);
         message.channel.send(computerOptions[computerNumber]);
     } else if (message.content === `Rodeem` || message.content === `rodeem` || message.content === `ro` || message.content === `Ro` || message.content === 'RO' || message.content === 'RODEEM') {
-        computerOptions = [
-            `A gigantic monstrous beast of a creature. The only word that can be used to describe it is **"deezed"**. Passionate and kind, there is basically no way for anyone to dislike it. One of the most supportive creatures I've ever met in my life, nothing can go wrong with befriending this one. 
+        const rodeemEmbed = new Discord.MessageEmbed()
+        .setColor(`#000000`)
+        .setTitle(`The Gentle Giant`)
+        .setDescription(`A gigantic monstrous beast of a creature. The only word that can be used to describe it is **"deezed"**. Passionate and kind, there is basically no way for anyone to dislike it. One of the most supportive creatures I've ever met in my life, nothing can go wrong with befriending this one. 
             
-            It can usually be found grinding a shit game online (DOTA 2) or a shit game in real life (Football (jk, I love Football)). If not, then it is banging its head on its keyboard trying to figure out discord code.
-            
-            For reference, a snapshot of this creature can be found in <#793591458656813066>. Whether the creature is sleeping or studying...we have yet to find out (yellow sweater). 
-            
-            *Note: An **Honorary Member** of the Grind Time server.*`
+        It can usually be found grinding a shit game online (DOTA 2) or a shit game in real life (Football (jk, I love Football)). If not, then it is banging its head on its keyboard trying to figure out discord code.
+        
+        For reference, a snapshot of this creature can be found in <#793591458656813066>. Whether the creature is sleeping or studying...we have yet to find out (yellow sweater)`)
+        .addFields(
+            { name: `Name`, value: `\`\`\`Rodelius the Damned\`\`\` - *soul-bound...formless...from the depths...and the darkness*` },
+            { name: `Class`, value: `\`\`\`Dark Knight\`\`\` - *A tanky spell caster, able to handle hits and deal devastating damage*` },
+            { name: `Strength`, value: `\`\`\`15\`\`\``, inline: true },
+            { name: `Magic`, value: `\`\`\`20\`\`\``, inline: true },
+            { name: `Intellect`, value: `\`\`\`15\`\`\``, inline: true },
+        )
+        .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804100247734583307/rsz_21rsz_dark_knight.png`)
+        .setFooter(`An Honorary Member of the Grind Timer server.`)
 
-        ];
+        computerOptions = [rodeemEmbed];
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber]);
         
@@ -113,9 +147,13 @@ client.on('message', message => {
         computerOptions = [
             `**The following excerpt is quoted from Jay**: "*Miran is literally a father figure to me but will straight up tell a girl he’s talking to that he would want to marry a female version of me 💀 so he’s also a little Alabama"*
             
-            A creature known to value its friendships and relationships very much. Solid in its core values and beliefs, it is the type of creature to straight forwardly tell you what it's thinking with no strings attached. If I would ever need someone to rely on for something, I would glady put my life in its hands.
+            A creature known to value its friendships and relationships very much. Solid in its core values and beliefs, it is the type of creature to straight forwardly tell you what it's thinking with no strings attached. If I would ever need someone to rely on for something, I would gladly put my life in its hands.
             
-            *Masha'Allah my friend.*`
+            *Masha'Allah my friend.*
+            
+            RPG Character: **Archer** - *calculating firing distance with deadly accuracy*`
+
+
         ]
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber]);
@@ -157,18 +195,132 @@ client.on('message', message => {
         ];
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber]);
-    } else if (message.content === `David` || message.content === `david` || message.content === 'Cow' || message.content === 'KingCao' || message.content === 'DAVID') {
-        computerOptions = [
-            `Owner of the server...also not a bitch.`,
-            `If this man is not Grinding then call him out. Don't let him be a bitch`,
-            `Stats:
-                Physical Capability: **Caveman**
-                Intellect: **0 IQ**
-                Hard Work: **110%**
-              `
-        ];
-        const computerNumber = Math.floor(Math.random()*3); 
+    } else if (message.content === `David` || message.content === `david` || message.content === 'Cow' || message.content === 'KingCao' || message.content === 'DAVID' || message.content === `cow`) {
+        const davidEmbed = new Discord.MessageEmbed()
+        .setColor(`#FFA500`)
+        .setTitle(`Cow`)
+        .setDescription(`Owner of the server...also not a bitch`)
+        .addFields(
+            { name: `Name`, value: `\`\`\`Sir Cownelius Maximus\`\`\` - *Wielder of Heaven's Shield, the divine artifact known to protect entire cities when imbued with holy energy*` },
+            { name: `Class`, value: `\`\`\`Paladin\`\`\` - *A meatball of a man who primarily seeks to build up his allies*` },
+            { name: `Strength`, value: `\`\`\`10\`\`\``, inline: true },
+            { name: `Constitution`, value: `\`\`\`35\`\`\``, inline: true },
+            { name: `Intellect`, value: `\`\`\`5\`\`\``, inline: true },
+        )
+        .setImage(`https://cdn.discordapp.com/attachments/787654137352683521/803413971146506260/9la3cag4i1n01.png`)
+        .setFooter(`If this man is not Grinding then call him out. Don't let him be a bitch.`)
+        computerOptions = [davidEmbed];
+        const computerNumber = Math.floor(Math.random()*1); 
         message.channel.send(computerOptions[computerNumber]);
+    } else if (message.content === 'William' || message.content === 'william' || message.content === 'will' || message.content === 'Will') {
+
+        const williamEmbed = new Discord.MessageEmbed()
+            .setColor(`#FF0000`)
+            .setTitle(`The Harnesser`)
+            .setDescription(`If you attend the Grind Time regularly, you may be able to see this creature bobbing and swaying to the beat of an epic orchestral song! Don't be fooled! This isn't a show of awkward dancing but a way for him to channel the forces of the world!
+        
+            A man able to harness the powers of music, art, spirit, and soul. An asset to any Grinder party, he has the ability to wipe out hordes of monsters!`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Red Will\`\`\` - *his body is a santuary, his home is his soul*` },
+                { name: `Class`, value: `\`\`\`Dragon Knight\`\`\` - *The righteous knight with a dark past, seeking to regain his honour and reclaim his place among the sacred dragon knights faction.*` },
+                { name: `Strength`, value: `\`\`\`25\`\`\``, inline: true },
+                { name: `Constitution`, value: `\`\`\`10\`\`\``, inline: true },
+                { name: `Intellect`, value: `\`\`\`15\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/803476021629812746/1418db9e62adcf32fa0727c699bcdf98.png`)
+
+
+        message.channel.send(williamEmbed)
+    } else if (message.content === 'Suzy' || message.content === 'suzy') {
+        const suzyEmbed = new Discord.MessageEmbed()
+            .setColor(`#FFC0CB`)
+            .setTitle(`The Rose`)
+            .setDescription(`Thorny at first glance, it seems like she would be hard to touch. However peeling back the thorns reveal a beautiful rose. Sweet and gentle on the inside but tough and intimidating on the outside. Watch out, because if your not protected within her thorns, then your getting hit by it!
+        
+            Can usually be seen giving a disapproving gaze. She doesn't yet know it, but she's been secretly recruited into a cult that is impossible to leave...`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Professor Sprout\`\`\` - *Coming back to a home ransacked by monsters, she abandoned her job as a professor and took up her family trade as a huntress, vowing to seek veangance on any monster that she sees*` },
+                { name: `Class`, value: `\`\`\`Tempest Ranger\`\`\` - *lithe and agile while dealing devastating piercing damage to her foes, charging through head on like a rampaging tornado*` },
+                { name: `Strength`, value: `\`\`\`10\`\`\``, inline: true },
+                { name: `Dexterity`, value: `\`\`\`20\`\`\``, inline: true },
+                { name: `Intellect`, value: `\`\`\`20\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804093581995671582/epic_huntress.jpg`)
+
+
+        message.channel.send(suzyEmbed)
+    } else if (message.content === 'Justin' || message.content === 'justin') {
+
+        const justinEmbed = new Discord.MessageEmbed()
+            .setColor('#FFFF00')
+            .setTitle(`:monkey: **I MUST RETURN TO MONKE** :monkey:`)
+            .setDescription(` A rare phenomenon. Nothing can explain this rare breeded creature. An organism able to navigate the world through pure spinal cord interactions!
+            
+        `)
+            .addFields(
+                { name: `Name`, value: `\`\`\`BUNGA\`\`\` - *of Ungrunga; good at two hand hammer*` },
+                { name: `Class`, value: `\`\`\`Large Ape Warrior\`\`\` - *Big Hammer*` },
+                { name: `Strength`, value: `\`\`\`50\`\`\``, inline: true },
+                { name: `Constitution`, value: `\`\`\`50\`\`\``, inline: true },
+                { name: `Intellect`, value: `\`\`\`-50\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/805145337428705280/Webp.net-resizeimage_6.png`)
+            .setFooter(`Can often be seen travelling the jungles searching for banana's.`, `https://cdn.discordapp.com/attachments/793302938453803008/803842131310673940/Daco_518550.png`);
+
+
+        message.channel.send(justinEmbed)
+    } else if (message.content === 'Sahaj' || message.content === 'sahaj') {
+        const sahajImbed = new Discord.MessageEmbed()
+            .setColor(`#00FF00`)
+            .setTitle(`The Philospher`)
+            .setDescription(`A chemist, planter, and apothecary. An indispensable member in any Grinder expedition. He has the ability to give +5 intellect to everyone in his party. 
+        
+            Can usually be found brewing potions for the next party asking for assistance.`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Soulhaj\`\`\` - *stepped out of a hidden society with a millenia of accumulated wisdom. Determined that he could find more valuable information in the real world, he sets out seeking more knowledge*`},
+                { name: 'Class', value: `\`\`\`Druid\`\`\` - *a plethora of skills under his arsenal, you don't know what he might throw at you next!*`},
+                { name: `Strength`, value: '\`\`\`5\`\`\`', inline: true },
+                { name: `Intellect`, value: '\`\`\`25\`\`\`', inline: true },
+                { name: `Wisdom`, value: '\`\`\`20\`\`\`', inline: true },
+                
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/787654137352683521/803476053938143232/09e88e7eccec20737f8142683b4abd34.png`)
+            
+
+
+        message.channel.send(sahajImbed)
+    } else if (message.content === 'Pauline' || message.content === 'pauline') {
+        message.channel.send(`**The Silencer**
+
+        Silent, but a hard worker. You may not notice, but she takes the top spots on the leaderboard without anyone noticing!`)
+    } else if (message.content === 'Victor' || message.content === 'victor') {
+        message.channel.send(`**The Weeb**
+
+        ...but anime/manga is pretty lit tho :smiling_face_with_tear: `)
+    } else if (message.content === 'erica' || message.content === 'Erica') {
+        message.channel.send(`**The Night Owl**
+
+        Can usually be found grinding in the depths of the night. Too shy to show cam, you really don't know what she's up to :eyes: `)
+    } else if (message.content === 'Andrew' || message.content === 'andrew' || message.content === 'Woody' || message.content === 'woody') {
+        const woodyImbed = new Discord.MessageEmbed()
+            .setColor(`#0000FF`)
+            .setTitle(`The Cyborg`)
+            .setDescription(`Is he a man or machine? No one knows. I was able to capture a recording of a conversation from him...listen carefully:
+        
+            **Beep boop....beep boop 101001 1001 01 01 100 1010101**`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Woody\`\`\` - *A poor orphan captured by an evil organization. Brutally trained to become a tool for their use. However his potential was too high, wresting control away from his captors, he slayed them all and made his way in the world trying to find meaning in his life again.*`},
+                { name: 'Class', value: `\`\`\`Faceless Assassin\`\`\` - *A universally feared profession, with strict requirements and even stricter abilities. So fast one might say you won't be able to catch a glimpse of its face. There's a saying that a job isn't done right if it isn't done by a Faceless Assassin.*`},
+                { name: `Strength`, value: '\`\`\`10\`\`\`', inline: true },
+                { name: `Dexterity`, value: '\`\`\`25\`\`\`', inline: true },
+                { name: `Intellect`, value: '\`\`\`15\`\`\`', inline: true },
+                
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804514688070582323/pngfind.com-assassins-creed-png-1261513.png`)
+            .setFooter(`An OG Google Meets Grind Time member`)
+        message.channel.send(woodyImbed)
+    } else if (message.content === 'Renzi' || message.content === 'renzi' || message.content === 'renz' || message.content === 'Renz') {
+        message.channel.send(`RPG Character: **Wizard** - *blasting fools with 8000 spells*`)
     }
 })
 
@@ -324,6 +476,43 @@ client.on('message', message => {
         message.channel.send(computerOptions[computerNumber])
     } else if (message.content === 'What time is it?' || message.content === 'what time is it?' || message.content === 'WHAT TIME IS IT?' || message.content === 'what time is it' || message.content === 'WHAT TIME IS IT') {
         message.channel.send(`IT'S GRIND TIME BABY!! 🔥🔥`)
+    } else if (message.content === `just do it` || message.content === `JUST DO IT` || message.content === `JUST DO IT!` || message.content === `just do it!`) {
+
+        const justDoItEmbed = new Discord.MessageEmbed()
+            .setColor(`#00FF00`)
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804210408268759050/JustDoIt.jpg`)
+        message.channel.send(justDoItEmbed)
+    } else if (message.content === `workout` || message.content === `WORKOUT`) {
+        const workoutEmbed = new Discord.MessageEmbed()
+            .setColor(`#FFC0CB`)
+            .setImage(`https://cdn.discordapp.com/attachments/787654137352683521/804211471776612362/c750a57eae01571996b538b584a166b5.png`)
+            message.channel.send(workoutEmbed)
+    } else if (message.content === `ayy`) {
+        message.channel.send(`stfu Announcer`)
+    }
+})
+
+
+client.on('message', message => {
+    if (message.content === 'ping') {
+        const testEmbed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+	.setTitle('Some title')
+	.setURL('https://discord.js.org/')
+	.setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+	.setDescription('Some description here')
+	.setThumbnail('https://i.imgur.com/wSTFkRM.png')
+	.addFields(
+		{ name: 'Regular field title', value: 'Some value here' },
+		{ name: '\u200B', value: '\u200B' },
+		{ name: 'Inline field title', value: 'Some value here', inline: true },
+		{ name: 'Inline field title', value: 'Some value here', inline: true },
+	)
+	.addField('Inline field title', 'Some value here', true)
+	.setImage('https://i.imgur.com/wSTFkRM.png')
+	.setTimestamp()
+	.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
+        message.channel.send(testEmbed)
     }
 })
 
@@ -337,6 +526,4 @@ client.on('message', message => {
 
 
 
-
-
-client.login('Nzk0MzE3MTUxMDYyMDY1MTky.X-5Dfg.Eg9J4kiiz4fEiqECdatSimOxis0');
+client.login('');
