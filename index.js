@@ -56,10 +56,13 @@ client.on('message', message => {
         computerOptions = [
             'You have a bright future ahead of you: https://careers.mcdonalds.com/main/jobs/51F5D22A-3CF7-4DF9-8C72-A6BB0179D88D?lang=en-us.',
             "Hehe...https://youtu.be/Fdzs1dKkUHg.",
-            "There is a time to be a gandoo, and there is a time to a hero. Who are you?",
-            "https://www.youtube.com/watch?v=dvFFb65pWnU"
+            "https://www.youtube.com/watch?v=dvFFb65pWnU",
+            `HAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+            https://www.youtube.com/watch?v=C46kW_1rIO4`,
+            `WHERE THE FK IS YOUR PASSION HUH? THERE IS NOTHING!
+            https://youtu.be/X_vHaURM4sg`
         ];
-        const computerNumber = Math.floor(Math.random() * 4);
+        const computerNumber = Math.floor(Math.random() * 5);
         message.channel.send(computerOptions[computerNumber])
        
     }
@@ -526,4 +529,4 @@ client.on('message', message => {
 
 
 
-client.login('');
+client.login('Nzk0MzE3MTUxMDYyMDY1MTky.X-5Dfg.gkrfXMq-pWysHyrzdyWq8yTd0d0');
