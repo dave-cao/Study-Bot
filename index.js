@@ -1,31 +1,97 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-//send a message when a role is added...doesnt work atm lol
-exports.run = async (client, oldMember, newMember) => {
-    const messagechannel = msg.guild.channels.find('name', 'bot-tests');
-    if (oldMember.roles.size < newMember.roles.size) {
-        const embed = new Discord.RichEmbed()
-            .setColor('#FE2E2E')
-            .setTimestamp()
-            .setAuthor('Role added!')
-            .addField(`Member:`, `${oldMember.user.tag} (${oldMember.id})`);
-        for (const role of newMember.roles.map(x => x.id)) {
-            if (!oldMember.roles.has(role)) {
-                embed.addField(`Role:`, `${oldMember.guild.roles.get(role).name}`);
-            }
-        }
-        messagechannel.send({
-            embed
-        });
-    }
-}
-
+const config = require('./config.json')
+const command = require('./command')
+const firstMessage = require('./first-message')
 
 client.once('ready', () => {
 	console.log('Real Grinder is Online!');
+
+    command(client, ['ping', 'test'], message => {
+        message.channel.send('Pong!')
+    });
+
+//list servers 
+    command(client, 'servers', (message) =>  {
+        client.guilds.cache.forEach((guild) => {
+            message.channel.send(
+                `${guild.name} has a total of ${guild.memberCount} members`)
+        })
+    })
+//delete messages
+    command(client, ['cc', 'clearchannel'], (message) => {
+        if (message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.messages.fetch().then((results) => {
+                message.channel.bulkDelete(results)
+            })
+        }
+    })
+
+//update bot status
+    command(client, 'status', message => {
+        const content = message.content.replace('grind status', '')
+
+        client.user.setPresence({
+            activity: {
+                name: content,
+                type: 0
+            }
+        })
+    })
+//send first message
+    //Not working = firstMessage(client, '817984922262306857', 'Nani the fk this dont', [`🔥`])
+
+    
 });
 
+
+client.on('message', async message =>{
+    //Check message is not Bot
+    if(message.author.bot) return;
+    if(message.content=="!movetome"){
+
+        const channel = message.member.voice.channel;
+    message.guild.members.cache.forEach(member => {
+  //guard clause, early return
+  if(member.id === message.member.id || !member.voice.channel) return;
+  member.voice.setChannel('817111025819975700');
+});
+    }
+});
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    let newUserChannel = newMember.channelID;
+    let oldUserChannel = oldMember.channelID;
+    const textChannel = client.channels.cache.get(`787883845239570452`)
+ 
+    if(newUserChannel === "787354978523545634") //don't remove ""
+    { 
+        // User Joins a voice channel
+        textChannel.send(`<@${newMember.id}> has just started studying!`)
+    }
+    else if (oldUserChannel === '787354978523545634' && newUserChannel !== '787354978523545634') {
+        // User leaves a voice channel
+        textChannel.send(`<@${newMember.id}> has left Grind Time to go slack off.`)
+    }
+ });
+
+
+client.login(config.token)
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 //just testing objects
 let computerOptions = [];
 let randomObject = {
@@ -521,6 +587,7 @@ client.on('message', message => {
 
 
 
+*/
 
 
 
@@ -528,5 +595,3 @@ client.on('message', message => {
 
 
 
-
-client.login('Nzk0MzE3MTUxMDYyMDY1MTky.X-5Dfg.n4T3On6EHsuHiBwvlnPetD8iYgg');
