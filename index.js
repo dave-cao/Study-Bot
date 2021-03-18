@@ -69,7 +69,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     if(newUserChannel === "787354978523545634") //don't remove ""
     { 
         // User Joins a voice channel
-        textChannel.send(`<@${newMember.id}> has just started studying!`)
+        textChannel.send(`<@${newMember.id}> has just started Grinding!`)
     }
     else if (oldUserChannel === '787354978523545634' && newUserChannel !== '787354978523545634') {
         // User leaves a voice channel
