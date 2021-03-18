@@ -64,7 +64,7 @@ client.once('ready', () => {
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
-    const textChannel = client.channels.cache.get(`787654137352683521`)
+    const textChannel = client.channels.cache.get(`821951428717183006`)
  
     if(newUserChannel === "787354978523545634") //don't remove ""
     { 
