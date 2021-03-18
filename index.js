@@ -46,7 +46,7 @@ client.once('ready', () => {
 });
 
 
-client.on('message', async message =>{
+/*client.on('message', async message =>{
     //Check message is not Bot
     if(message.author.bot) return;
     if(message.content=="!movetome"){
@@ -59,6 +59,7 @@ client.on('message', async message =>{
 });
     }
 });
+*/
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
