@@ -66,7 +66,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     let oldUserChannel = oldMember.channelID;
     const textChannel = client.channels.cache.get(`821951428717183006`)
  
-    if(newMember.channelID === "818393126321520641") //don't remove ""
+    if(newMember.channelID === "787354978523545634") //don't remove ""
     { 
         // User Joins a voice channel
         if (newUserChannel === "787354978523545634" && oldUserChannel !== "787354978523545634") {
