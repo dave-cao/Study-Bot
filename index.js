@@ -64,21 +64,42 @@ client.once('ready', () => {
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
-    const textChannel = client.channels.cache.get(`821951428717183006`)
+    let voiceChannelID = "787354978523545634"
+    const textChannel = client.channels.cache.get(`821951428717183006`);
+    let minuteTime = 2000 * 60;
  
-    if(newMember.channelID === "787354978523545634") //don't remove ""
+    if(newMember.channelID === voiceChannelID) //don't remove ""
     { 
         // User Joins a voice channel
-        if (newUserChannel === "787354978523545634" && oldUserChannel !== "787354978523545634") {
+        if (newUserChannel === voiceChannelID && oldUserChannel !== voiceChannelID) {
             textChannel.send (`<@${newMember.id}> has just joined Grindtime, welcome!`);
+            setTimeout(function() {
+                if (newMember.selfVideo === true) {
+                    return;
+                } else if (newMember.selfVideo === false) {
+                    textChannel.send(`<@${newMember.id}> Hey, this is the Cams only voice channel and I've noticed you haven't turned on cams for two minutes already! Turn it on or you'll be kicked in the next two minutes!`);
+                    setTimeout(function() {
+                        if (newMember.selfVideo === true) {
+                            return;
+                        } else if (newMember.selfVideo === false) {
+                        newMember.setChannel('818393126321520641')
+                        textChannel.send(`<@${newMember.id}> You've been kicked due to no cams. Make sure to turn on cams when joining this VC or it will happen again!`)
+                    }}, minuteTime)
+                    //newMember.setChannel('817111025819975700');
+                    return;
+                }
+            }, minuteTime)
+            
             return;
         } else if (newMember.selfVideo === false && oldMember.selfVideo === true) {
            textChannel.send(`<@${newMember.id}> just turned off cams...(what are you hiding weirdchamp)`);
+           setTimeout(function () 
+           {textChannel.send("test");}, 3000);
            return;
        } else if (oldMember.selfVideo === false && newMember.selfVideo === true) {
            textChannel.send(`<@${newMember.id}> just turned on cams POGGIES!!!`)
            return;
-       } else if (newMember.channelID === "787354978523545634") {
+       } else if (newMember.channelID === voiceChannelID) {
            textChannel.send(`<@${newMember.id}> did something lul`)
        }
     
@@ -89,7 +110,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
        
         
     }
-    else if (oldUserChannel === '787354978523545634' && newUserChannel !== '787354978523545634') {
+    else if (oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
         // User leaves a voice channel
         textChannel.send(`<@${newMember.id}> has left Grind Time to go slack off. Have a nice day!`)
     }
