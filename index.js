@@ -66,14 +66,32 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     let oldUserChannel = oldMember.channelID;
     const textChannel = client.channels.cache.get(`821951428717183006`)
  
-    if(newUserChannel === "787354978523545634") //don't remove ""
+    if(newMember.channelID === "818393126321520641") //don't remove ""
     { 
         // User Joins a voice channel
-        textChannel.send(`<@${newMember.id}> has just started Grinding!`)
+        if (newUserChannel === "787354978523545634" && oldUserChannel !== "787354978523545634") {
+            textChannel.send (`<@${newMember.id}> has just joined Grindtime, welcome!`);
+            return;
+        } else if (newMember.selfVideo === false && oldMember.selfVideo === true) {
+           textChannel.send(`<@${newMember.id}> just turned off cams...(what are you hiding weirdchamp)`);
+           return;
+       } else if (oldMember.selfVideo === false && newMember.selfVideo === true) {
+           textChannel.send(`<@${newMember.id}> just turned on cams POGGIES!!!`)
+           return;
+       } else if (newMember.channelID === "787354978523545634") {
+           textChannel.send(`<@${newMember.id}> did something lul`)
+       }
+    
+
+       
+
+        //textChannel.send(`<@${newMember.id}> has just started Grinding but without cams...!`)
+       
+        
     }
     else if (oldUserChannel === '787354978523545634' && newUserChannel !== '787354978523545634') {
         // User leaves a voice channel
-        textChannel.send(`<@${newMember.id}> has left Grind Time to go slack off.`)
+        textChannel.send(`<@${newMember.id}> has left Grind Time to go slack off. Have a nice day!`)
     }
  });
 
