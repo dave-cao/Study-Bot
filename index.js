@@ -66,7 +66,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     let oldUserChannel = oldMember.channelID;
     let voiceChannelID = "822696684139315261"
     const textChannel = client.channels.cache.get(`821951428717183006`);
-    let minuteTime = 2000;
+    let minuteTime = 1000 * 60;
     let totalSeconds = 0;
     //timer up
     /*function updateTimer () {
