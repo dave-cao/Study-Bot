@@ -64,55 +64,88 @@ client.once('ready', () => {
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
-    let voiceChannelID = "787354978523545634"
+    let voiceChannelID = "818393126321520641"
     const textChannel = client.channels.cache.get(`821951428717183006`);
-    let minuteTime = 2000 * 60;
+    let minuteTime = 5000;
+    let totalSeconds = 0;
+    //timer up
+    function updateTimer () {
+        newTime = totalSeconds;
+    }
+  
+    function myStopFunction () {
+        clearInterval(totalSeconds);
+    }
+
+    
  
     if(newMember.channelID === voiceChannelID) //don't remove ""
-    { 
+    {   //timer function
+       
         // User Joins a voice channel
         if (newUserChannel === voiceChannelID && oldUserChannel !== voiceChannelID) {
-            textChannel.send (`<@${newMember.id}> has just joined Grindtime, welcome!`);
+            /* setInterval(setTime, 1000)
+            function setTime () {
+                ++totalSeconds;
+                console.log(totalSeconds)
+                updateTimer();
+               
+                
+                
+            }
+            */
+
+            //camera and screenshare logic
+            textChannel.send (`<@${newMember.id}> Welcome to **Hard Mode**. This is where the really serious grinders go to compete. In this channel, you must either have cameras on or be screen-sharing. Otherwise you will be kicked.`);
             setTimeout(function() {
-                if (newMember.selfVideo === true) {
+                if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                     return;
-                } else if (newMember.selfVideo === false) {
-                    textChannel.send(`<@${newMember.id}> Hey, this is the Cams only voice channel and I've noticed you haven't turned on cams for two minutes already! Turn it on or you'll be kicked in the next two minutes!`);
+                } else if (newMember.selfVideo === false || newMember.streaming === false) {
+                    textChannel.send(`<@${newMember.id}> Hey, I noticed that you're in hard mode but you haven't put on cams or screen-shared. You have **two minutes** to do that or you will get moved to regular Grind Time!`);
                     setTimeout(function() {
-                        if (newMember.selfVideo === true) {
+                        if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                             return;
-                        } else if (newMember.selfVideo === false) {
-                        newMember.setChannel('818393126321520641')
-                        textChannel.send(`<@${newMember.id}> You've been kicked due to no cams. Make sure to turn on cams when joining this VC or it will happen again!`)
-                    }}, minuteTime)
-                    //newMember.setChannel('817111025819975700');
+                        } else if (newMember.selfVideo === false || newMember.streaming === false || oldUserChannel !== voiceChannelID && newUserChannel === null) {
+                            
+                        newMember.setChannel('817111025819975700')
+                        textChannel.send(`<@${newMember.id}> You've been kicked due to no cams or screensharing. Make sure to turn on cams when joining this VC or it will happen again!`)
+                    }}, minuteTime) 
+                    
                     return;
-                }
+                } 
             }, minuteTime)
             
             return;
-        } else if (newMember.selfVideo === false && oldMember.selfVideo === true) {
-           textChannel.send(`<@${newMember.id}> just turned off cams...(what are you hiding weirdchamp)`);
-           setTimeout(function () 
-           {textChannel.send("test");}, 3000);
+            //user is in channel
+        } else if (newMember.streaming === false && oldMember.selfVideo === true && oldMember.streaming === true) {
+            return;
+        } else if (newMember.selfVideo === false && oldMember.selfVideo === true || newMember.streaming === false && oldMember.streaming === true && oldMember.selfVideo === false) {
+           setTimeout(function () {
+               textChannel.send("Hey! It's been 3 minutes since you turned off cam or stopped screensharing, please turn it back on or you will be kicked in the next two minutes to the AFK/Break channel!");
+               setTimeout(function () {
+                   if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
+                       return;
+                   } else if (newMember.selfVideo === false || newMember.streaming === false) {
+                    textChannel.send("Sorry, you were kicked!");
+                    newMember.setChannel('817111025819975700');
+                    return;
+                   }
+                   
+               }, minuteTime)
+            }, minuteTime);
            return;
-       } else if (oldMember.selfVideo === false && newMember.selfVideo === true) {
-           textChannel.send(`<@${newMember.id}> just turned on cams POGGIES!!!`)
-           return;
-       } else if (newMember.channelID === voiceChannelID) {
-           textChannel.send(`<@${newMember.id}> did something lul`)
-       }
+       } 
     
 
        
 
-        //textChannel.send(`<@${newMember.id}> has just started Grinding but without cams...!`)
        
         
-    }
-    else if (oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
+    } else if (oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
         // User leaves a voice channel
-        textChannel.send(`<@${newMember.id}> has left Grind Time to go slack off. Have a nice day!`)
+        
+        textChannel.send(`<@${newMember.id}> has left Grind Time to go slack off. Have a nice day! You have grinded for seconds!`)
+        myStopFunction();
     }
  });
 
