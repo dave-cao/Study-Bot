@@ -64,7 +64,7 @@ client.once('ready', () => {
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
-    let voiceChannelID = "818393126321520641"
+    let voiceChannelID = "822696684139315261"
     const textChannel = client.channels.cache.get(`821951428717183006`);
     let minuteTime = 1000 * 60;
     let totalSeconds = 0;
@@ -99,8 +99,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                 if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                     return;
                 } else if (newMember.selfVideo === false || newMember.streaming === false) {
-                    textChannel.send(`<@${newMember.id}> Hey, I noticed that you're in hard mode but you haven't put on cams or screen-shared for the past **2 minutes**.
-                    You have another **2 minutes** to do that or you will get moved to regular Grind Time!`);
+                    textChannel.send(`<@${newMember.id}> Hey, I noticed that you're in hard mode but you haven't put on cams or screen-shared for the past **2 minutes**. You have another **2 minutes** to do that or you will get moved to regular Grind Time!`);
                     setTimeout(function() {
                         if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                             return;
