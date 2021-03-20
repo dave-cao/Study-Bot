@@ -119,7 +119,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
             return;
         } else if (newMember.selfVideo === false && oldMember.selfVideo === true || newMember.streaming === false && oldMember.streaming === true && oldMember.selfVideo === false) {
            setTimeout(function () {
-               if (oldMember.channelID === voiceChannelID && newMember.channelID === voiceChannelID) {
+               if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
+                   return;
+               } else if (oldMember.channelID === voiceChannelID && newMember.channelID === voiceChannelID) {
                textChannel.send(`<@${newMember.id}> Hey! It's been **3 minutes** since you turned off cam or stopped screensharing, please turn it back on or you will be **kicked** in the next **two minutes** to the AFK/Break channel!`);
                setTimeout(function () {
                    if (newMember.selfVideo === true || newMember.streaming === true || oldMember.channelID !== voiceChannelID) {
