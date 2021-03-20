@@ -66,16 +66,14 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     let oldUserChannel = oldMember.channelID;
     let voiceChannelID = "818393126321520641"
     const textChannel = client.channels.cache.get(`821951428717183006`);
-    let minuteTime = 5000;
+    let minuteTime = 1000 * 60;
     let totalSeconds = 0;
     //timer up
-    function updateTimer () {
+    /*function updateTimer () {
         newTime = totalSeconds;
     }
-  
-    function myStopFunction () {
-        clearInterval(totalSeconds);
-    }
+  */
+ 
 
     
  
@@ -101,27 +99,28 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                 if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                     return;
                 } else if (newMember.selfVideo === false || newMember.streaming === false) {
-                    textChannel.send(`<@${newMember.id}> Hey, I noticed that you're in hard mode but you haven't put on cams or screen-shared. You have **two minutes** to do that or you will get moved to regular Grind Time!`);
+                    textChannel.send(`<@${newMember.id}> Hey, I noticed that you're in hard mode but you haven't put on cams or screen-shared for the past **2 minutes**.
+                    You have another **2 minutes** to do that or you will get moved to regular Grind Time!`);
                     setTimeout(function() {
                         if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                             return;
                         } else if (newMember.selfVideo === false || newMember.streaming === false || oldUserChannel !== voiceChannelID && newUserChannel === null) {
                             
-                        newMember.setChannel('817111025819975700')
+                        newMember.setChannel('787354978523545634')
                         textChannel.send(`<@${newMember.id}> You've been kicked due to no cams or screensharing. Make sure to turn on cams when joining this VC or it will happen again!`)
-                    }}, minuteTime) 
+                    }}, minuteTime * 2) 
                     
                     return;
                 } 
-            }, minuteTime)
+            }, minuteTime * 2)
             
             return;
             //user is in channel
-        } else if (newMember.streaming === false && oldMember.selfVideo === true && oldMember.streaming === true) {
+        } else if (newMember.streaming === false && oldMember.selfVideo === true && oldMember.streaming === true || newMember.selfVideo === false && oldMember.selfVideo === true && oldMember.streaming) {
             return;
-        } else if (newMember.selfVideo === false && oldMember.selfVideo === true || newMember.streaming === false && oldMember.streaming === true && oldMember.selfVideo === false) {
+        } else if (newMember.selfVideo === false && oldMember.selfVideo === true|| newMember.streaming === false && oldMember.streaming === true && oldMember.selfVideo === false) {
            setTimeout(function () {
-               textChannel.send("Hey! It's been 3 minutes since you turned off cam or stopped screensharing, please turn it back on or you will be kicked in the next two minutes to the AFK/Break channel!");
+               textChannel.send(`<@${newMember.id}> Hey! It's been **3 minutes** since you turned off cam or stopped screensharing, please turn it back on or you will be **kicked** in the next **two minutes** to the AFK/Break channel!`);
                setTimeout(function () {
                    if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                        return;
@@ -131,8 +130,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                     return;
                    }
                    
-               }, minuteTime)
-            }, minuteTime);
+               }, minuteTime * 2)
+            }, minuteTime * 3);
            return;
        } 
     
@@ -144,8 +143,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     } else if (oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
         // User leaves a voice channel
         
-        textChannel.send(`<@${newMember.id}> has left Grind Time to go slack off. Have a nice day! You have grinded for seconds!`)
-        myStopFunction();
+        textChannel.send(`<@${newMember.id}> Have a good day!`)
+        
     }
  });
 
