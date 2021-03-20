@@ -66,7 +66,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     let oldUserChannel = oldMember.channelID;
     let voiceChannelID = "822696684139315261"
     const textChannel = client.channels.cache.get(`821951428717183006`);
-    let minuteTime = 1000 * 60;
+    let minuteTime = 2000;
     let totalSeconds = 0;
     //timer up
     /*function updateTimer () {
@@ -98,12 +98,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
             setTimeout(function() {
                 if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                     return;
-                } else if (newMember.selfVideo === false || newMember.streaming === false) {
+                } else if (newMember.selfVideo === false && newMember.channelID === voiceChannelID || newMember.streaming === false && newMember.channelID === voiceChannelID) {
                     textChannel.send(`<@${newMember.id}> Hey, I noticed that you're in hard mode but you haven't put on cams or screen-shared for the past **2 minutes**. You have another **2 minutes** to do that or you will get moved to regular Grind Time!`);
                     setTimeout(function() {
                         if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                             return;
-                        } else if (newMember.selfVideo === false || newMember.streaming === false || oldUserChannel !== voiceChannelID && newUserChannel === null) {
+                        } else if (newMember.selfVideo === false && newMember.channelID === voiceChannelID || newMember.streaming === false && newMember.channelID === voiceChannelID) {
                             
                         newMember.setChannel('787354978523545634')
                         textChannel.send(`<@${newMember.id}> You've been kicked due to no cams or screensharing. Make sure to turn on cams when joining this VC or it will happen again!`)
@@ -117,11 +117,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
             //user is in channel
         } else if (newMember.streaming === false && oldMember.selfVideo === true && oldMember.streaming === true || newMember.selfVideo === false && oldMember.selfVideo === true && oldMember.streaming) {
             return;
-        } else if (newMember.selfVideo === false && oldMember.selfVideo === true|| newMember.streaming === false && oldMember.streaming === true && oldMember.selfVideo === false) {
+        } else if (newMember.selfVideo === false && oldMember.selfVideo === true || newMember.streaming === false && oldMember.streaming === true && oldMember.selfVideo === false) {
            setTimeout(function () {
+               if (oldMember.channelID === voiceChannelID && newMember.channelID === voiceChannelID) {
                textChannel.send(`<@${newMember.id}> Hey! It's been **3 minutes** since you turned off cam or stopped screensharing, please turn it back on or you will be **kicked** in the next **two minutes** to the AFK/Break channel!`);
                setTimeout(function () {
-                   if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
+                   if (newMember.selfVideo === true || newMember.streaming === true || oldMember.channelID !== voiceChannelID) {
                        return;
                    } else if (newMember.selfVideo === false || newMember.streaming === false) {
                     textChannel.send("Sorry, you were kicked!");
@@ -130,6 +131,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                    }
                    
                }, minuteTime * 2)
+            }
             }, minuteTime * 3);
            return;
        } 
