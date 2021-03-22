@@ -63,66 +63,75 @@ client.once('ready', () => {
 //timer? seeing if it works
 
 
-/*Progress so far, will think about it more later!!
+//Progress so far, will think about it more later!!
+/*
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-    let voiceChannelID = "787354978523545634";
+    let voiceChannelID = "822826357100249098";
     const textChannel = client.channels.cache.get(`821951428717183006`);
+   
+   
     let counterUp = 0;
+  
+    function counterNumber () {
+        counterUp++;
+        console.log(counterUp);
+    }
+
+    
    
 
-    function counterupUp () {
-        ++counterUp
-        console.log(counterUp)
-        return counterUp;
-        
-    }
-    function updateVariable () {;
-        return counterUp;
-    }
-
-
-    //Progress so far = made the variable global - I still don't know how to update the variable tho
-
     if (newMember.channelID === voiceChannelID && oldMember.channelID !== voiceChannelID || newMember.channelID !== voiceChannelID && oldMember.channelID === voiceChannelID) {
+       
         
-        let myTime = setInterval (function () {
+        let timeLeft = setInterval(timeIt, 1000);
+
+        function timeIt() {
             if (newMember.channelID === voiceChannelID && oldMember.channelID !== voiceChannelID) {
-                counterupUp();
-                updateVariable();
-            
-            }
-            if (newMember.channelID !== voiceChannelID && oldMember.channelID === voiceChannelID) {
-                updateVariable ();
-                console.log (`You have grinded for ${counterUp} seconds!`)
-                
-                clearInterval(myTime);
+                counterNumber();
                 
             }
-        }, 1000)
+        }
+        
+       
+
+
+
+        
 
         
        
     }
+    if (newMember.channelID !== voiceChannelID && oldMember.channelID === voiceChannelID) {
+        counterNumber ();
+        console.log(`Hello ${counterUp}`);
+    }
+    setTimeout (function () {
+        if (newMember.channelID !== voiceChannelID && oldMember.channelID === voiceChannelID) {
+            counterNumber ();
+            console.log(counterUp);
+        }
+        console.log(counterUp);
+    }, 10000)
+    
 })
-
 */
+
 //Making a dark Portal KEKW - have them loop for now
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-    let minuteTime = 8000;
+    let minuteTime = 15000;
     let portalOne = "823394539247108118";
     let portalTwo = "823394660906827797";
     let portalThree = "823394715092254740";
     let portalFour = "823394758486654986";
     let portalFive = "823394661636636762";
-    const textChannel = client.channels.cache.get(`793302938453803008`);
+    const textChannel = client.channels.cache.get(`821951428717183006`);
 
     //first Portal
     if (newMember.channelID === portalOne && oldMember.channelID !== portalOne) {
-        /*setTimeout(function () {
-            textChannel.send(`<@${newMember.id}> Welcome to the **Dark Portal**. Please wait a minute for your journey to begin!`)
-        }, 2000)*/
-        
+        setTimeout(function () {
+            textChannel.send(`<@${newMember.id}> Please wait a few seconds for your journey to begin!`)
+        }, 3000)
         setTimeout(function () {
             newMember.setChannel(portalTwo);
         }, minuteTime) 
