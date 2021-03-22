@@ -60,6 +60,99 @@ client.once('ready', () => {
     }
 });
 */
+//timer? seeing if it works
+
+
+/*Progress so far, will think about it more later!!
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    let voiceChannelID = "787354978523545634";
+    const textChannel = client.channels.cache.get(`821951428717183006`);
+    let counterUp = 0;
+   
+
+    function counterupUp () {
+        ++counterUp
+        console.log(counterUp)
+        return counterUp;
+        
+    }
+    function updateVariable () {;
+        return counterUp;
+    }
+
+
+    //Progress so far = made the variable global - I still don't know how to update the variable tho
+
+    if (newMember.channelID === voiceChannelID && oldMember.channelID !== voiceChannelID || newMember.channelID !== voiceChannelID && oldMember.channelID === voiceChannelID) {
+        
+        let myTime = setInterval (function () {
+            if (newMember.channelID === voiceChannelID && oldMember.channelID !== voiceChannelID) {
+                counterupUp();
+                updateVariable();
+            
+            }
+            if (newMember.channelID !== voiceChannelID && oldMember.channelID === voiceChannelID) {
+                updateVariable ();
+                console.log (`You have grinded for ${counterUp} seconds!`)
+                
+                clearInterval(myTime);
+                
+            }
+        }, 1000)
+
+        
+       
+    }
+})
+
+*/
+//Making a dark Portal KEKW - have them loop for now
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    let minuteTime = 8000;
+    let portalOne = "823394539247108118";
+    let portalTwo = "823394660906827797";
+    let portalThree = "823394715092254740";
+    let portalFour = "823394758486654986";
+    let portalFive = "823394661636636762";
+    const textChannel = client.channels.cache.get(`793302938453803008`);
+
+    //first Portal
+    if (newMember.channelID === portalOne && oldMember.channelID !== portalOne) {
+        /*setTimeout(function () {
+            textChannel.send(`<@${newMember.id}> Welcome to the **Dark Portal**. Please wait a minute for your journey to begin!`)
+        }, 2000)*/
+        
+        setTimeout(function () {
+            newMember.setChannel(portalTwo);
+        }, minuteTime) 
+    } else if (newMember.channelID === portalTwo && oldMember.channelID !== portalTwo) {
+        setTimeout(function () {
+            newMember.setChannel(portalThree);
+        }, minuteTime) 
+    } else if (newMember.channelID === portalThree && oldMember.channelID !== portalThree) {
+        setTimeout(function () {
+            newMember.setChannel(portalFour);
+        }, minuteTime) 
+    } else if (newMember.channelID === portalFour && oldMember.channelID !== portalFour) {
+        setTimeout(function () {
+            newMember.setChannel(portalFive);
+        }, minuteTime) 
+    } else if (newMember.channelID === portalFive && oldMember.channelID !== portalFive) {
+        setTimeout(function () {
+            newMember.setChannel(portalOne);
+        }, minuteTime) 
+    } else {
+        return;
+    }
+
+
+})
+
+
+
+
+
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
@@ -92,7 +185,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                 
             }
             */
-
+           //work around for bot?
+         
             //camera and screenshare logic
             textChannel.send (`<@${newMember.id}> Welcome to **Hard Mode**. This is where the really serious grinders go to compete. In this channel, you must either have cameras on or be screen-sharing. Otherwise you will be kicked.`);
             setTimeout(function() {
@@ -146,7 +240,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     } else if (oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
         // User leaves a voice channel
         
-        textChannel.send(`<@${newMember.id}> Have a good day!`)
+        return;
         
     }
  });
