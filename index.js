@@ -119,7 +119,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 //Making a dark Portal KEKW - have them loop for now
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-    let minuteTime = 1000 * 60;
+    let minuteTime = 20000;
     let portalOne = "823394539247108118";
     let portalTwo = "823394660906827797";
     let portalThree = "823394715092254740";
