@@ -178,8 +178,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
  
 
     
- 
-    if(newMember.channelID === voiceChannelID) //don't remove ""
+    if (newMember.id === `234395307759108106`) {return;}
+    else if(newMember.channelID === voiceChannelID) //don't remove ""
     {   //timer function
        
         // User Joins a voice channel
