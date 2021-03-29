@@ -158,11 +158,70 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 })
 
+//Record time in voice channel
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    let newUserChannel = newMember.channelID;
+    let oldUserChannel = oldMember.channelID;
+    let voiceChannelID1 = "822696684139315261"
+    let voiceChannelID2 = "787354978523545634"
+    const textChannel = client.channels.cache.get(`821951428717183006`);
+    
+    if (newUserChannel === voiceChannelID1 && oldUserChannel !== voiceChannelID1) {
+        newMember.voiceTime1 = new Date();
+        
+    } else if (oldUserChannel === voiceChannelID1 && newUserChannel !== voiceChannelID1) {
+        let endTime = new Date();
+        let timeDif = Math.floor((endTime - newMember.voiceTime1));
+        let hrs = Math.floor(timeDif / (3600 * 1000));
+        let min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
+        let sec = Math.floor((timeDif % (1000 * 60)) / 1000);
+        
+        textChannel.send(`<@${newMember.id}> You have grinded for ${hrs} hour(s) ${min} minute(s) and ${sec} second(s) in Hard Mode!`)
+    }
+    if (newUserChannel === voiceChannelID2 && oldUserChannel !== voiceChannelID2) {
+        newMember.voiceTime2 = new Date();
+        
+    } else if (oldUserChannel === voiceChannelID2 && newUserChannel !== voiceChannelID2) {
+        let endTime = new Date();
+        let timeDif = Math.floor((endTime - newMember.voiceTime2));
+        let hrs = Math.floor(timeDif / (3600 * 1000));
+        let min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
+        let sec = Math.floor((timeDif % (1000 * 60)) / 1000);
+        
+        textChannel.send(`<@${newMember.id}> You have grinded for ${hrs} hour(s) ${min} minute(s) and ${sec} second(s) in Grind Time!`)
+    }
+})
+
+
+
+/*Session Goals
+ client.on('message', message => {
+    const textChannel = client.channels.cache.get(`821951428717183006`);
+
+    if (message.newMember.id === "794317151062065192") return
+    if (message.channel.id === "821951428717183006") {
+        textChannel.send ("Test")
+        return;
+        
+    }
+
+});
+*/
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+//Real working hard mode system
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
