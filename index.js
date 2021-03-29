@@ -60,61 +60,7 @@ client.once('ready', () => {
     }
 });
 */
-//timer? seeing if it works
 
-
-//Progress so far, will think about it more later!!
-/*
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-    let voiceChannelID = "822826357100249098";
-    const textChannel = client.channels.cache.get(`821951428717183006`);
-   
-   
-    let counterUp = 0;
-  
-    function counterNumber () {
-        counterUp++;
-        console.log(counterUp);
-    }
-
-    
-   
-
-    if (newMember.channelID === voiceChannelID && oldMember.channelID !== voiceChannelID || newMember.channelID !== voiceChannelID && oldMember.channelID === voiceChannelID) {
-       
-        
-        let timeLeft = setInterval(timeIt, 1000);
-
-        function timeIt() {
-            if (newMember.channelID === voiceChannelID && oldMember.channelID !== voiceChannelID) {
-                counterNumber();
-                
-            }
-        }
-        
-       
-
-
-
-        
-
-        
-       
-    }
-    if (newMember.channelID !== voiceChannelID && oldMember.channelID === voiceChannelID) {
-        counterNumber ();
-        console.log(`Hello ${counterUp}`);
-    }
-    setTimeout (function () {
-        if (newMember.channelID !== voiceChannelID && oldMember.channelID === voiceChannelID) {
-            counterNumber ();
-            console.log(counterUp);
-        }
-        console.log(counterUp);
-    }, 10000)
-    
-})
-*/
 
 //Making a dark Portal KEKW - have them loop for now
 
@@ -176,7 +122,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         let min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
         let sec = Math.floor((timeDif % (1000 * 60)) / 1000);
         
-        textChannel.send(`<@${newMember.id}> You have grinded for ${hrs} hour(s) ${min} minute(s) and ${sec} second(s) in Hard Mode!`)
+        textChannel.send(`<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Hard Mode**!`)
     }
     if (newUserChannel === voiceChannelID2 && oldUserChannel !== voiceChannelID2) {
         newMember.voiceTime2 = new Date();
@@ -188,7 +134,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         let min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
         let sec = Math.floor((timeDif % (1000 * 60)) / 1000);
         
-        textChannel.send(`<@${newMember.id}> You have grinded for ${hrs} hour(s) ${min} minute(s) and ${sec} second(s) in Grind Time!`)
+        textChannel.send(`<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Grind Time**!`)
     }
 })
 
@@ -256,7 +202,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
            //work around for bot?
          
             //camera and screenshare logic
-            textChannel.send (`<@${newMember.id}> Welcome to **Hard Mode**. This is where the really serious grinders go to compete. In this channel, you must either have cameras on or be screen-sharing. Otherwise you will be kicked.`);
+            
             setTimeout(function() {
                 if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                     return;
