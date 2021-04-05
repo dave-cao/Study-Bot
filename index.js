@@ -223,7 +223,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     } else if (oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
         // User leaves a voice channel
         
-        textChannel.send(`<@${newMember.id}> Have a good day!`)
+       return;
         
     }
  });
