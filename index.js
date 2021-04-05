@@ -61,7 +61,6 @@ client.once('ready', () => {
 });
 */
 
-<<<<<<< HEAD
 
 
 //Making a dark Portal KEKW - have them loop for now
@@ -156,8 +155,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 
 //real working hard mode system
-=======
->>>>>>> 9e65fe1f4a2f35606ee556b02964b11ea074740f
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
@@ -167,7 +164,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   
 
     
-<<<<<<< HEAD
     if (newMember.id === `234395307759108106`) {return;}
     else if(newMember.channelID === voiceChannelID) //don't remove ""
         {  
@@ -176,27 +172,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     
 
             //camera and screenshare logic
-=======
- 
-    if(newMember.channelID === voiceChannelID) //don't remove ""
-    {   //timer function
-       
-        // User Joins a voice channel
-        if (newUserChannel === voiceChannelID && oldUserChannel !== voiceChannelID) {
-            /* setInterval(setTime, 1000)
-            function setTime () {
-                ++totalSeconds;
-                console.log(totalSeconds)
-                updateTimer();
-               
-                
-                
-            }
-            */
-
-            //camera and screenshare logic
-            textChannel.send (`<@${newMember.id}> Welcome to **Hard Mode**. This is where the really serious grinders go to compete. In this channel, you must either have cameras on or be screen-sharing. Otherwise you will be kicked.`);
->>>>>>> 9e65fe1f4a2f35606ee556b02964b11ea074740f
             setTimeout(function() {
                 if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                     return;
