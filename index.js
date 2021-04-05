@@ -61,113 +61,6 @@ client.once('ready', () => {
 });
 */
 
-
-//Making a dark Portal KEKW - have them loop for now
-
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-    let minuteTime = 15000;
-    let portalOne = "823394539247108118";
-    let portalTwo = "823394660906827797";
-    let portalThree = "823394715092254740";
-    let portalFour = "823394758486654986";
-    let portalFive = "823394661636636762";
-    const textChannel = client.channels.cache.get(`821951428717183006`);
-
-    //first Portal
-    if (newMember.channelID === portalOne && oldMember.channelID !== portalOne) {
-        setTimeout(function () {
-            textChannel.send(`<@${newMember.id}> Please wait a few seconds for your journey to begin!`)
-        }, 3000)
-        setTimeout(function () {
-            newMember.setChannel(portalTwo);
-        }, minuteTime) 
-    } else if (newMember.channelID === portalTwo && oldMember.channelID !== portalTwo) {
-        setTimeout(function () {
-            newMember.setChannel(portalThree);
-        }, minuteTime) 
-    } else if (newMember.channelID === portalThree && oldMember.channelID !== portalThree) {
-        setTimeout(function () {
-            newMember.setChannel(portalFour);
-        }, minuteTime) 
-    } else if (newMember.channelID === portalFour && oldMember.channelID !== portalFour) {
-        setTimeout(function () {
-            newMember.setChannel(portalFive);
-        }, minuteTime) 
-    } else if (newMember.channelID === portalFive && oldMember.channelID !== portalFive) {
-        setTimeout(function () {
-            newMember.setChannel(portalOne);
-        }, minuteTime) 
-    } else {
-        return;
-    }
-
-
-})
-
-//Record time in voice channel
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-    let newUserChannel = newMember.channelID;
-    let oldUserChannel = oldMember.channelID;
-    let voiceChannelID1 = "822696684139315261"
-    let voiceChannelID2 = "787354978523545634"
-    const textChannel = client.channels.cache.get(`821951428717183006`);
-    
-    if (newUserChannel === voiceChannelID1 && oldUserChannel !== voiceChannelID1) {
-        newMember.voiceTime1 = new Date();
-        
-    } else if (oldUserChannel === voiceChannelID1 && newUserChannel !== voiceChannelID1) {
-        let endTime = new Date();
-        let timeDif = Math.floor((endTime - newMember.voiceTime1));
-        let hrs = Math.floor(timeDif / (3600 * 1000));
-        let min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
-        let sec = Math.floor((timeDif % (1000 * 60)) / 1000);
-        
-        textChannel.send(`<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Hard Mode**!`)
-    }
-    if (newUserChannel === voiceChannelID2 && oldUserChannel !== voiceChannelID2) {
-        newMember.voiceTime2 = new Date();
-        
-    } else if (oldUserChannel === voiceChannelID2 && newUserChannel !== voiceChannelID2) {
-        let endTime = new Date();
-        let timeDif = Math.floor((endTime - newMember.voiceTime2));
-        let hrs = Math.floor(timeDif / (3600 * 1000));
-        let min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
-        let sec = Math.floor((timeDif % (1000 * 60)) / 1000);
-        
-        textChannel.send(`<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Grind Time**!`)
-    }
-})
-
-
-
-/*Session Goals
- client.on('message', message => {
-    const textChannel = client.channels.cache.get(`821951428717183006`);
-
-    if (message.newMember.id === "794317151062065192") return
-    if (message.channel.id === "821951428717183006") {
-        textChannel.send ("Test")
-        return;
-        
-    }
-
-});
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Real working hard mode system
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
@@ -183,8 +76,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
  
 
     
-    if (newMember.id === `234395307759108106`) {return;}
-    else if(newMember.channelID === voiceChannelID) //don't remove ""
+ 
+    if(newMember.channelID === voiceChannelID) //don't remove ""
     {   //timer function
        
         // User Joins a voice channel
@@ -199,10 +92,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                 
             }
             */
-           //work around for bot?
-         
+
             //camera and screenshare logic
-            
+            textChannel.send (`<@${newMember.id}> Welcome to **Hard Mode**. This is where the really serious grinders go to compete. In this channel, you must either have cameras on or be screen-sharing. Otherwise you will be kicked.`);
             setTimeout(function() {
                 if (newMember.selfVideo === true || newMember.streaming === true || oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
                     return;
@@ -254,7 +146,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     } else if (oldUserChannel === voiceChannelID && newUserChannel !== voiceChannelID) {
         // User leaves a voice channel
         
-        return;
+        textChannel.send(`<@${newMember.id}> Have a good day!`)
         
     }
  });
@@ -298,7 +190,8 @@ client.on('message', message => {
         message.channel.send(randomObject.Wake)
     }
 });
-
+*/
+/*
 //I need: statements
 client.on('message', message => {
     if (message.content === 'I need some motivation' || message.content === 'motivation' || message.content === 'MOTIVATION') {
@@ -316,7 +209,7 @@ client.on('message', message => {
        
     }
 })
-
+*/
 
 
 //People comments
@@ -580,6 +473,7 @@ client.on('message', message => {
 
 
 //Swears
+/*
 client.on('message', message => {
     if (message.content === 'gandoo') {
         computerOptions = [
@@ -598,14 +492,16 @@ client.on('message', message => {
         message.channel.send(computerOptions[computerNumber]);
     }
 })
+*/
 
+/*
 //resource calls
 client.on('message', message => {
     if (message.content === 'anki' || message.content === 'Anki') {
         message.channel.send('DID SOmEONe SAY ANKI? https://www.youtube.com/watch?v=gYBYyg3fGRQ&t=1s')
     }
 })
-
+*/
 
 
 
@@ -688,6 +584,7 @@ client.on('message', message => {
 })
 
 //flip a coin or roll a dice or tyracer or rock paper scissors(games)--> be careful of switch statements here!
+/*
 client.on('message', message => {
     switch (message.content) {
         case 'flip a coin':
@@ -719,8 +616,11 @@ client.on('message', message => {
 
     }   
 })
+*/
+
 
 //common phrases (brb + gonna go eat)
+/*
 client.on('message', message => {
     if (message.content === 'brb' || message.content === 'gonna go eat' || message.content === `ima go eat` || message.content === `done for the day`) {
         computerOptions = [`ight sounds good`, `ight cya later`, `pce bro`]
@@ -743,8 +643,9 @@ client.on('message', message => {
         message.channel.send(`stfu Announcer`)
     }
 })
+*/
 
-
+/*
 client.on('message', message => {
     if (message.content === 'ping') {
         const testEmbed = new Discord.MessageEmbed()
@@ -769,8 +670,8 @@ client.on('message', message => {
 })
 
 
-
 */
+
 
 
 
