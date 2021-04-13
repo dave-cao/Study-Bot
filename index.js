@@ -234,63 +234,12 @@ client.login(config.token)
 
 
 
-
-
-
-
-
-
-
-
-
-/*
-//just testing objects
-let computerOptions = [];
-let randomObject = {
-    Wake: "Imagine not sleeping LULW"
-}
-//time to: statements (time to grind/wakeup/sleep)
-client.on('message', message => {
-	if (message.content === 'time to grind' || message.content === 'grind time' || message.content === "let's grind") {
-        computerOptions = [
-            "Did someone say grind? :eyes:", 
-            "For every task, there is a Grinder...", 
-            "YESSIR, LET'S GO!", 
-            'Traffic lights say GO! https://cdn.discordapp.com/attachments/787654137352683521/787901140641120286/Traffic_Lights_Study_Time.png'];
-        const computerNumber = Math.floor(Math.random() * 4);
-        message.channel.send(computerOptions[computerNumber])
-    } else if (message.content === 'time to wake up' || message.content === 'get off your lazy ass' || message.content === 'get out of bed' || message.content === 'wake up') {
-        message.channel.send('Yea, you should get off your lazy ass :alarm_clock:');
-
-    //testing objects here
-    } else if (message.content === 'time to sleep') {
-        message.channel.send(randomObject.Wake)
-    }
-});
-*/
-/*
-//I need: statements
-client.on('message', message => {
-    if (message.content === 'I need some motivation' || message.content === 'motivation' || message.content === 'MOTIVATION') {
-        computerOptions = [
-            'You have a bright future ahead of you: https://careers.mcdonalds.com/main/jobs/51F5D22A-3CF7-4DF9-8C72-A6BB0179D88D?lang=en-us.',
-            "Hehe...https://youtu.be/Fdzs1dKkUHg.",
-            "https://www.youtube.com/watch?v=dvFFb65pWnU",
-            `HAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-            https://www.youtube.com/watch?v=C46kW_1rIO4`,
-            `WHERE THE FK IS YOUR PASSION HUH? THERE IS NOTHING!
-            https://youtu.be/X_vHaURM4sg`
-        ];
-        const computerNumber = Math.floor(Math.random() * 5);
-        message.channel.send(computerOptions[computerNumber])
-       
-    }
-})
-*/
-
-
 //People comments
 client.on('message', message => {
+    let computerOptions = [];
+    let randomObject = {
+        Wake: "Imagine not sleeping LULW"
+    }
     if (message.content === 'Christina' || message.content === 'christina' || message.content === 'CHRISTINA') {
 
         const christinaEmbed = new Discord.MessageEmbed()
@@ -544,15 +493,43 @@ client.on('message', message => {
     } else if (message.content === 'Renzi' || message.content === 'renzi' || message.content === 'renz' || message.content === 'Renz') {
         message.channel.send(`RPG Character: **Wizard** - *blasting fools with 8000 spells*`)
     }
-})
-
-
-
-
-//Swears
-/*
-client.on('message', message => {
-    if (message.content === 'gandoo') {
+    //time to: statements (time to grind/wakeup/sleep)
+    else if (message.content === 'time to grind' || message.content === 'grind time' || message.content === "let's grind") {
+            computerOptions = [
+                "Did someone say grind? :eyes:", 
+                "For every task, there is a Grinder...", 
+                "YESSIR, LET'S GO!", 
+                'Traffic lights say GO! https://cdn.discordapp.com/attachments/787654137352683521/787901140641120286/Traffic_Lights_Study_Time.png'];
+            const computerNumber = Math.floor(Math.random() * 4);
+            message.channel.send(computerOptions[computerNumber])
+    } else if (message.content === 'time to wake up' || message.content === 'get off your lazy ass' || message.content === 'get out of bed' || message.content === 'wake up') {
+            message.channel.send('Yea, you should get off your lazy ass :alarm_clock:');
+    
+        //testing objects here
+    } else if (message.content === 'time to sleep') {
+            message.channel.send(randomObject.Wake)
+    } 
+    
+    
+    
+    //I need statements
+    else if (message.content === 'I need some motivation' || message.content === 'motivation' || message.content === 'MOTIVATION') {
+        computerOptions = [
+            'You have a bright future ahead of you: https://careers.mcdonalds.com/main/jobs/51F5D22A-3CF7-4DF9-8C72-A6BB0179D88D?lang=en-us.',
+            "Hehe...https://youtu.be/Fdzs1dKkUHg.",
+            "https://www.youtube.com/watch?v=dvFFb65pWnU",
+            `HAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+            https://www.youtube.com/watch?v=C46kW_1rIO4`,
+            `WHERE THE FK IS YOUR PASSION HUH? THERE IS NOTHING!
+            https://youtu.be/X_vHaURM4sg`
+        ];
+        const computerNumber = Math.floor(Math.random() * 5);
+        message.channel.send(computerOptions[computerNumber])
+       
+    }  
+    
+    //swears
+    else if (message.content === 'gandoo') {
         computerOptions = [
             `https://www.urbandictionary.com/define.php?term=gandoo`, 
             `WHAT DID YOU JUST SAY?`, `
@@ -567,18 +544,46 @@ client.on('message', message => {
         ];
         const computerNumber = Math.floor(Math.floor(Math.random()*2));
         message.channel.send(computerOptions[computerNumber]);
-    }
-})
-*/
 
-/*
-//resource calls
-client.on('message', message => {
-    if (message.content === 'anki' || message.content === 'Anki') {
+    }
+    //resource calls
+    else if (message.content === 'anki' || message.content === 'Anki') {
         message.channel.send('DID SOmEONe SAY ANKI? https://www.youtube.com/watch?v=gYBYyg3fGRQ&t=1s')
+    } 
+    
+    //common phrases
+    else if (message.content === 'brb' || message.content === 'gonna go eat' || message.content === `ima go eat` || message.content === `done for the day`) {
+        computerOptions = [`ight sounds good`, `ight cya later`, `pce bro`]
+        const computerNumber = Math.floor(Math.random()*3)
+        message.channel.send(computerOptions[computerNumber])
+    } else if (message.content === 'What time is it?' || message.content === 'what time is it?' || message.content === 'WHAT TIME IS IT?' || message.content === 'what time is it' || message.content === 'WHAT TIME IS IT') {
+        message.channel.send(`IT'S GRIND TIME BABY!! 🔥🔥`)
+    } else if (message.content === `just do it` || message.content === `JUST DO IT` || message.content === `JUST DO IT!` || message.content === `just do it!`) {
+
+        const justDoItEmbed = new Discord.MessageEmbed()
+            .setColor(`#00FF00`)
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804210408268759050/JustDoIt.jpg`)
+        message.channel.send(justDoItEmbed)
+    } else if (message.content === `workout` || message.content === `WORKOUT`) {
+        const workoutEmbed = new Discord.MessageEmbed()
+            .setColor(`#FFC0CB`)
+            .setImage(`https://cdn.discordapp.com/attachments/787654137352683521/804211471776612362/c750a57eae01571996b538b584a166b5.png`)
+            message.channel.send(workoutEmbed)
+    } else if (message.content === `ayy`) {
+        message.channel.send(`stfu Announcer`)
     }
 })
-*/
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -657,27 +662,20 @@ client.on('message', message => {
                 `Looks like you obviously haven't read the prologue...smh.
                 https://www.youtube.com/watch?v=FRBrVgeM1d8`
             );   break;
-    }
-})
-
-//flip a coin or roll a dice or tyracer or rock paper scissors(games)--> be careful of switch statements here!
-/*
-client.on('message', message => {
-    switch (message.content) {
         case 'flip a coin':
             computerOptions = [`Heads`, `Tails`];
             let computerNumber2 = Math.floor(Math.random()*2);
             message.channel.send(computerOptions[computerNumber2]);
-            break;
+                break;
         case `roll a dice`:
             computerOptions = [1, 2, 3, 4, 5, 6];
             computerNumber6 = Math.floor(Math.random()*6);
             message.channel.send(computerOptions[computerNumber6]);
-            break;
+                break;
         case 'typeracer':
         case 'Typeracer':
-            message.channel.send(`It's time to duel! https://play.typeracer.com/`)
-            break;
+                message.channel.send(`It's time to duel! https://play.typeracer.com/`)
+                break;
         case 'rock':
         case 'Rock':
         case 'ROCK':
@@ -690,64 +688,16 @@ client.on('message', message => {
             computerOptions = ['Rock!', 'Paper!', 'Scissors!'];
             const computerNumber3 = Math.floor(Math.random()*3);
             message.channel.send(computerOptions[computerNumber3])
-
-    }   
-})
-*/
-
-
-//common phrases (brb + gonna go eat)
-/*
-client.on('message', message => {
-    if (message.content === 'brb' || message.content === 'gonna go eat' || message.content === `ima go eat` || message.content === `done for the day`) {
-        computerOptions = [`ight sounds good`, `ight cya later`, `pce bro`]
-        const computerNumber = Math.floor(Math.random()*3)
-        message.channel.send(computerOptions[computerNumber])
-    } else if (message.content === 'What time is it?' || message.content === 'what time is it?' || message.content === 'WHAT TIME IS IT?' || message.content === 'what time is it' || message.content === 'WHAT TIME IS IT') {
-        message.channel.send(`IT'S GRIND TIME BABY!! 🔥🔥`)
-    } else if (message.content === `just do it` || message.content === `JUST DO IT` || message.content === `JUST DO IT!` || message.content === `just do it!`) {
-
-        const justDoItEmbed = new Discord.MessageEmbed()
-            .setColor(`#00FF00`)
-            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804210408268759050/JustDoIt.jpg`)
-        message.channel.send(justDoItEmbed)
-    } else if (message.content === `workout` || message.content === `WORKOUT`) {
-        const workoutEmbed = new Discord.MessageEmbed()
-            .setColor(`#FFC0CB`)
-            .setImage(`https://cdn.discordapp.com/attachments/787654137352683521/804211471776612362/c750a57eae01571996b538b584a166b5.png`)
-            message.channel.send(workoutEmbed)
-    } else if (message.content === `ayy`) {
-        message.channel.send(`stfu Announcer`)
-    }
-})
-*/
-
-/*
-client.on('message', message => {
-    if (message.content === 'ping') {
-        const testEmbed = new Discord.MessageEmbed()
-        .setColor('#0099ff')
-	.setTitle('Some title')
-	.setURL('https://discord.js.org/')
-	.setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
-	.setDescription('Some description here')
-	.setThumbnail('https://i.imgur.com/wSTFkRM.png')
-	.addFields(
-		{ name: 'Regular field title', value: 'Some value here' },
-		{ name: '\u200B', value: '\u200B' },
-		{ name: 'Inline field title', value: 'Some value here', inline: true },
-		{ name: 'Inline field title', value: 'Some value here', inline: true },
-	)
-	.addField('Inline field title', 'Some value here', true)
-	.setImage('https://i.imgur.com/wSTFkRM.png')
-	.setTimestamp()
-	.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
-        message.channel.send(testEmbed)
-    }
+    
+        }   
+    
 })
 
 
-*/
+
+
+
+
 
 
 
