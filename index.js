@@ -303,29 +303,49 @@ client.on('message', message => {
         message.channel.send(computerOptions[computerNumber]);
         
     } else if (message.content === `Sadeed` || message.content === `sadeed` || message.content === `ilmun` || message.content === `Ilmun` || message.content === 'DetectiveBongHits') {
-        computerOptions = [
-            `**The following excerpt is quoted from Jay**: "*When he spends time with us, he's hella interesting, genuine, and funny person"*
-            
-            This creature is known to be fighting crime late in the depths of the night...unable to answer phone calls or text messages. Sometimes going so far as to ask something and then never respond to the reply. In essence, a big gawd dam gandoo. 
+        const sadeedImbed = new Discord.MessageEmbed()
+            .setColor(`#FFD700`)
+            .setTitle(`The Shield`)
+            .setDescription(`Though sometimes coming off as passive, this person really tries to protect and accomdoate everyone around him. Sometimes at the expense of himself. But hey, that's just one of the side-effects of being a super-hero. 
 
-            Known to be very passive in every situation. If you bug it, it will actually blame itself for allowing you to do it! However, this creature is a real hero. The first one to come over when there is a cry for help. You can be sure that when you need something, this creature will help you no matter what. With a heart made of gold. 
+            This creature is known to be fighting crime late in the depths of the night...unable to answer phone calls or text messages. Sometimes going so far as to ask something and then never respond to the reply. In essence, a big gawd dam gandoo. 
             
-            *Masha'Allah my friend.*`
-        ];
+            Known to be very passive in every situation. If you bug it, it will actually blame itself for allowing you to do it! However, this creature is a real hero. The first one to come over when there is a cry for help. You can be sure that when you need something, this creature will help you no matter what. With a heart made of gold. `)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Sad-no-more (Sadude)\`\`\` - *After witnessing the evils and vices from the world, Sadude went on a rampage, purging the world of all villains for as long as it takes. To the villains, he is known as the infamous "Sadude", but for the common citizen, they say as long as he is near, you will be "Sad-no-more".*`},
+                { name: 'Class', value: `\`\`\`Arcane Trickster\`\`\` - *a class with high speed and damage, with mystifying abilities; able to trick and confuse the enemy before going in for the kill*`},
+                { name: `Strength`, value: '\`\`\`20\`\`\`', inline: true },
+                { name: `Dexterity`, value: '\`\`\`25\`\`\`', inline: true },
+                { name: `Constitution`, value: '\`\`\`5\`\`\`', inline: true },
+                
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/832461074632671282/Trickery_by_John_Constantine.jpg`)
+            .setFooter(`Also known as a gandoo kid`)
+        computerOptions = [sadeedImbed];
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber]);
     } else if (message.content === 'Miran' || message.content === 'miran') {
-        computerOptions = [
-            `**The following excerpt is quoted from Jay**: "*Miran is literally a father figure to me but will straight up tell a girl he’s talking to that he would want to marry a female version of me 💀 so he’s also a little Alabama"*
-            
-            A creature known to value its friendships and relationships very much. Solid in its core values and beliefs, it is the type of creature to straight forwardly tell you what it's thinking with no strings attached. If I would ever need someone to rely on for something, I would gladly put my life in its hands.
-            
-            *Masha'Allah my friend.*
-            
-            RPG Character: **Archer** - *calculating firing distance with deadly accuracy*`
+        const miranEmbed = new Discord.MessageEmbed()
+        .setColor(`#000080`)
+            .setTitle(`The Thinker`)
+            .setDescription(`Can often be found contemplating about the meaning of life.
 
+            A creature known to value its friendships and relationships very much. Solid in its core values and beliefs, it is the type of creature to straight forwardly tell you what it's thinking with no strings attached. If I would ever need someone to rely on for something, I would gladly put my life in its hands. 
+            
+            **The following excerpt is quoted from Jay**: "Miran is literally a father figure to me but will straight up tell a girl he’s talking to that he would want to marry a female version of me :skull: so he’s also a little Alabama"`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Kinshot\`\`\` - *He spent most of his life studying the practical arts of human movement, anatomy and osteology. He became so proficient that others mistook him for a Doctor...however the truth is, he studied it to further his craft on the one-shot kill. Others know this deadly figure as "Deadshot", however he prefers to be called "Kinshot".*`},
+                { name: 'Class', value: `\`\`\`Golden-Eye Archer\`\`\` - *Similar to a sniper, this class prides itself on the one-shot kill. People also refer this class to the "predator" because these archers lay in wait for long periods of time for the perfect shot. With an eagle's golden eye, these archers can shoot from several miles away.*`},
+                { name: `Strength`, value: '\`\`\`10\`\`\`', inline: true },
+                { name: `Dexterity`, value: '\`\`\`20\`\`\`', inline: true },
+                { name: `Intellect`, value: '\`\`\`20\`\`\`', inline: true },
+                
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/832001039360065536/cool_archer.jpg`)
+            .setFooter(`Gandoo ass kid`)
+       
 
-        ]
+        computerOptions = [miranEmbed]
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber]);
     }   else if (message.content === 'Jay' || message.content === 'jay' || message.content === 'Jayant' || message.content === 'jayant' || message.content === 'MemeSupremeJay') {
@@ -505,8 +525,31 @@ client.on('message', message => {
     } else if (message.content === 'time to wake up' || message.content === 'get off your lazy ass' || message.content === 'get out of bed' || message.content === 'wake up') {
             message.channel.send('Yea, you should get off your lazy ass :alarm_clock:');
     
-        //testing objects here
-    } else if (message.content === 'time to sleep') {
+        
+    } else if (message.content === "stefan" || message.content === "Stefan") {
+        const stefanImbed = new Discord.MessageEmbed()
+            .setColor(`#FFFFF0`)
+            .setTitle(`The Chivalrous`)
+            .setDescription(`Considerate, honorable, and gallant; a completely genuine and authentic individual. Accepting but critical.
+            
+            Someone who I would consider to be one of the hardest workers I've ever met, in fact, he tries hard in everything he does. An individual with massive amounts of internal motivation.`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Prince Bozic\`\`\` - *A character with his own principles and ideals. A quirky mindset never before seen in an assassin. He's been known to charge jobs for millions of dollars, but it was also known that he had accepted a job from a little girl...for only a penny.*`},
+                { name: 'Class', value: `\`\`\`Crowned Assassin\`\`\` - *A self-proclaimed kingly class, looking down at all things with the valour of a royal. A character only known, but never seen.*`},
+                { name: `Strength`, value: '\`\`\`10\`\`\`', inline: true },
+                { name: `Dexterity`, value: '\`\`\`25\`\`\`', inline: true },
+                { name: `Intellect`, value: '\`\`\`15\`\`\`', inline: true },
+                
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/831741204013121556/Webp.net-resizeimage_2.png`)
+            .setFooter(`He thinks he's funny but he's not.`)
+        message.channel.send(stefanImbed)
+    }
+    
+
+
+     //testing objects here
+    else if (message.content === 'time to sleep') {
             message.channel.send(randomObject.Wake)
     } 
     
@@ -521,9 +564,13 @@ client.on('message', message => {
             `HAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
             https://www.youtube.com/watch?v=C46kW_1rIO4`,
             `WHERE THE FK IS YOUR PASSION HUH? THERE IS NOTHING!
-            https://youtu.be/X_vHaURM4sg`
+            https://youtu.be/X_vHaURM4sg`,
+            //cow tips?
+            `Cow Tip #1: **Just get started**. I'm not going to say **Just Do it!** (*we have a command for that btw*), but I will say that you should just start whatever aversive task or project you have in wait for you. Just start with 5 minutes of work or even less and if you feel like continuing then continue, otherwise, just drop it and do something else. But the best way to tackle these aversive tasks in my opinion is to just begin!
+            https://www.lifehack.org/articles/productivity/5-tips-get-started-working-now.html`,
+            `Cow Tip #2: **The Rule of 3**. Try to envision yourself in the future. What do you want to get done by the end of the day that would make you say to yourself, "Man, I was productive!". Now, I want you to pick the **top 3** tasks out of those and write it down. FOCUS ON THOSE AND FINISH IT. Most of the time, we can procrastinate on the lower-tier productive things when in reality, we should be focusing on the high-impact productive things. Getting these things sorted and written out may boost your motivation for the future!`
         ];
-        const computerNumber = Math.floor(Math.random() * 5);
+        const computerNumber = Math.floor(Math.random() * 7);
         message.channel.send(computerOptions[computerNumber])
        
     }  
