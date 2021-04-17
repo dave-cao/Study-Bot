@@ -512,6 +512,23 @@ client.on('message', message => {
         message.channel.send(woodyImbed)
     } else if (message.content === 'Renzi' || message.content === 'renzi' || message.content === 'renz' || message.content === 'Renz') {
         message.channel.send(`RPG Character: **Wizard** - *blasting fools with 8000 spells*`)
+    } else if (message.content === 'Steve' || message.content === 'steve') {
+        const steveEmbed = new Discord.MessageEmbed()
+            .setColor(`#90EE90`)
+            .setTitle(`The Adventurer`)
+            .setDescription(`A strong sense of curiosity. Able to take that leap of faith and try out new things regardless of uncomfortableness. Daring; a risk taker. Definitely someone who will go far in life.`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Steve Musashi\`\`\` - *Hailing from a celebrated and honorable background. He was betrayed by one of his most trusted confidantes. Blinded by rage, he murdered him and all generations of his family. When he came back to his senses, realizing the weight of his actions, he wanders the land seeking ways to atone for his sins.*` },
+                { name: `Class`, value: `\`\`\`Lonesome Samerai (Ronin)\`\`\` - *with only a sword on his waist and the clothes on his back. Wandering the world with steadfast steps.*` },
+                { name: `Strength`, value: `\`\`\`25\`\`\``, inline: true },
+                { name: `Dexterity`, value: `\`\`\`5\`\`\``, inline: true },
+                { name: `Constitution`, value: `\`\`\`20\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/832785048758648832/Samerai_Steve.jpg`)
+            .setFooter("Often seen chilling in a random discord server voice channel by himself")
+
+
+        message.channel.send(steveEmbed)
     }
     //time to: statements (time to grind/wakeup/sleep)
     else if (message.content === 'time to grind' || message.content === 'grind time' || message.content === "let's grind") {
