@@ -361,29 +361,50 @@ client.on('message', message => {
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber]) 
     } else if (message.content === 'Liam' || message.content === 'liam') {
-        computerOptions = [
-            `**Quote**: *If I could choose a world where pessimism doesn't exist, and the only thing that drives people is optimism; I would do it.*
-            
-            On the surface, this creature may seem like a **dumbass**, in fact, it may seem like it doesn't have a clue of what's going on. Happy go lucky so to speak. However, the deeper you get to know it, you find out that it is one of the most intellectually and emotionally aware creature there is. 
+        const liamEmbed = new Discord.MessageEmbed()
+            .setColor(`#623120`)
+            .setTitle(`The Blazing`)
+            .setDescription(`Like a bright sun illuminating the night sky. Travelling like a shooting star towards a great and exciting unknown. Leaving darkness in the dusk; supporting the many creatures that rely on its warmth and sunlight.
+
+            On the surface, this creature may seem like a dumbass, in fact, it may seem like it doesn't have a clue of what's going on. Happy go lucky so to speak. However, the deeper you get to know it, you find out that it is one of the most intellectually and emotionally aware creature there is. 
             
             Draws a clear line between work and play, it is one of the most hard working creatures there is to man. Though it may not know it; I have grown so much interacting with this creature. I am honestly grateful for having such a different a unique person in my life. I've never met anyone like you before.
             
-            *You are one of the people I want to see become successful and achieve all your goals and dreams. All the best my friend.*`
-        ];
+            **Quote**: *If I could choose a world where pessimism doesn't exist, and the only thing that drives people is optimism; I would do it.*`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Light-Man D\`\`\` - *Usually going by the nickname "D", he was one of the first Lightmans to travel to Grandune. Actually, he was exciled by the Lightman King because he refused to kill an innocent alien creature. He creature turned out to be a human girl from Grandune, in which he helped her return. However, he became enamored by the wonders and life of Grandune that he decided to stay. He is often seen playing pranks and saying jokes where-ever he goes.*` },
+                { name: `Class`, value: `\`\`\`Court Jester\`\`\` - *A unique and one-of-a-kind class. After a failed attempt to make the Lightman King laugh, the King abolished all Jesters from the Lighman world. Thus, there is only one Jester alive. This class doesn't really have any abilities...though they tend to be very lucky.*` },
+                { name: `Strength`, value: `\`\`\`-5\`\`\``, inline: true },
+                { name: `Luck`, value: `\`\`\`60\`\`\``, inline: true },
+                { name: `Constitution`, value: `\`\`\`-5\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/833471930597507072/Jester.jpg`)
+            .setFooter("A fellow Tenor 2 Buddy :)")
+        computerOptions = [liamEmbed];
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber])
     } else if (message.content === 'Noyan' || message.content === 'noyan' || message.content === 'Noyano') {
-        computerOptions = [
-            `**Quote**: *You gawd dam gandoo kid*
-            
+        const noyanEmbed = new Discord.MessageEmbed()
+            .setColor(`#C0C0C0`)
+            .setTitle(`The Versatile`)
+            .setDescription(`All-rounded; able to do anything and everything that he puts his mind to. With a wide skill-set; all-encompassing. A hard-working and talented individual. 
+
             One of the easiest creatures to talk and connect with. Intellectually adept and socially aware. Is able to detect if you don't want to talk and will give you space. You will have a natural tendency to help this creature because you know that in your time of need, it's got your back, no questions asked.
             
-            Perhaps addicted to playing games, however once it gets to work and has its motivation, it can grind out long hours easily. Has a genetically gifted superior physique, but above all, a **high quality perseverence and ability to withstand punishment**.
-            
-            *Masha'Allah my friend.*`
+            Perhaps addicted to playing games, however once it gets to work and has its motivation, it can grind out long hours easily. Has a genetically gifted superior physique, but above all, a **high quality perseverence and ability to withstand punishment**.`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Reaper\`\`\` - *An evil world. A mad world. Apocolyptic in nature. After a war between superpowers, his world descended into madnesss. The resistance crippled and destroyed, ruled over by the Tyrant King of Norvack. The Reaper came to restore order to the world, coming and going like a ghost, laying judgement on the sinful.*` },
+                { name: `Class`, value: `\`\`\`Night Warlock\`\`\` - *Powers bolstered in the night. Not much is known about this class other than the sheer power within its capabilities. Some say it has the potential to destroy worlds.*` },
+                { name: `Strength`, value: `\`\`\`??\`\`\``, inline: true },
+                { name: `Magic`, value: `\`\`\`50\`\`\``, inline: true },
+                { name: `Intellect`, value: `\`\`\`??\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/833148256267665408/Warlock_Noyan.jpg`)
+            .setFooter("You gawd dam gandoo kid")
 
-            
-        ];
+
+       
+        computerOptions = [noyanEmbed];
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber]);
     } else if (message.content === `David` || message.content === `david` || message.content === 'Cow' || message.content === 'KingCao' || message.content === 'DAVID' || message.content === `cow`) {
@@ -529,6 +550,25 @@ client.on('message', message => {
 
 
         message.channel.send(steveEmbed)
+    } else if (message.content === "Anthony" || message.content === "anthony" || message.content === "Tony" || message.content === "tony") {
+        const anthonyEmbed = new Discord.MessageEmbed()
+        .setColor(`#DC143C`)
+        .setTitle(`The Serene`)
+        .setDescription(`Remains tranquil no matter the outside disturbance. Calm and unaffected...perhaps too chill if you ask me. A very giving and thoughtful individual. If everyone in the world would go against me, he would probably still have my back. 
+        `)
+        .addFields(
+            { name: `Name`, value: `\`\`\`Tony\`\`\` - *Growing up in poverty, Tony had to find unique ways to make ends meet. He began to learn martial arts at a young age in order to get some extra coin as a bodyguard. One day, when he was working as a guard to a Missus from the Tepes family, a rival family ambushed. Noone survived except for Tony who escaped by jumping off a cliff. Instead of dying, at the bottom of the cliff was a mysterious old man who saved him. The old man saw his potential and took him as a disciple - passing on to him monstrous amounts of martial arts knowledge*` },
+            { name: `Class`, value: `\`\`\`Origin Martial Artist\`\`\` - *Only the most dedicated martial artists are able to dig deep into the essense of martial arts and comprehend the true nature of all things. All martial arts come from a single concept. All these martial arts branched out into many different paths, they also can converge back together...back to the origin.*` },
+            { name: `Strength`, value: `\`\`\`25\`\`\``, inline: true },
+            { name: `Constitution`, value: `\`\`\`20\`\`\``, inline: true },
+            { name: `Intellect`, value: `\`\`\`5\`\`\``, inline: true },
+        )
+        .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/833151703972708403/ezgif.com-gif-maker_1.gif`)
+        .setFooter ('You suck at Smash 64 btw')
+
+
+    message.channel.send(anthonyEmbed)
+
     }
     //time to: statements (time to grind/wakeup/sleep)
     else if (message.content === 'time to grind' || message.content === 'grind time' || message.content === "let's grind") {
@@ -583,11 +623,12 @@ client.on('message', message => {
             `WHERE THE FK IS YOUR PASSION HUH? THERE IS NOTHING!
             https://youtu.be/X_vHaURM4sg`,
             //cow tips?
-            `Cow Tip #1: **Just get started**. I'm not going to say **Just Do it!** (*we have a command for that btw*), but I will say that you should just start whatever aversive task or project you have in wait for you. Just start with 5 minutes of work or even less and if you feel like continuing then continue, otherwise, just drop it and do something else. But the best way to tackle these aversive tasks in my opinion is to just begin!
+            `**Cow Tip #1**: **Just get started**. I'm not going to say **Just Do it!** (*we have a command for that btw*), but I will say that you should just start whatever aversive task or project you have in wait for you. Just start with 5 minutes of work or even less and if you feel like continuing then continue, otherwise, just drop it and do something else. But the best way to tackle these aversive tasks in my opinion is to just begin!
             https://www.lifehack.org/articles/productivity/5-tips-get-started-working-now.html`,
-            `Cow Tip #2: **The Rule of 3**. Try to envision yourself in the future. What do you want to get done by the end of the day that would make you say to yourself, "Man, I was productive!". Now, I want you to pick the **top 3** tasks out of those and write it down. FOCUS ON THOSE AND FINISH IT. Most of the time, we can procrastinate on the lower-tier productive things when in reality, we should be focusing on the high-impact productive things. Getting these things sorted and written out may boost your motivation for the future!`
+            `**Cow Tip #2**: **The Rule of 3**. Try to envision yourself in the future. What do you want to get done by the end of the day that would make you say to yourself, "Man, I was productive!". Now, I want you to pick the **top 3** tasks out of those and write it down. FOCUS ON THOSE AND FINISH IT. Most of the time, we can procrastinate on the lower-tier productive things when in reality, we should be focusing on the high-impact productive things. Getting these things sorted and written out may boost your motivation for the future!`,
+            `**Cow Tip #3**: **Don't Manage Your Time**. This may seem a bit controversial at first but hear me out. Managing time was the rage back in the day, that was because in the industrial era, we did jobs that were mostly designed for machines now. In that sense, it made sense for us to get payed by the hour because of our autonomous work. Going on autopilot was essentially good back then. Now however, we live in a knowledge-based era. Instead of time equating to money; we get paid more for the quality and value we are able to provide others. Therefore, you should **manage and record the times in the day that you have the most focus and attention and work around that to tackle your most high-impact tasks!**`
         ];
-        const computerNumber = Math.floor(Math.random() * 7);
+        const computerNumber = Math.floor(Math.random() * 8);
         message.channel.send(computerOptions[computerNumber])
        
     }  
