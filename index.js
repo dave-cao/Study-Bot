@@ -349,15 +349,24 @@ client.on('message', message => {
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber]);
     }   else if (message.content === 'Jay' || message.content === 'jay' || message.content === 'Jayant' || message.content === 'jayant' || message.content === 'MemeSupremeJay') {
-        computerOptions = [
-            `A creature with high self reflection, internal diolgue, and emotional quotient. A loving character; though at times a little slow (with eating), once you get to know it, it will be your life-long friend. It is very easy to build a connection with it.
-            
-            This creature is known to hop in and out of voice channels randomly. Look out, because you might be able to spot it one day!
+        const jayEmbed = new Discord.MessageEmbed()
+            .setColor(`#7894be`)
+            .setTitle(`The Sentimental`)
+            .setDescription(`A creature with high self reflection, internal diolgue, and emotional quotient. A loving character; though at times a little slow (with eating), once you get to know it, it will be your life-long friend. It is very easy to build a connection with it.
 
-            Background Info: This man once went to an IMAX theatre to watch a movie. He then went to one of the employees and asked them to turn down the volume weirdCHAMP
+            This creature is known to hop in and out of voice channels randomly. Look out, because you might be able to spot it one day!
             
-            *Though you may be a bitch, you are also one of the strongest people I know. All the best.*`
-        ];
+            **Background Info**: *This man once went to an IMAX theatre to watch a movie. He then went to one of the employees and asked them to turn down the volume weirdCHAMP*`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Giant\`\`\` - *The Titan Giant tribe was thought to be extinct once they were exiled into the void by the Great Wizard of Gatulan. And they were partially true, however instead of all dying, they learned to utilize the mysteries of the void to help them survive. The best knight of the Titan Giant Tribe is picked as the guardian warrior of the tribe. That knight then changes their name, to be known simply as **The Giant***` },
+                { name: `Class`, value: `\`\`\`Void Knight\`\`\` - *After being exiled into the void, the Titan Giant tribe's scholars were able to decipher a little bit of the mysteries of the void. They used this power and embued it into the best knight in the whole tribe. Void Knights are able to create vortexes in battle in combination with their high strength and constitution.*` },
+                { name: `Strength`, value: `\`\`\`20\`\`\``, inline: true },
+                { name: `Intellect`, value: `\`\`\`5\`\`\``, inline: true },
+                { name: `Constitution`, value: `\`\`\`25\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/835347185284415488/VoidKnightGiant.jpg`)
+            .setFooter("OG KIN BOY")
+        computerOptions = [jayEmbed];
         const computerNumber = Math.floor(Math.random()*1);
         message.channel.send(computerOptions[computerNumber]) 
     } else if (message.content === 'Liam' || message.content === 'liam') {
@@ -372,7 +381,7 @@ client.on('message', message => {
             
             **Quote**: *If I could choose a world where pessimism doesn't exist, and the only thing that drives people is optimism; I would do it.*`)
             .addFields(
-                { name: `Name`, value: `\`\`\`Light-Man D\`\`\` - *Usually going by the nickname "D", he was one of the first Lightmans to travel to Grandune. Actually, he was exciled by the Lightman King because he refused to kill an innocent alien creature. He creature turned out to be a human girl from Grandune, in which he helped her return. However, he became enamored by the wonders and life of Grandune that he decided to stay. He is often seen playing pranks and saying jokes where-ever he goes.*` },
+                { name: `Name`, value: `\`\`\`Light-Man D\`\`\` - *Usually going by the nickname "D", he was one of the first Lightmans to travel to Grandune. Actually, he was exciled by the Lightman King because he refused to kill an innocent alien creature. The creature turned out to be a human girl from Grandune, in which he helped her return. However, he became enamored by the wonders and life of Grandune that he decided to stay. He is often seen playing pranks and saying jokes where-ever he goes.*` },
                 { name: `Class`, value: `\`\`\`Court Jester\`\`\` - *A unique and one-of-a-kind class. After a failed attempt to make the Lightman King laugh, the King abolished all Jesters from the Lighman world. Thus, there is only one Jester alive. This class doesn't really have any abilities...though they tend to be very lucky.*` },
                 { name: `Strength`, value: `\`\`\`-5\`\`\``, inline: true },
                 { name: `Luck`, value: `\`\`\`60\`\`\``, inline: true },
@@ -502,13 +511,39 @@ client.on('message', message => {
 
         message.channel.send(sahajImbed)
     } else if (message.content === 'Pauline' || message.content === 'pauline') {
-        message.channel.send(`**The Silencer**
+        const paulineEmbed = new Discord.MessageEmbed()
+            .setColor(`#f9e5c4`)
+            .setTitle(`The Apothecary`)
+            .setDescription(`Our local Nutritionist and ALES farmer. Able to provide foods that provide boosts to every specific stat available. Her knowledge spans from the most obscure plant in the forest to the most poisonous mushrooms in the bogs. `)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Goldfish\`\`\` - *Known as the most benevolent Queen of the Moon Kingdom, Goldfish seeks to travel across the stars and spread her knowledge over the vast universe. She however specializes in dietary knowledge*` },
+                { name: `Class`, value: `\`\`\`Starlight Cleric\`\`\` - *Since ancient times, stars have been the medium of direction, myths, legends, and fate. Noone knows the limits that this power may have. The Starlight Cleric is able to utilize this power and miraculously heal people with a single touch, seemingly like reversing their fate*` },
+                { name: `Strength`, value: `\`\`\`5\`\`\``, inline: true },
+                { name: `Magic`, value: `\`\`\`20\`\`\``, inline: true },
+                { name: `Intellect`, value: `\`\`\`20\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302883511959613/835701361169268776/Cleric.jpg`)
 
-        Silent, but a hard worker. You may not notice, but she takes the top spots on the leaderboard without anyone noticing!`)
+
+        message.channel.send(paulineEmbed)
     } else if (message.content === 'Victor' || message.content === 'victor') {
-        message.channel.send(`**The Weeb**
+        const victorImbed = new Discord.MessageEmbed()
+        .setColor(`#c8b6a0`)
+        .setTitle(`The Baker`)
+        .setDescription(`Able to produce / make foods that give unique boosts to stats. Rumor has it that he is in search of the “The Ingredient” known to be the most delicious and scrumptious but never seen before. He is on a quest to make the ultimate foods in existence! 
 
-        ...but anime/manga is pretty lit tho :smiling_face_with_tear: `)
+        *Note: He’s also a weeb.*`)
+        .addFields(
+            { name: `Name`, value: `\`\`\`Vic\`\`\` - *His future was to become the future Head Monk of the Tao Temple, however he decided to forsake his reputation and future to travel the world and explore the sufferings of the world*`},
+            { name: 'Class', value: `\`\`\`Firefist Monk\`\`\` - *The main class granted to those who worked in the Tao Temple. A basic class, but with infinite potential, able to endure large amounts of damage while subduing enemies.*`},
+            { name: `Strength`, value: '\`\`\`15\`\`\`', inline: true },
+            { name: `Constitution`, value: '\`\`\`20\`\`\`', inline: true },
+            { name: `Intellect`, value: '\`\`\`15\`\`\`', inline: true },
+            
+        )
+        .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/836723669442232380/monk.jpg`)
+        
+    message.channel.send(victorImbed)
     } else if (message.content === 'erica' || message.content === 'Erica') {
         message.channel.send(`**The Night Owl**
 
@@ -626,9 +661,10 @@ client.on('message', message => {
             `**Cow Tip #1**: **Just get started**. I'm not going to say **Just Do it!** (*we have a command for that btw*), but I will say that you should just start whatever aversive task or project you have in wait for you. Just start with 5 minutes of work or even less and if you feel like continuing then continue, otherwise, just drop it and do something else. But the best way to tackle these aversive tasks in my opinion is to just begin!
             https://www.lifehack.org/articles/productivity/5-tips-get-started-working-now.html`,
             `**Cow Tip #2**: **The Rule of 3**. Try to envision yourself in the future. What do you want to get done by the end of the day that would make you say to yourself, "Man, I was productive!". Now, I want you to pick the **top 3** tasks out of those and write it down. FOCUS ON THOSE AND FINISH IT. Most of the time, we can procrastinate on the lower-tier productive things when in reality, we should be focusing on the high-impact productive things. Getting these things sorted and written out may boost your motivation for the future!`,
-            `**Cow Tip #3**: **Don't Manage Your Time**. This may seem a bit controversial at first but hear me out. Managing time was the rage back in the day, that was because in the industrial era, we did jobs that were mostly designed for machines now. In that sense, it made sense for us to get payed by the hour because of our autonomous work. Going on autopilot was essentially good back then. Now however, we live in a knowledge-based era. Instead of time equating to money; we get paid more for the quality and value we are able to provide others. Therefore, you should **manage and record the times in the day that you have the most focus and attention and work around that to tackle your most high-impact tasks!**`
+            `**Cow Tip #3**: **Don't Manage Your Time**. This may seem a bit controversial at first but hear me out. Managing time was the rage back in the day, that was because in the industrial era, we did jobs that were mostly designed for machines now. In that sense, it made sense for us to get payed by the hour because of our autonomous work. Going on autopilot was essentially good back then. Now however, we live in a knowledge-based era. Instead of time equating to money; we get paid more for the quality and value we are able to provide others. Therefore, you should **manage and record the times in the day that you have the most focus and attention and work around that to tackle your most high-impact tasks!**`,
+            `**Cow Tip #4**: **Reward Yourself**. Okay, I'm pretty sure what I'm thinking is entirely different then what your thinking so hold on. Have you ever played a game? Whenever you level up or beat an achievement, you get rewarded with something that will make you more powerful, something like a more powerful sword or higher stats. Now, think about how you reward yourself now. I feel like nowadays people reward themselves the wrong way. We reward ourselves with fast food, alcohol, or binging your favourite show...but it's not improving our stats or giving us better equipment at all! In essence, when we beat an achievement in real life, we literally reward ourselves by decreasing our stats! Does that make any sense? I propose we **reward ourselves with things that will improve our stats**. After a stressful and long day of work, go for a walk to improve your mind, read a book for enjoyment, or work on your hobby/passion project. That way you reward yourself with a boost in stats. You would be *levelling up* instead!`
         ];
-        const computerNumber = Math.floor(Math.random() * 8);
+        const computerNumber = Math.floor(Math.random() * 9);
         message.channel.send(computerOptions[computerNumber])
        
     }  
