@@ -604,6 +604,22 @@ client.on('message', message => {
 
     message.channel.send(anthonyEmbed)
 
+    } else if (message.content === "michelle" || message.content === "Michelle") {
+        const michelleEmbed = new Discord.MessageEmbed()
+        .setColor(`#0d2317`)
+        .setTitle(`The Demon`)
+        .setDescription(`Complex, twisted, and corrupted. The demon is a master of manipulation and seizing the moment. With an incredibly high charm stat, she makes a powerful ally, and an even more powerful enemy.`)
+        .addFields(
+            { name: `Name`, value: `\`\`\`Garfiend\`\`\` - *Garfiend was a regular grunt worker under the mighty Lich King. By a stroke of luck, she managed to witness the battle between the Hero and the King, both deciding to partake in mutual destruction. In the end, with both Boss level characters dead, a small crystal was the only thing left behind. Being a grunt worker, the only thing Garfiend thought she could do with it...was eat it.*` },
+            { name: `Class`, value: `\`\`\`Darwinian Goblin\`\`\` - *Regarded as one of the weakest mob creatures, by a turn of pure luck, a unique class was created. This goblin is able to absorb the abilities of anything it eats!*` },
+            { name: `Strength`, value: `\`\`\`10\`\`\``, inline: true },
+            { name: `Constitution`, value: `\`\`\`10\`\`\``, inline: true },
+            { name: `Potential`, value: `\`\`\`??\`\`\``, inline: true },
+        )
+        .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/837066739438452826/Goblin.jpg`)
+
+
+    message.channel.send(michelleEmbed)
     }
     //time to: statements (time to grind/wakeup/sleep)
     else if (message.content === 'time to grind' || message.content === 'grind time' || message.content === "let's grind") {
