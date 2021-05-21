@@ -824,9 +824,9 @@ client.on('message', message => {
             let computerNumber2 = Math.floor(Math.random()*2);
             message.channel.send(computerOptions[computerNumber2]);
                 break;
-        case `roll a dice`:
-            computerOptions = [1, 2, 3, 4, 5, 6];
-            computerNumber6 = Math.floor(Math.random()*6);
+        case `roll`:
+            computerOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+            computerNumber6 = Math.floor(Math.random()*20);
             message.channel.send(computerOptions[computerNumber6]);
                 break;
         case 'typeracer':
