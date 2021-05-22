@@ -243,18 +243,18 @@ client.on('message', message => {
     if (message.content === 'Christina' || message.content === 'christina' || message.content === 'CHRISTINA') {
         const christinaImbed = new Discord.MessageEmbed()
             .setColor(`#00FF00`)
-            .setTitle(`Uknown`)
-            .setDescription(`Just a Base Character`)
+            .setTitle(`Christineey`)
+            .setDescription(`A fairy without wings
+            - skills: Fairy throw`)
             .addFields(
-                { name: `Name`, value: `\`\`\`Unknown\`\`\``},
                 { name: 'Class', value: `\`\`\`Uknown\`\`\``},
-                { name: `Force`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Force`, value: '\`\`\`2\`\`\`', inline: true },
                 { name: `Resiliance`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Comprehension`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Wisdom`, value: '\`\`\`1\`\`\`', inline: true },
             )
-           
+           1
             
 
 
@@ -492,12 +492,12 @@ client.on('message', message => {
     } else if (message.content === 'Justin' || message.content === 'justin') {
         const justinImbed = new Discord.MessageEmbed()
             .setColor(`#00FF00`)
-            .setTitle(`Uknown`)
-            .setDescription(`Just a Base Character`)
+            .setTitle(`Wakarunga`)
+            .setDescription(`Ape, skill: Monkey smash`)
             .addFields(
-                { name: `Name`, value: `\`\`\`Unknown\`\`\``},
+    
                 { name: 'Class', value: `\`\`\`Uknown\`\`\``},
-                { name: `Force`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Force`, value: '\`\`\`2\`\`\`', inline: true },
                 { name: `Resiliance`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Comprehension`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
@@ -531,14 +531,13 @@ client.on('message', message => {
     } else if (message.content === 'Sahaj' || message.content === 'sahaj') {
         const sahajImbed = new Discord.MessageEmbed()
             .setColor(`#00FF00`)
-            .setTitle(`Uknown`)
-            .setDescription(`Just a Base Character`)
+            .setTitle(`Gumbo Johnson`)
+            .setDescription(`Ent, Skill: Water Ball`)
             .addFields(
-                { name: `Name`, value: `\`\`\`Unknown\`\`\``},
                 { name: 'Class', value: `\`\`\`Uknown\`\`\``},
                 { name: `Force`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Resiliance`, value: '\`\`\`1\`\`\`', inline: true },
-                { name: `Comprehension`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Comprehension`, value: '\`\`\`2\`\`\`', inline: true },
                 { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Wisdom`, value: '\`\`\`1\`\`\`', inline: true },
             )
