@@ -471,7 +471,25 @@ client.on('message', message => {
 
         message.channel.send(suzyEmbed)
     } else if (message.content === 'Justin' || message.content === 'justin') {
+        const justinImbed = new Discord.MessageEmbed()
+            .setColor(`#00FF00`)
+            .setTitle(`Uknown`)
+            .setDescription(`Just a Base Character`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Unknown\`\`\``},
+                { name: 'Class', value: `\`\`\`Uknown\`\`\``},
+                { name: `Force`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Resiliance`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Comprehension`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Wisdom`, value: '\`\`\`1\`\`\`', inline: true },
+            )
+           
+            
 
+
+        message.channel.send(justinImbed)
+        /*
         const justinEmbed = new Discord.MessageEmbed()
             .setColor('#FFFF00')
             .setTitle(`:monkey: **I MUST RETURN TO MONKE** :monkey:`)
@@ -490,8 +508,27 @@ client.on('message', message => {
 
 
         message.channel.send(justinEmbed)
+        */
     } else if (message.content === 'Sahaj' || message.content === 'sahaj') {
         const sahajImbed = new Discord.MessageEmbed()
+            .setColor(`#00FF00`)
+            .setTitle(`Uknown`)
+            .setDescription(`Just a Base Character`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Unknown\`\`\``},
+                { name: 'Class', value: `\`\`\`Uknown\`\`\``},
+                { name: `Force`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Resiliance`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Comprehension`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Wisdom`, value: '\`\`\`1\`\`\`', inline: true },
+            )
+           
+            
+
+
+        message.channel.send(sahajImbed)
+        /*const sahajImbed = new Discord.MessageEmbed()
             .setColor(`#00FF00`)
             .setTitle(`The Philospher`)
             .setDescription(`A chemist, planter, and apothecary. An indispensable member in any Grinder expedition. He has the ability to give +5 intellect to everyone in his party. 
@@ -509,7 +546,7 @@ client.on('message', message => {
             
 
 
-        message.channel.send(sahajImbed)
+        message.channel.send(sahajImbed)*/
     } else if (message.content === 'Pauline' || message.content === 'pauline') {
         const paulineEmbed = new Discord.MessageEmbed()
             .setColor(`#f9e5c4`)
