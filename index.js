@@ -241,7 +241,25 @@ client.on('message', message => {
         Wake: "Imagine not sleeping LULW"
     }
     if (message.content === 'Christina' || message.content === 'christina' || message.content === 'CHRISTINA') {
+        const christinaImbed = new Discord.MessageEmbed()
+            .setColor(`#00FF00`)
+            .setTitle(`Uknown`)
+            .setDescription(`Just a Base Character`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Unknown\`\`\``},
+                { name: 'Class', value: `\`\`\`Uknown\`\`\``},
+                { name: `Force`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Resiliance`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Comprehension`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Wisdom`, value: '\`\`\`1\`\`\`', inline: true },
+            )
+           
+            
 
+
+        message.channel.send(christinaImbed)
+        /*
         const christinaEmbed = new Discord.MessageEmbed()
         .setColor(`#90ee90`)
         .setTitle(`The Bedbug`)
@@ -257,6 +275,7 @@ client.on('message', message => {
         computerOptions = [christinaEmbed];
         const computerNumber = Math.floor(Math.random() * 1);
         message.channel.send(computerOptions[computerNumber])
+        */
     } else if (message.content === `Nolan` || message.content === `nolan` || message.content === 'Lord Nolan' || message.content === 'NOLAN') {
         const nolanImbed = new Discord.MessageEmbed()
             .setColor(`#C0C0C0`)
