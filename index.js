@@ -253,6 +253,7 @@ client.on('message', message => {
                 { name: `Comprehension`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Wisdom`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Affliction: Cowardice`, value: '\`\`\`-1 COMP and WIS\`\`\`', inline: true },
             )
            1
             
@@ -497,11 +498,12 @@ client.on('message', message => {
             .addFields(
     
                 { name: 'Class', value: `\`\`\`Uknown\`\`\``},
-                { name: `Force`, value: '\`\`\`2\`\`\`', inline: true },
+                { name: `Force`, value: '\`\`\`3\`\`\`', inline: true },
                 { name: `Resiliance`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Comprehension`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Wisdom`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Affliction: Bravery`, value: '\`\`\`+1 Force\`\`\`', inline: true },
             )
            
             
@@ -540,6 +542,7 @@ client.on('message', message => {
                 { name: `Comprehension`, value: '\`\`\`2\`\`\`', inline: true },
                 { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Wisdom`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Affliction: Bravery`, value: '\`\`\`+1 Force\`\`\`', inline: true },
             )
            
             
