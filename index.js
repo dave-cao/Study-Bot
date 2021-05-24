@@ -250,9 +250,9 @@ client.on('message', message => {
                 { name: 'Class', value: `\`\`\`Uknown\`\`\``},
                 { name: `Force`, value: '\`\`\`2\`\`\`', inline: true },
                 { name: `Resiliance`, value: '\`\`\`1\`\`\`', inline: true },
-                { name: `Comprehension`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Comprehension`, value: '\`\`\`0\`\`\`', inline: true },
                 { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
-                { name: `Wisdom`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Wisdom`, value: '\`\`\`0\`\`\`', inline: true },
                 { name: `Affliction: Cowardice`, value: '\`\`\`-1 COMP and WIS\`\`\`', inline: true },
             )
            1
@@ -537,7 +537,7 @@ client.on('message', message => {
             .setDescription(`Ent, Skill: Water Ball`)
             .addFields(
                 { name: 'Class', value: `\`\`\`Uknown\`\`\``},
-                { name: `Force`, value: '\`\`\`1\`\`\`', inline: true },
+                { name: `Force`, value: '\`\`\`2\`\`\`', inline: true },
                 { name: `Resiliance`, value: '\`\`\`1\`\`\`', inline: true },
                 { name: `Comprehension`, value: '\`\`\`2\`\`\`', inline: true },
                 { name: `Proficiency`, value: '\`\`\`1\`\`\`', inline: true },
