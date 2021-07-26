@@ -679,6 +679,22 @@ client.on('message', message => {
 
 
         message.channel.send(michelleEmbed)
+    } else if (message.content === "Sarah" || message.content === "sarah") {
+        const sarahEmbed = new Discord.MessageEmbed()
+            .setColor(`#add8e6`)
+            .setTitle(`The Alchemist`)
+            .setDescription(`The alchemist is a mysterious figure. Able to give members of her party certain stat boosts in critical moments. It seems she also dabbles in medicine and poison.`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Sora\`\`\` - *The meaning of Sora is the "sky". She once had a dream to travel the world, and experience everything there was to experience under this vast expanse. So she set off on a journey to travel the world.*` },
+                { name: `Class`, value: `\`\`\`Witch of Creation\`\`\` - *A deceptively low profile class, usually seen researching otherwordly creatures and ingredients. Rumors say that the very first witch of creation created unimaginable weapons of destruction. What was her very first creation? Was it Pandora?*` },
+                { name: `Constitution`, value: `\`\`\`10\`\`\``, inline: true },
+                { name: `Magic`, value: `\`\`\`20\`\`\``, inline: true },
+                { name: `Intellect`, value: `\`\`\`20\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302883511959613/869330016255758396/sorceress_by_nibelart_ddiywga-350t.jpg`)
+
+
+        message.channel.send(sarahEmbed)
     }
     //time to: statements (time to grind/wakeup/sleep)
     else if (message.content === 'time to grind' || message.content === 'grind time' || message.content === "let's grind") {
