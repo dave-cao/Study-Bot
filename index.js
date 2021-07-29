@@ -603,10 +603,6 @@ client.on('message', message => {
             .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/836723669442232380/monk.jpg`)
 
         message.channel.send(victorImbed)
-    } else if (message.content === 'erica' || message.content === 'Erica') {
-        message.channel.send(`**The Night Owl**
-
-        Can usually be found grinding in the depths of the night. Too shy to show cam, you really don't know what she's up to :eyes: `)
     } else if (message.content === 'Andrew' || message.content === 'andrew' || message.content === 'Woody' || message.content === 'woody') {
         const woodyImbed = new Discord.MessageEmbed()
             .setColor(`#0000FF`)
@@ -695,6 +691,22 @@ client.on('message', message => {
 
 
         message.channel.send(sarahEmbed)
+    } else if (message.content === "Erica" || message.content === "erica") {
+        const ericaEmbed = new Discord.MessageEmbed()
+            .setColor(`#00008b`)
+            .setTitle(`The Unexpected`)
+            .setDescription(`Unexpectedly genuine in her actions and thoughts however a bit shy in her demeanor. She tends to easily make friends wherever she goes. Be careful around this one, because you might get hit for no reason out of nowhere!`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Erica\`\`\` - *A part of an ice kingdom situated in the North, her Father known as the Frozen Emperor. An aristocrat from birth, she is the sole heir and soon to be “Eternal Ruler of the North”.*` },
+                { name: `Class`, value: `\`\`\`Ice Cleric\`\`\` - *Most cleric classes are known for accelerating the patient body healing process. However, the Ice Cleric is unique. Instead of accelerating natural growth, they instead slow down the degradation of outcomes. Their healing prowess comes less in the form of healing wounds but in stopping illnesses and incurable diseases. In the battlefield, having an Ice Cleric freeze your wounds may seem more practical than seeking out a regular cleric.*` },
+                { name: `Constitution`, value: `\`\`\`5\`\`\``, inline: true },
+                { name: `Magic`, value: `\`\`\`10\`\`\``, inline: true },
+                { name: `Intellect`, value: `\`\`\`35\`\`\``, inline: true },
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/870370162728140820/Icecleric.jpg`)
+
+
+        message.channel.send(ericaEmbed)
     }
     //time to: statements (time to grind/wakeup/sleep)
     else if (message.content === 'time to grind' || message.content === 'grind time' || message.content === "let's grind") {
