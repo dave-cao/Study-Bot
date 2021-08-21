@@ -707,20 +707,6 @@ client.on('message', message => {
 
 
         message.channel.send(ericaEmbed)
-    }
-    //time to: statements (time to grind/wakeup/sleep)
-    else if (message.content === 'time to grind' || message.content === 'grind time' || message.content === "let's grind") {
-        computerOptions = [
-            "Did someone say grind? :eyes:",
-            "For every task, there is a Grinder...",
-            "YESSIR, LET'S GO!",
-            'Traffic lights say GO! https://cdn.discordapp.com/attachments/787654137352683521/787901140641120286/Traffic_Lights_Study_Time.png'];
-        const computerNumber = Math.floor(Math.random() * 4);
-        message.channel.send(computerOptions[computerNumber])
-    } else if (message.content === 'time to wake up' || message.content === 'get off your lazy ass' || message.content === 'get out of bed' || message.content === 'wake up') {
-        message.channel.send('Yea, you should get off your lazy ass :alarm_clock:');
-
-
     } else if (message.content === "stefan" || message.content === "Stefan") {
         const stefanImbed = new Discord.MessageEmbed()
             .setColor(`#FFFFF0`)
@@ -739,8 +725,37 @@ client.on('message', message => {
             .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/831741204013121556/Webp.net-resizeimage_2.png`)
             .setFooter(`He thinks he's funny but he's not.`)
         message.channel.send(stefanImbed)
-    }
+    } else if (message.content === "Landers" || message.content === "landers") {
+        const landersImbed = new Discord.MessageEmbed()
+            .setColor(`#000001`)
+            .setTitle(`The Hidden`)
+            .setDescription(`Never once has he shown cam except for a rare split second. Was it a fake? Was it real? We will never know, for he is one that stays hidden. A pragmatic intellectual, destined to stay behind the scenes. Anonymous?`)
+            .addFields(
+                { name: `Name`, value: `\`\`\`Landers\`\`\` - *Through a series of mischievous and borderline evil tactics, he was crowned as the lord of the night. None can best him, for he is a ruler.*` },
+                { name: 'Class', value: `\`\`\`Night Lord\`\`\` - *Cast away from the light of the sun, those who train in the arts of night thrive in the mysterious unknown. For what you can not see; you can not defend.*` },
+                { name: `Strength`, value: '\`\`\`30\`\`\`', inline: true },
+                { name: `Dexterity`, value: '\`\`\`5\`\`\`', inline: true },
+                { name: `Intellect`, value: '\`\`\`15\`\`\`', inline: true },
 
+            )
+            .setImage(`https://cdn.discordapp.com/attachments/793302883511959613/874039828751208468/nightLord.jpg`)
+            .setFooter(`He thinks he's funny but he's not.`)
+        message.channel.send(landersImbed)
+    }
+    //time to: statements (time to grind/wakeup/sleep)
+    else if (message.content === 'time to grind' || message.content === 'grind time' || message.content === "let's grind") {
+        computerOptions = [
+            "Did someone say grind? :eyes:",
+            "For every task, there is a Grinder...",
+            "YESSIR, LET'S GO!",
+            'Traffic lights say GO! https://cdn.discordapp.com/attachments/787654137352683521/787901140641120286/Traffic_Lights_Study_Time.png'];
+        const computerNumber = Math.floor(Math.random() * 4);
+        message.channel.send(computerOptions[computerNumber])
+    } else if (message.content === 'time to wake up' || message.content === 'get off your lazy ass' || message.content === 'get out of bed' || message.content === 'wake up') {
+        message.channel.send('Yea, you should get off your lazy ass :alarm_clock:');
+
+
+    }
 
 
     //testing objects here
