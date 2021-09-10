@@ -45,8 +45,8 @@ client.once('ready', () => {
 
 });
 
-
-/*client.on('message', async message =>{
+/*
+client.on('message', async message =>{
     //Check message is not Bot
     if(message.author.bot) return;
     if(message.content=="!movetome"){
@@ -60,6 +60,7 @@ client.once('ready', () => {
     }
 });
 */
+
 
 
 
@@ -237,6 +238,20 @@ client.login(config.token)
 
 //People comments
 client.on('message', message => {
+    //move voice channel code
+    if (message.author.bot === false) {
+        if (message.content.includes("?afk")) {
+            message.channel.send("I've sent you to the AFK zone, have fun on your break!")
+            message.guild.member(message.author.id).voice.setChannel("817111025819975700")
+        }
+        if (message.content === "?grind") {
+            message.channel.send("Order received, you have been moved to Grind Time.")
+            message.guild.member(message.author.id).voice.setChannel("787354978523545634")
+
+        }
+    }
+
+
     let computerOptions = [];
     let randomObject = {
         Wake: "Imagine not sleeping LULW"
