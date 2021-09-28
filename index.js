@@ -40,6 +40,20 @@ client.once("ready", () => {
       },
     });
   });
+
+  //DM Member on Join
+  client.on("guildMemberAdd", (member) => {
+    member.send(
+      "**Hello! Welcome to Grind Time**! \n" +
+        "Grind Time is a server meant to facilitate a community that supports accountability and productivity. \n" +
+        "We encourage this through gamification! There are many features that you can test and try out like a **leveling system** and a **streaks system**. \n" +
+        "If you don't want to read the tutorial in the beginning, you can also watch the short video below to get a handle of everything on Grind Time. \n\n" +
+        "Have fun grinding, I look forward to seeing you on the other side! ~ David (Cow) " +
+        "```The more you grind, the higher the level. The current highest is the Grindmaster Supreme...till this day, none has yet to achieve this feat. Can you?``` \n" +
+        "https://youtu.be/FRBrVgeM1d8"
+    );
+  });
+
   //send first message
   //Not working = firstMessage(client, '817984922262306857', 'Nani the fk this dont', [`🔥`])
 });
@@ -62,55 +76,64 @@ client.on('message', async message =>{
 
 //Making a dark Portal KEKW - have them loop for now
 
-client.on("voiceStateUpdate", (oldMember, newMember) => {
-  let minuteTime = 15000;
-  let portalOne = "823394539247108118";
-  let portalTwo = "823394660906827797";
-  let portalThree = "823394715092254740";
-  let portalFour = "823394758486654986";
-  let portalFive = "823394661636636762";
-  const textChannel = client.channels.cache.get(`821951428717183006`);
+// client.on("voiceStateUpdate", (oldMember, newMember) => {
+//   let minuteTime = 15000;
+//   let portalOne = "823394539247108118";
+//   let portalTwo = "823394660906827797";
+//   let portalThree = "823394715092254740";
+//   let portalFour = "823394758486654986";
+//   let portalFive = "823394661636636762";
+//   const textChannel = client.channels.cache.get(`821951428717183006`);
 
-  //first Portal
-  if (newMember.channelID === portalOne && oldMember.channelID !== portalOne) {
-    setTimeout(function () {
-      textChannel.send(
-        `<@${newMember.id}> Please wait a few seconds for your journey to begin!`
-      );
-    }, 3000);
-    setTimeout(function () {
-      newMember.setChannel(portalTwo);
-    }, minuteTime);
-  } else if (
-    newMember.channelID === portalTwo &&
-    oldMember.channelID !== portalTwo
-  ) {
-    setTimeout(function () {
-      newMember.setChannel(portalThree);
-    }, minuteTime);
-  } else if (
-    newMember.channelID === portalThree &&
-    oldMember.channelID !== portalThree
-  ) {
-    setTimeout(function () {
-      newMember.setChannel(portalFour);
-    }, minuteTime);
-  } else if (
-    newMember.channelID === portalFour &&
-    oldMember.channelID !== portalFour
-  ) {
-    setTimeout(function () {
-      newMember.setChannel(portalFive);
-    }, minuteTime);
-  } else if (
-    newMember.channelID === portalFive &&
-    oldMember.channelID !== portalFive
-  ) {
-    setTimeout(function () {
-      newMember.setChannel(portalOne);
-    }, minuteTime);
-  } else {
-    return;
+//first Portal
+//   if (newMember.channelID === portalOne && oldMember.channelID !== portalOne) {
+//     setTimeout(function () {
+//       textChannel.send(
+//         `<@${newMember.id}> Please wait a few seconds for your journey to begin!`
+//       );
+//     }, 3000);
+//     setTimeout(function () {
+//       newMember.setChannel(portalTwo);
+//     }, minuteTime);
+//   } else if (
+//     newMember.channelID === portalTwo &&
+//     oldMember.channelID !== portalTwo
+//   ) {
+//     setTimeout(function () {
+//       newMember.setChannel(portalThree);
+//     }, minuteTime);
+//   } else if (
+//     newMember.channelID === portalThree &&
+//     oldMember.channelID !== portalThree
+//   ) {
+//     setTimeout(function () {
+//       newMember.setChannel(portalFour);
+//     }, minuteTime);
+//   } else if (
+//     newMember.channelID === portalFour &&
+//     oldMember.channelID !== portalFour
+//   ) {
+//     setTimeout(function () {
+//       newMember.setChannel(portalFive);
+//     }, minuteTime);
+//   } else if (
+//     newMember.channelID === portalFive &&
+//     oldMember.channelID !== portalFive
+//   ) {
+//     setTimeout(function () {
+//       newMember.setChannel(portalOne);
+//     }, minuteTime);
+//   } else {
+//     return;
+//   }
+// });
+
+client.on("voiceStateUpdate", (oldMember, newMember) => {
+  let newUserChannel = newMember.channelID;
+  let oldUserChannel = oldMember.channelID;
+  let voiceChannelID = "817298113169195029";
+
+  if (newUserChannel === voiceChannelID && oldUserChannel != voiceChannelID) {
   }
 });
 
@@ -118,10 +141,24 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 client.on("voiceStateUpdate", (oldMember, newMember) => {
   let newUserChannel = newMember.channelID;
   let oldUserChannel = oldMember.channelID;
-  let voiceChannelID1 = "822696684139315261";
-  let voiceChannelID2 = "787354978523545634";
+  //record time in grind time and hard mode
+  const voiceChannelID1 = "822696684139315261";
+  const voiceChannelID2 = "787354978523545634";
+  //enter channel id
+  const enterChannelID = "817298113169195029";
+  const finishedTutorialRole = "793538214396690442";
+  //other
   const textChannel = client.channels.cache.get(`821951428717183006`);
   const currentlyGrindingRole = "788248531927695421";
+
+  //Assign Finished Tutorial Role on Enter
+  if (newUserChannel === enterChannelID && oldUserChannel !== enterChannelID) {
+    let role = oldMember.guild.roles.cache.get(finishedTutorialRole);
+    oldMember.member.roles.add(role).catch(console.error);
+    setTimeout(function () {
+      newMember.setChannel(null);
+    }, 5000);
+  }
 
   if (
     newUserChannel === voiceChannelID1 &&
@@ -169,18 +206,6 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
     newMember.member.roles.remove(role).catch(console.error);
   }
 });
-
-/*Session Goals
- client.on('message', message => {
-    const textChannel = client.channels.cache.get(`821951428717183006`);
-    if (message.newMember.id === "794317151062065192") return
-    if (message.channel.id === "821951428717183006") {
-        textChannel.send ("Test")
-        return;
-        
-    }
-});
-*/
 
 //real working hard mode system
 client.on("voiceStateUpdate", (oldMember, newMember) => {
