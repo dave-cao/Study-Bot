@@ -5,6 +5,8 @@ const config = require("./config.json");
 const command = require("./command");
 const firstMessage = require("./first-message");
 
+const fs = require("fs")
+
 client.once("ready", () => {
   console.log("Real Grinder is Online!");
 
@@ -128,14 +130,156 @@ client.on('message', async message =>{
 //   }
 // });
 
+// maybe get a formatter
+// STREAK SYSTEM IMPLEMENTATION
 client.on("voiceStateUpdate", (oldMember, newMember) => {
   let newUserChannel = newMember.channelID;
   let oldUserChannel = oldMember.channelID;
-  let voiceChannelID = "817298113169195029";
+  let person = client.users.cache.get(newMember.id);
 
-  if (newUserChannel === voiceChannelID && oldUserChannel != voiceChannelID) {
+  const grindTimeVC = "822826357100249098";
+  const streakChannel = client.channels.cache.get("793302938453803008")
+  const accountabilityChannel = client.channels.cache.get("821951428717183006")
+  const minute = 1000 * 60
+
+  let userData = []
+  // checks if json file exists, if not just use empty array
+  if (fs.existsSync("userData.json")) {
+    const jsonString = fs.readFileSync("userData.json", "utf8");
+    userData = JSON.parse(jsonString)
+  }
+
+  // if user enters voice channel
+  if (newUserChannel === grindTimeVC && oldUserChannel != grindTimeVC) {
+    // push an object of new member into list
+    if (userData.length === 0) {
+      // if there is nothing in array then push 
+      userData.push({
+        userName: person.username,
+        userID: newMember.id,
+        streakDate: new Date(),
+        streak: 0,
+        maxStreak: 0
+
+      })
+    } else {
+      for (let i = 0; i < userData.length; i++) {
+        // if the userID doesn't already exist in array then push 
+        if (!(userData[i].hasOwnProperty("userID"))) {
+          userData.push({
+            userName: person.username,
+            userID: newMember.id,
+            streakDate: new Date(), // check to see if same date
+            streak: 0,
+            maxStreak: 0
+        })
+
+          }
+        }
+    } 
+    for (let i = 0; i < userData.length; i++) {
+      // only change data of entered member
+      if (userData[i].userID === newMember.id) {
+        // every time user enters, entertime will be different
+        userData[i].enterTime = new Date()
+
+        // ===================================================================
+        // STREAK SYSTEM
+        // ===================================================================
+        let actualDate = new Date()
+        // need to turn it back into a date object
+        let dateToCheck = new Date(userData[i].streakDate)
+        let nextDayCheck = actualDate.getDate() - dateToCheck.getDate()
+
+        // checks to see if it is the same day
+        let check = actualDate.toDateString() === dateToCheck.toDateString()
+
+        if (!check) {
+          // if more than two days past, then reset streak
+          if (nextDayCheck > 2) {
+            userData[i].streak = 0
+            streakChannel.send("Hey, you lost your streak!")
+          }
+
+
+          // if member is still in VC then increase streak by 1
+          // I don't know how the fk this works
+          setTimeout(function() {
+            if (
+            newMember.selfVideo === true ||
+            newMember.streaming === true ||
+            (newMember.channelID === null)) {
+              console.log(newUserChannel, oldUserChannel)
+            } else if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
+              userData[i].streak++
+              // update max score 
+              if (userData[i].streak > userData[i].maxStreak) {
+                userData[i].maxStreak = userData[i].streak
+              }
+              streakChannel.send(`<@${newMember.id}> You're **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nKeep up the good work :).`)
+              // change the streak date to the current date
+              userData[i].streakDate = new Date()
+              // update user data
+              saveData(userData)
+            }
+            // console.log(userData) 
+          }, minute * 12)
+         }
+      }
+      // console.log(userData)
+
+    }
+
+    // write file to JSON
+    const saveData = (userData) => {
+      const finished = (error) => {
+        if (error) {
+          console.error(error)
+          return;
+        }
+      }
+      const jsonData = JSON.stringify(userData, null, 2)
+      fs.writeFile("userData.json", jsonData, finished)
+    }
+
+    // overall save data
+    saveData(userData)
+
+  // if user leaves voice channel
+  } else if (oldUserChannel === grindTimeVC && newUserChannel !== grindTimeVC) {
+    // console.log(newUserChannel, oldUserChannel)
+    for (let i = 0; i < userData.length; i++) {
+      if (userData[i].userID === newMember.id) {
+        // TIME TRACKER
+        let endTime = new Date()
+        let timeDif = Math.floor(endTime - new Date(userData[i].enterTime))
+        let hrs = Math.floor(timeDif / (3600 * 1000));
+        let min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
+        let sec = Math.floor((timeDif % (1000 * 60)) / 1000);
+
+        accountabilityChannel.send(
+          `<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Grind Time**!`
+        );
+
+
+
+
+
+
+      }
+
+
+    }
+      
+
   }
 });
+
+
+
+
+
+
 
 //Record time in voice channel
 client.on("voiceStateUpdate", (oldMember, newMember) => {
@@ -160,11 +304,15 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
     }, 5000);
   }
 
+  // Record time in voice channel
+  // If user enters voice channel
   if (
     newUserChannel === voiceChannelID1 &&
     oldUserChannel !== voiceChannelID1
   ) {
     newMember.voiceTime1 = new Date();
+
+  // If user leaves voice channel
   } else if (
     oldUserChannel === voiceChannelID1 &&
     newUserChannel !== voiceChannelID1
@@ -192,15 +340,6 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
     oldUserChannel === voiceChannelID2 &&
     newUserChannel !== voiceChannelID2
   ) {
-    let endTime = new Date();
-    let timeDif = Math.floor(endTime - newMember.voiceTime2);
-    let hrs = Math.floor(timeDif / (3600 * 1000));
-    let min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
-    let sec = Math.floor((timeDif % (1000 * 60)) / 1000);
-
-    textChannel.send(
-      `<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Grind Time**!`
-    );
     //remove currently grinding role
     let role = newMember.guild.roles.cache.get(currentlyGrindingRole);
     newMember.member.roles.remove(role).catch(console.error);
