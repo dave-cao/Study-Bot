@@ -138,9 +138,9 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
   let person = client.users.cache.get(newMember.id);
   let hasMember = 0
 
-  const grindTimeVC = "822826357100249098";
-  const streakChannel = client.channels.cache.get("793302938453803008")
-  const accountabilityChannel = client.channels.cache.get("793302938453803008")
+  const grindTimeVC = "787354978523545634";
+  const streakChannel = client.channels.cache.get("839226206276812800")
+  const accountabilityChannel = client.channels.cache.get("821951428717183006")
   const minute = 1000 * 60
 
   let userData = []
