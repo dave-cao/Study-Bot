@@ -210,29 +210,28 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 
           // if member is still in VC then increase streak by 1
           // I don't know how the fk this works
-          setTimeout(function() {
-            if (
-            newMember.selfVideo === true ||
-            newMember.streaming === true ||
-            (newMember.channelID === null)) {
-              console.log("he left!")
-              console.log(newUserChannel, oldUserChannel)
-            } else if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
-              console.log("he didn't leave!")
-              userData[i].firstStreak = false
-              userData[i].streak++
-              // update max score 
-              if (userData[i].streak > userData[i].maxStreak) {
-                userData[i].maxStreak = userData[i].streak
-              }
-              streakChannel.send(`<@${newMember.id}> You're **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nKeep up the good work :).`)
-              // change the streak date to the current date
-              userData[i].streakDate = new Date()
-              // update user data
-              saveData(userData)
+          
+          if (
+          newMember.selfVideo === true ||
+          newMember.streaming === true ||
+          (newMember.channelID === null)) {
+            console.log("he left!")
+            console.log(newUserChannel, oldUserChannel)
+          } else if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
+            console.log("he didn't leave!")
+            userData[i].firstStreak = false
+            userData[i].streak++
+            // update max score 
+            if (userData[i].streak > userData[i].maxStreak) {
+              userData[i].maxStreak = userData[i].streak
             }
-            console.log(userData) 
-          })
+            streakChannel.send(`<@${newMember.id}> You're **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nKeep up the good work :).`)
+            // change the streak date to the current date
+            userData[i].streakDate = new Date()
+            // update user data
+          }
+          console.log(userData) 
+          
          }
       }
       console.log(userData)
