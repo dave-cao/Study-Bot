@@ -229,6 +229,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
             // change the streak date to the current date
             userData[i].streakDate = new Date()
             // update user data
+            saveData(userData)
           }
           console.log(userData) 
           
