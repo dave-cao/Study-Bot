@@ -205,6 +205,20 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 				userData[i].enterTime = new Date();
 				userData[i].inVoiceChannel = true;
 
+				// If a day tracker hasn't been made, then make it
+				if (userData[i].dayTrackerTime === undefined) {
+					console.log('hello');
+					userData[i].dayTrackerTime = 0;
+					userData[i].dayTrackerDay = new Date();
+				}
+
+				const dayTrackerCheck = new Date(userData[i].dayTrackerDay).toDateString() === new Date().toDateString();
+
+				if (!dayTrackerCheck) {
+					userData[i].dayTrackerDay = new Date();
+					userData[i].dayTrackerTime = 0;
+				}
+
 				// ===================================================================
 				// STREAK SYSTEM
 				// ===================================================================
@@ -213,7 +227,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 				const dateToCheck = new Date(userData[i].streakDate);
 				const timeDiff = actualDate.getTime() - dateToCheck.getTime();
 				const nextDayCheck = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-				const hoursLeft = 48 - Math.floor(timeDiff / (1000 * 60 * 60));
 
 				// Checks to see if it is the same day
 				const check = actualDate.toDateString() === dateToCheck.toDateString();
@@ -302,8 +315,14 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 				const min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
 				const sec = Math.floor((timeDif % (1000 * 60)) / 1000);
 
+				// DAY TRACKER
+				userData[i].dayTrackerTime += timeDif;
+				const dayHrs = Math.floor(userData[i].dayTrackerTime / (3600 * 1000));
+				const dayMin = Math.floor((userData[i].dayTrackerTime % (1000 * 60 * 60)) / (1000 * 60));
+				const daySec = Math.floor((userData[i].dayTrackerTime % (1000 * 60)) / 1000);
+
 				accountabilityChannel.send(
-					`<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Grind Time**!`,
+					`<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Grind Time**!\n\nThis comes to a total of \`${dayHrs} hour(s), ${dayMin} minutes(s), and ${daySec} second(s)\` grinded **Today**!`,
 				);
 				// Save data on leave
 				saveData(userData);
