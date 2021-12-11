@@ -557,6 +557,12 @@ client.on('message', message => {
 							userDatum.timeLeft = 'Hasn\'t started a streak yet.';
 						}
 
+						// Display Total Time Grind Today
+						const dayHrs = Math.floor(userDatum.dayTrackerTime / (3600 * 1000));
+						const dayMin = Math.floor((userDatum.dayTrackerTime % (1000 * 60 * 60)) / (1000 * 60));
+						const daySec = Math.floor((userDatum.dayTrackerTime % (1000 * 60)) / 1000);
+						const todayGrinded = `${dayHrs} hrs, ${dayMin} mins, ${daySec} secs`;
+
 						console.log(timeDiff);
 						const userProfile = new Discord.MessageEmbed()
 							.setColor('#8B0000')
@@ -569,6 +575,9 @@ client.on('message', message => {
 
 								{
 									name: 'Time Until Lost Streak', value: `\`\`\`${userDatum.timeLeft}\`\`\``,
+								},
+								{
+									name: 'Time Grinded Today', value: `\`\`\`${todayGrinded}\`\`\``,
 								},
 							);
 						message.channel.send(userProfile);
