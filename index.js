@@ -138,9 +138,9 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
   let person = client.users.cache.get(newMember.id);
   let hasMember = 0
 
-  const grindTimeVC = "787354978523545634";
-  const streakChannel = client.channels.cache.get("839226206276812800")
-  const accountabilityChannel = client.channels.cache.get("821951428717183006")
+  const grindTimeVC = "822826357100249098";
+  const streakChannel = client.channels.cache.get("793302938453803008")
+  const accountabilityChannel = client.channels.cache.get("793302938453803008")
   const minute = 1000 * 60
 
   let userData = []
@@ -201,7 +201,6 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
         let check = actualDate.toDateString() === dateToCheck.toDateString()
 
         if (!check || userData[i].firstStreak) {
-          userData[i].firstStreak = false
           // if more than two days past, then reset streak
           if (nextDayCheck > 2) {
             streakChannel.send(`<@${newMember.id}> You lost you're ${userData[i].streak} day streak! Try to gain it back!`)
@@ -220,6 +219,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
               console.log(newUserChannel, oldUserChannel)
             } else if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
               console.log("he didn't leave!")
+              userData[i].firstStreak = false
               userData[i].streak++
               // update max score 
               if (userData[i].streak > userData[i].maxStreak) {
@@ -232,7 +232,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
               saveData(userData)
             }
             console.log(userData) 
-          }, minute * 12)
+          })
          }
       }
       console.log(userData)
