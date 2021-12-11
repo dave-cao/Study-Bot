@@ -137,8 +137,8 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
   let oldUserChannel = oldMember.channelID;
   let person = client.users.cache.get(newMember.id);
 
-  const grindTimeVC = "822826357100249098";
-  const streakChannel = client.channels.cache.get("793302938453803008")
+  const grindTimeVC = "787354978523545634";
+  const streakChannel = client.channels.cache.get("839226206276812800")
   const accountabilityChannel = client.channels.cache.get("821951428717183006")
   const minute = 1000 * 60
 
@@ -197,8 +197,8 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
         if (!check) {
           // if more than two days past, then reset streak
           if (nextDayCheck > 2) {
+            streakChannel.send(`<@${newMember.id}> You lost you're ${userData[i].streak} day streak! Try to gain it back!`)
             userData[i].streak = 0
-            streakChannel.send("Hey, you lost your streak!")
           }
 
 
@@ -209,8 +209,10 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
             newMember.selfVideo === true ||
             newMember.streaming === true ||
             (newMember.channelID === null)) {
+              console.log("he left!")
               console.log(newUserChannel, oldUserChannel)
             } else if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
+              console.log("he didn't leave!")
               userData[i].streak++
               // update max score 
               if (userData[i].streak > userData[i].maxStreak) {
@@ -504,46 +506,22 @@ client.on("message", (message) => {
     message.content === "christina" ||
     message.content === "CHRISTINA"
   ) {
-    const christinaImbed = new Discord.MessageEmbed()
-      .setColor(`#00FF00`)
-      .setTitle(`Christineey`)
-      .setDescription(
-        `A fairy without wings
-            - skills: Fairy throw`
-      )
-      .addFields(
-        { name: "Class", value: `\`\`\`Uknown\`\`\`` },
-        { name: `Force`, value: "```2```", inline: true },
-        { name: `Resiliance`, value: "```1```", inline: true },
-        { name: `Comprehension`, value: "```0```", inline: true },
-        { name: `Proficiency`, value: "```1```", inline: true },
-        { name: `Wisdom`, value: "```0```", inline: true },
-        {
-          name: `Affliction: Cowardice`,
-          value: "```-1 COMP and WIS```",
-          inline: true,
-        }
-      );
-    1;
-
-    message.channel.send(christinaImbed);
-    /*
-        const christinaEmbed = new Discord.MessageEmbed()
-        .setColor(`#90ee90`)
-        .setTitle(`The Bedbug`)
-        .setDescription(`A creature known to occupy the habitat known as the "Bedroom". This fascinating creature does not set a foot off the bed; in a perpetual state of lying down. This creature is known to have found a loop hole to the Grinding arithmetic. Able to gain levels while doing nothing. Essentially a bug in the system!`)
-        .addFields(
-            { name: `Name`, value: `\`\`\`Christeenie\`\`\` - *princess of the Fragul Tribe, in the world of Tona*` },
-            { name: `Class`, value: `\`\`\`Forest Fairy (Healer)\`\`\` - *Escaped from her own realm to explore the mysteries of our world. Resilient and sharp, with a mind that can pierce through problems, and a tongue that can cut through people.*` },
-            { name: `Strength`, value: `\`\`\`5\`\`\``, inline: true },
-            { name: `Magic`, value: `\`\`\`30\`\`\``, inline: true },
-            { name: `Intellect`, value: `\`\`\`15\`\`\``, inline: true },
-        )
-        .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804095808634355762/forestFairy.jpg`)
-        computerOptions = [christinaEmbed];
-        const computerNumber = Math.floor(Math.random() * 1);
-        message.channel.send(computerOptions[computerNumber])
-        */
+    
+    const christinaEmbed = new Discord.MessageEmbed()
+    .setColor(`#90ee90`)
+    .setTitle(`The Bedbug`)
+    .setDescription(`A creature known to occupy the habitat known as the "Bedroom". This fascinating creature does not set a foot off the bed; in a perpetual state of lying down. This creature is known to have found a loop hole to the Grinding arithmetic. Able to gain levels while doing nothing. Essentially a bug in the system!`)
+    .addFields(
+        { name: `Name`, value: `\`\`\`Christeenie\`\`\` - *princess of the Fragul Tribe, in the world of Tona*` },
+        { name: `Class`, value: `\`\`\`Forest Fairy (Healer)\`\`\` - *Escaped from her own realm to explore the mysteries of our world. Resilient and sharp, with a mind that can pierce through problems, and a tongue that can cut through people.*` },
+        { name: `Strength`, value: `\`\`\`5\`\`\``, inline: true },
+        { name: `Magic`, value: `\`\`\`30\`\`\``, inline: true },
+        { name: `Intellect`, value: `\`\`\`15\`\`\``, inline: true },
+    )
+    .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/804095808634355762/forestFairy.jpg`)
+    computerOptions = [christinaEmbed];
+    const computerNumber = Math.floor(Math.random() * 1);
+    message.channel.send(computerOptions[computerNumber])
   } else if (
     message.content === `Nolan` ||
     message.content === `nolan` ||
@@ -888,76 +866,44 @@ client.on("message", (message) => {
 
     message.channel.send(suzyEmbed);
   } else if (message.content === "Justin" || message.content === "justin") {
-    const justinImbed = new Discord.MessageEmbed()
-      .setColor(`#00FF00`)
-      .setTitle(`Wakarunga`)
-      .setDescription(`Ape, skill: Monkey smash`)
-      .addFields(
-        { name: "Class", value: `\`\`\`Uknown\`\`\`` },
-        { name: `Force`, value: "```3```", inline: true },
-        { name: `Resiliance`, value: "```1```", inline: true },
-        { name: `Comprehension`, value: "```1```", inline: true },
-        { name: `Proficiency`, value: "```1```", inline: true },
-        { name: `Wisdom`, value: "```1```", inline: true },
-        { name: `Affliction: Bravery`, value: "```+1 Force```", inline: true }
-      );
-
-    message.channel.send(justinImbed);
-    /*
-        const justinEmbed = new Discord.MessageEmbed()
-            .setColor('#FFFF00')
-            .setTitle(`:monkey: **I MUST RETURN TO MONKE** :monkey:`)
-            .setDescription(` A rare phenomenon. Nothing can explain this rare breeded creature. An organism able to navigate the world through pure spinal cord interactions!
-            
-        `)
-            .addFields(
-                { name: `Name`, value: `\`\`\`BUNGA\`\`\` - *of Ungrunga; good at two hand hammer*` },
-                { name: `Class`, value: `\`\`\`Large Ape Warrior\`\`\` - *Big Hammer*` },
-                { name: `Strength`, value: `\`\`\`50\`\`\``, inline: true },
-                { name: `Constitution`, value: `\`\`\`50\`\`\``, inline: true },
-                { name: `Intellect`, value: `\`\`\`-50\`\`\``, inline: true },
-            )
-            .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/805145337428705280/Webp.net-resizeimage_6.png`)
-            .setFooter(`Can often be seen travelling the jungles searching for banana's.`, `https://cdn.discordapp.com/attachments/793302938453803008/803842131310673940/Daco_518550.png`);
+    const justinEmbed = new Discord.MessageEmbed()
+        .setColor('#FFFF00')
+        .setTitle(`:monkey: **I MUST RETURN TO MONKE** :monkey:`)
+        .setDescription(` A rare phenomenon. Nothing can explain this rare breeded creature. An organism able to navigate the world through pure spinal cord interactions!
+        
+    `)
+        .addFields(
+            { name: `Name`, value: `\`\`\`BUNGA\`\`\` - *of Ungrunga; good at two hand hammer*` },
+            { name: `Class`, value: `\`\`\`Large Ape Warrior\`\`\` - *Big Hammer*` },
+            { name: `Strength`, value: `\`\`\`50\`\`\``, inline: true },
+            { name: `Constitution`, value: `\`\`\`50\`\`\``, inline: true },
+            { name: `Intellect`, value: `\`\`\`-50\`\`\``, inline: true },
+        )
+        .setImage(`https://cdn.discordapp.com/attachments/793302938453803008/805145337428705280/Webp.net-resizeimage_6.png`)
+        .setFooter(`Can often be seen travelling the jungles searching for banana's.`, `https://cdn.discordapp.com/attachments/793302938453803008/803842131310673940/Daco_518550.png`);
 
 
-        message.channel.send(justinEmbed)
-        */
+    message.channel.send(justinEmbed)
+        
   } else if (message.content === "Sahaj" || message.content === "sahaj") {
     const sahajImbed = new Discord.MessageEmbed()
-      .setColor(`#00FF00`)
-      .setTitle(`Gumbo Johnson`)
-      .setDescription(`Ent, Skill: Water Ball`)
-      .addFields(
-        { name: "Class", value: `\`\`\`Uknown\`\`\`` },
-        { name: `Force`, value: "```2```", inline: true },
-        { name: `Resiliance`, value: "```1```", inline: true },
-        { name: `Comprehension`, value: "```2```", inline: true },
-        { name: `Proficiency`, value: "```1```", inline: true },
-        { name: `Wisdom`, value: "```1```", inline: true },
-        { name: `Affliction: Bravery`, value: "```+1 Force```", inline: true }
-      );
-
-    message.channel.send(sahajImbed);
-    /*const sahajImbed = new Discord.MessageEmbed()
-            .setColor(`#00FF00`)
-            .setTitle(`The Philospher`)
-            .setDescription(`A chemist, planter, and apothecary. An indispensable member in any Grinder expedition. He has the ability to give +5 intellect to everyone in his party. 
-        
-            Can usually be found brewing potions for the next party asking for assistance.`)
-            .addFields(
-                { name: `Name`, value: `\`\`\`Soulhaj\`\`\` - *stepped out of a hidden society with a millenia of accumulated wisdom. Determined that he could find more valuable information in the real world, he sets out seeking more knowledge*`},
-                { name: 'Class', value: `\`\`\`Druid\`\`\` - *a plethora of skills under his arsenal, you don't know what he might throw at you next!*`},
-                { name: `Strength`, value: '\`\`\`5\`\`\`', inline: true },
-                { name: `Intellect`, value: '\`\`\`25\`\`\`', inline: true },
-                { name: `Wisdom`, value: '\`\`\`20\`\`\`', inline: true },
-                
-            )
-            .setImage(`https://cdn.discordapp.com/attachments/787654137352683521/803476053938143232/09e88e7eccec20737f8142683b4abd34.png`)
+        .setColor(`#00FF00`)
+        .setTitle(`The Philospher`)
+        .setDescription(`A chemist, planter, and apothecary. An indispensable member in any Grinder expedition. He has the ability to give +5 intellect to everyone in his party. 
+    
+        Can usually be found brewing potions for the next party asking for assistance.`)
+        .addFields(
+            { name: `Name`, value: `\`\`\`Soulhaj\`\`\` - *stepped out of a hidden society with a millenia of accumulated wisdom. Determined that he could find more valuable information in the real world, he sets out seeking more knowledge*`},
+            { name: 'Class', value: `\`\`\`Druid\`\`\` - *a plethora of skills under his arsenal, you don't know what he might throw at you next!*`},
+            { name: `Strength`, value: '\`\`\`5\`\`\`', inline: true },
+            { name: `Intellect`, value: '\`\`\`25\`\`\`', inline: true },
+            { name: `Wisdom`, value: '\`\`\`20\`\`\`', inline: true },
             
+        )
+        .setImage(`https://cdn.discordapp.com/attachments/787654137352683521/803476053938143232/09e88e7eccec20737f8142683b4abd34.png`)
 
 
-        message.channel.send(sahajImbed)*/
+    message.channel.send(sahajImbed)
   } else if (message.content === "Pauline" || message.content === "pauline") {
     const paulineEmbed = new Discord.MessageEmbed()
       .setColor(`#f9e5c4`)
