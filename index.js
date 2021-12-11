@@ -534,6 +534,10 @@ client.on('message', message => {
 
 						userDatum.timeLeft = timeDiff > 0 ? `${hrs} hrs, ${min} mins, ${sec} secs` : `You've been gone for ${-day} day(s), maybe a streak freeze can save it?`;
 
+						if (userDatum.firstStreak === true) {
+							userDatum.timeLeft = 'Hasn\'t started a streak yet.';
+						}
+
 						console.log(timeDiff);
 						const userProfile = new Discord.MessageEmbed()
 							.setColor('#8B0000')
