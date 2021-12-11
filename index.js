@@ -136,6 +136,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
   let newUserChannel = newMember.channelID;
   let oldUserChannel = oldMember.channelID;
   let person = client.users.cache.get(newMember.id);
+  let hasMember = 0
 
   const grindTimeVC = "787354978523545634";
   const streakChannel = client.channels.cache.get("839226206276812800")
@@ -159,23 +160,28 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
         userID: newMember.id,
         streakDate: new Date(),
         streak: 0,
-        maxStreak: 0
+        maxStreak: 0,
+        firstStreak: true
 
       })
     } else {
       for (let i = 0; i < userData.length; i++) {
         // if the userID doesn't already exist in array then push 
-        if (!(userData[i].hasOwnProperty("userID"))) {
-          userData.push({
-            userName: person.username,
-            userID: newMember.id,
-            streakDate: new Date(), // check to see if same date
-            streak: 0,
-            maxStreak: 0
+        if (userData[i].userID !== newMember.id) {
+            hasMember += 1
+        }
+      }
+      if (hasMember === userData.length) {
+        userData.push({
+          userName: person.username,
+          userID: newMember.id,
+          streakDate: new Date(),
+          streak: 0,
+          maxStreak: 0,
+          firstStreak: true
         })
 
-          }
-        }
+      }
     } 
     for (let i = 0; i < userData.length; i++) {
       // only change data of entered member
@@ -194,7 +200,8 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
         // checks to see if it is the same day
         let check = actualDate.toDateString() === dateToCheck.toDateString()
 
-        if (!check) {
+        if (!check || userData[i].firstStreak) {
+          userData[i].firstStreak = false
           // if more than two days past, then reset streak
           if (nextDayCheck > 2) {
             streakChannel.send(`<@${newMember.id}> You lost you're ${userData[i].streak} day streak! Try to gain it back!`)
@@ -224,11 +231,11 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
               // update user data
               saveData(userData)
             }
-            // console.log(userData) 
+            console.log(userData) 
           }, minute * 12)
          }
       }
-      // console.log(userData)
+      console.log(userData)
 
     }
 
