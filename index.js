@@ -188,6 +188,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
       if (userData[i].userID === newMember.id) {
         // every time user enters, entertime will be different
         userData[i].enterTime = new Date()
+        userData[i].inVoiceChannel = true
 
         // ===================================================================
         // STREAK SYSTEM
@@ -208,15 +209,15 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
           }
 
 
-          // if member is still in VC then increase streak by 1
-          // I don't know how the fk this works
           setTimeout(function() {
-            if (
-            newMember.selfVideo === true ||
-            newMember.streaming === true ||
-            (newMember.channelID === null)) {
+            // read userData again
+            if (fs.existsSync("userData.json")) {
+              const jsonString = fs.readFileSync("userData.json", "utf8");
+              userData = JSON.parse(jsonString)
+            }
+
+            if (userData[i].inVoiceChannel === false) {
               console.log("he left!")
-              console.log(newUserChannel, oldUserChannel)
             } else if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
               console.log("he didn't leave!")
               userData[i].firstStreak = false
@@ -232,7 +233,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
               saveData(userData)
             }
             console.log(userData) 
-          })
+          }, minute * 12)
          }
       }
       console.log(userData)
@@ -256,9 +257,32 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 
   // if user leaves voice channel
   } else if (oldUserChannel === grindTimeVC && newUserChannel !== grindTimeVC) {
+
+    // read / write to JSON file
+    // gonna throw error if we start this with people inside the vc
+    if (fs.existsSync("userData.json")) {
+      const jsonString = fs.readFileSync("userData.json", "utf8");
+      userData = JSON.parse(jsonString)
+    }
+    const saveData = (userData) => {
+      const finished = (error) => {
+        if (error) {
+          console.error(error)
+          return;
+        }
+      }
+      const jsonData = JSON.stringify(userData, null, 2)
+      fs.writeFile("userData.json", jsonData, finished)
+    }
+
+    // overall save data
+
+
     // console.log(newUserChannel, oldUserChannel)
     for (let i = 0; i < userData.length; i++) {
       if (userData[i].userID === newMember.id) {
+        userData[i].inVoiceChannel = false
+
         // TIME TRACKER
         let endTime = new Date()
         let timeDif = Math.floor(endTime - new Date(userData[i].enterTime))
@@ -269,12 +293,8 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
         accountabilityChannel.send(
           `<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Grind Time**!`
         );
-
-
-
-
-
-
+        // save data on leave
+        saveData(userData)
       }
 
 
