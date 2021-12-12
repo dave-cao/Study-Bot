@@ -220,16 +220,38 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 					userData[i].dayTrackerDay = new Date();
 				}
 
+				// If a monthly time tracker hasn't been made, then make it
+				if (userData[i].monthlyTime === undefined) {
+					userData[i].monthlyTime = 0;
+					userData[i].monthlyTracker = new Date();
+				}
+
 				// If a total time tracker hasn't been made, then make it
 				if (userData[i].totalTime === undefined) {
 					userData[i].totalTime = 0;
 				}
 
+				// Checks to see if it's a new day
 				const dayTrackerCheck = new Date(userData[i].dayTrackerDay).toDateString() === new Date().toDateString();
 
 				if (!dayTrackerCheck) {
 					userData[i].dayTrackerDay = new Date();
 					userData[i].dayTrackerTime = 0;
+				}
+
+				// Checks to see if it's a new month
+				const oldMonthDate = new Date(userData[i].monthlyTracker);
+				const oldMonth = oldMonthDate.getMonth();
+				const oldYear = oldMonthDate.getFullYear();
+
+				const currentDate = new Date();
+				const currentMonth = currentDate.getMonth();
+				const currentYear = currentDate.getFullYear();
+
+				const monthTrackerCheck = oldMonth === currentMonth && oldYear === currentYear;
+				if (!monthTrackerCheck) {
+					userData[i].monthlyTracker = new Date();
+					userData[i].monthlyTime = 0;
 				}
 
 				// ===================================================================
@@ -329,6 +351,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 				// DAY TRACKER
 				userData[i].dayTrackerTime += timeDif;
 				const dayTime = getTimeDifference(userData[i].dayTrackerTime);
+
+				// MONTHLY TIME TRACKER
+				userData[i].monthlyTime += timeDif;
 
 				// TOTAL TIME TRACKER
 				userData[i].totalTime += timeDif;
@@ -571,6 +596,10 @@ client.on('message', message => {
 						const dayTime = getTimeDifference(userDatum.dayTrackerTime);
 						const todayGrinded = `${dayTime[0]} hrs, ${dayTime[1]} mins, ${dayTime[2]} secs`;
 
+						// Display Monthly Grind Today
+						const monthTime = getTimeDifference(userDatum.monthlyTime);
+						const monthGrinded = `${monthTime[0]} hrs, ${monthTime[1]} mins, ${monthTime[2]} secs`;
+
 						// Display Total Grind Hours Overall
 						const totalGrindTime = getTimeDifference(userDatum.totalTime);
 						const totalGrinded = `${totalGrindTime[0]} hrs, ${totalGrindTime[1]} mins, ${totalGrindTime[2]} secs`;
@@ -589,7 +618,12 @@ client.on('message', message => {
 									name: 'Time Until Lost Streak', value: `\`\`\`${userDatum.timeLeft}\`\`\`---`,
 								},
 								{name: 'Time Grinded Today', value: `\`\`\`${todayGrinded}\`\`\``, inline: true},
-								{name: 'Total Grind Time', value: `\`\`\`${totalGrinded}\`\`\``, inline: true},
+								{name: 'Time Grinded This Month', value: `\`\`\`${monthGrinded}\`\`\``, inline: true},
+
+								{
+
+									name: 'Total Grind Time', value: `\`\`\`${totalGrinded}\`\`\``,
+								},
 
 							);
 						message.channel.send(userProfile);
