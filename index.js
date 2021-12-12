@@ -597,7 +597,7 @@ client.on('message', message => {
 						// 24 hours and it's the same day, then they've
 						// Completed their streak
 						const timeLeftDayCheck = actualDate.toDateString() === dateToCheck.toDateString();
-						if (timeDiff[0] > 23 && timeLeftDayCheck) {
+						if (streakTimeLeft[0] > 23 && timeLeftDayCheck) {
 							userDatum.timeLeft = 'You\'ve completed you\'re streak for the day!';
 						}
 
