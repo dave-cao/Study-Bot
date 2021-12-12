@@ -132,6 +132,27 @@ Client.on('message', async message =>{
 // });
 
 // maybe get a formatter
+const getTimeDifference = timeDiff => {
+	// Returns an array of formatted hrs, mins and secs of a time difference
+	const hrs = Math.floor(timeDiff / (3600 * 1000));
+	const min = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+	const sec = Math.floor((timeDiff % (1000 * 60)) / 1000);
+	return ([hrs, min, sec]);
+};
+
+// Save JSON Data
+const saveData = userData => {
+	// Saves current userData to JSON file
+	const finished = error => {
+		if (error) {
+			console.error(error);
+		}
+	};
+
+	const jsonData = JSON.stringify(userData, null, 2);
+	fs.writeFile('userData.json', jsonData, finished);
+};
+
 // STREAK SYSTEM IMPLEMENTATION
 client.on('voiceStateUpdate', (oldMember, newMember) => {
 	const newUserChannel = newMember.channelID;
@@ -150,18 +171,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 		const jsonString = fs.readFileSync('userData.json', 'utf8');
 		userData = JSON.parse(jsonString);
 	}
-
-	// Save JSON Data
-	const saveData = userData => {
-		const finished = error => {
-			if (error) {
-				console.error(error);
-			}
-		};
-
-		const jsonData = JSON.stringify(userData, null, 2);
-		fs.writeFile('userData.json', jsonData, finished);
-	};
 
 	// If user enters voice channel
 	if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
@@ -207,9 +216,13 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 				// If a day tracker hasn't been made, then make it
 				if (userData[i].dayTrackerTime === undefined) {
-					console.log('hello');
 					userData[i].dayTrackerTime = 0;
 					userData[i].dayTrackerDay = new Date();
+				}
+
+				// If a total time tracker hasn't been made, then make it
+				if (userData[i].totalTime === undefined) {
+					userData[i].totalTime = 0;
 				}
 
 				const dayTrackerCheck = new Date(userData[i].dayTrackerDay).toDateString() === new Date().toDateString();
@@ -311,18 +324,17 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 				// TIME TRACKER
 				const endTime = new Date();
 				const timeDif = Math.floor(endTime - new Date(userData[i].enterTime));
-				const hrs = Math.floor(timeDif / (3600 * 1000));
-				const min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
-				const sec = Math.floor((timeDif % (1000 * 60)) / 1000);
+				const sessionTime = getTimeDifference(timeDif);
 
 				// DAY TRACKER
 				userData[i].dayTrackerTime += timeDif;
-				const dayHrs = Math.floor(userData[i].dayTrackerTime / (3600 * 1000));
-				const dayMin = Math.floor((userData[i].dayTrackerTime % (1000 * 60 * 60)) / (1000 * 60));
-				const daySec = Math.floor((userData[i].dayTrackerTime % (1000 * 60)) / 1000);
+				const dayTime = getTimeDifference(userData[i].dayTrackerTime);
+
+				// TOTAL TIME TRACKER
+				userData[i].totalTime += timeDif;
 
 				accountabilityChannel.send(
-					`<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Grind Time**!\n\nThis comes to a total of \`${dayHrs} hour(s), ${dayMin} minutes(s), and ${daySec} second(s)\` grinded **Today**!`,
+					`<@${newMember.id}> You have grinded for \`${sessionTime[0]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[2]} second(s)\` in **Grind Time**!\n\nThis comes to a total of \`${dayTime[0]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[2]} second(s)\` grinded **Today**!`,
 				);
 				// Save data on leave
 				saveData(userData);
@@ -544,24 +556,24 @@ client.on('message', message => {
 						const actualDate = new Date();
 						const dateToCheck = new Date(userDatum.streakDate);
 						const timeDiff = (48 * 60 * 60 * 1000) - (actualDate - dateToCheck);
-						const hrs = Math.floor(timeDiff / (3600 * 1000));
-						const min = Math.floor((timeDiff % ((1000 * 60 * 60))) / (1000 * 60));
-						const sec = Math.floor((timeDiff % (1000 * 60)) / 1000);
+						const streakTimeLeft = getTimeDifference(timeDiff);
 						const day = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
 						// Tells user how much time they have left on streak
 
-						userDatum.timeLeft = timeDiff > 0 ? `${hrs} hrs, ${min} mins, ${sec} secs` : `You've been gone for ${-day} day(s), maybe a streak freeze can save it?`;
+						userDatum.timeLeft = timeDiff > 0 ? `${streakTimeLeft[0]} hrs, ${streakTimeLeft[1]} mins, ${streakTimeLeft[2]} secs` : `You've been gone for ${-day} day(s), maybe a streak freeze can save it?`;
 
 						if (userDatum.firstStreak === true) {
 							userDatum.timeLeft = 'Hasn\'t started a streak yet.';
 						}
 
 						// Display Total Time Grind Today
-						const dayHrs = Math.floor(userDatum.dayTrackerTime / (3600 * 1000));
-						const dayMin = Math.floor((userDatum.dayTrackerTime % (1000 * 60 * 60)) / (1000 * 60));
-						const daySec = Math.floor((userDatum.dayTrackerTime % (1000 * 60)) / 1000);
-						const todayGrinded = `${dayHrs} hrs, ${dayMin} mins, ${daySec} secs`;
+						const dayTime = getTimeDifference(userDatum.dayTrackerTime);
+						const todayGrinded = `${dayTime[0]} hrs, ${dayTime[1]} mins, ${dayTime[2]} secs`;
+
+						// Display Total Grind Hours Overall
+						const totalGrindTime = getTimeDifference(userDatum.totalTime);
+						const totalGrinded = `${totalGrindTime[0]} hrs, ${totalGrindTime[1]} mins, ${totalGrindTime[2]} secs`;
 
 						console.log(timeDiff);
 						const userProfile = new Discord.MessageEmbed()
@@ -574,11 +586,11 @@ client.on('message', message => {
 								{name: 'Streak Freezes', value: `\`\`\`${userDatum.streakFreeze}\`\`\``, inline: true},
 
 								{
-									name: 'Time Until Lost Streak', value: `\`\`\`${userDatum.timeLeft}\`\`\``,
+									name: 'Time Until Lost Streak', value: `\`\`\`${userDatum.timeLeft}\`\`\`---`,
 								},
-								{
-									name: 'Time Grinded Today', value: `\`\`\`${todayGrinded}\`\`\``,
-								},
+								{name: 'Time Grinded Today', value: `\`\`\`${todayGrinded}\`\`\``, inline: true},
+								{name: 'Total Grind Time', value: `\`\`\`${totalGrinded}\`\`\``, inline: true},
+
 							);
 						message.channel.send(userProfile);
 					}
