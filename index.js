@@ -215,25 +215,26 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 				userData[i].inVoiceChannel = true;
 
 				// If a day tracker hasn't been made, then make it
-				if (userData[i].dayTrackerTime === undefined) {
+				if (userData[i].dayTrackerTime === undefined || userData[i].dayTrackerTime === null) {
 					userData[i].dayTrackerTime = 0;
 					userData[i].dayTrackerDay = new Date();
 				}
 
 				// If a monthly time tracker hasn't been made, then make it
-				if (userData[i].monthlyTime === undefined) {
+				if (userData[i].monthlyTime === undefined || userData[i].monthlyTime === null) {
 					userData[i].monthlyTime = 0;
 					userData[i].monthlyTracker = new Date();
 				}
 
 				// If a total time tracker hasn't been made, then make it
-				if (userData[i].totalTime === undefined) {
+				if (userData[i].totalTime === undefined || userData[i].totalTime === null) {
 					userData[i].totalTime = 0;
 				}
 
 				// Checks to see if it's a new day
 				const dayTrackerCheck = new Date(userData[i].dayTrackerDay).toDateString() === new Date().toDateString();
 
+				// This also checks if Null
 				if (!dayTrackerCheck) {
 					userData[i].dayTrackerDay = new Date();
 					userData[i].dayTrackerTime = 0;
