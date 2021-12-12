@@ -589,16 +589,16 @@ client.on('message', message => {
 
 						userDatum.timeLeft = timeDiff > 0 ? `${streakTimeLeft[0]} hrs, ${streakTimeLeft[1]} mins, ${streakTimeLeft[2]} secs` : `You've been gone for ${-day} day(s), maybe a streak freeze can save it?`;
 
-						if (userDatum.firstStreak === true) {
-							userDatum.timeLeft = 'Hasn\'t started a streak yet.';
-						}
-
 						// If they've completed the streak in the past
 						// 24 hours and it's the same day, then they've
 						// Completed their streak
 						const timeLeftDayCheck = actualDate.toDateString() === dateToCheck.toDateString();
 						if (streakTimeLeft[0] > 23 && timeLeftDayCheck) {
 							userDatum.timeLeft = 'You\'ve completed you\'re streak for the day!';
+						}
+
+						if (userDatum.firstStreak === true) {
+							userDatum.timeLeft = 'Hasn\'t started a streak yet.';
 						}
 
 						// Display Total Time Grind Today
