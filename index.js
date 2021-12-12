@@ -593,10 +593,6 @@ client.on('message', message => {
 							userDatum.timeLeft = 'Hasn\'t started a streak yet.';
 						}
 
-						if (streakTimeLeft[0] > 23) {
-							userDatum.timeLeft = 'You\'ve completed you\'re streak for the day!';
-						}
-
 						// Display Total Time Grind Today
 						const dayTime = getTimeDifference(userDatum.dayTrackerTime);
 						const todayGrinded = `${dayTime[0]} hrs, ${dayTime[1]} mins, ${dayTime[2]} secs`;
