@@ -567,7 +567,7 @@ client.on('message', message => {
 		}
 
 		// User Profile Display
-		if (message.content === '?grind profile') {
+		if (message.content === 'grind profile') {
 			// Read file data
 			const userID = message.guild.member(message.author.id).user.id;
 			if (fs.existsSync('userData.json')) {
@@ -603,7 +603,17 @@ client.on('message', message => {
 
 						// Display Total Time Grind Today
 						const dayTime = getTimeDifference(userDatum.dayTrackerTime);
-						const todayGrinded = `${dayTime[0]} hrs, ${dayTime[1]} mins, ${dayTime[2]} secs`;
+						let todayGrinded = `${dayTime[0]} hrs, ${dayTime[1]} mins, ${dayTime[2]} secs`;
+
+						// If a new day and haven't grinded today yet
+						// Then display 'haven't grinded yet today
+
+						const userGrindToday = new Date(userDatum.dayTrackerDay);
+						const checkGrindedToday = actualDate.toDateString() === userGrindToday.toDateString();
+
+						if (!checkGrindedToday) {
+							todayGrinded = 'Hasn\'t grinded today yet.';
+						}
 
 						// Display Monthly Grind Today
 						const monthTime = getTimeDifference(userDatum.monthlyTime);
