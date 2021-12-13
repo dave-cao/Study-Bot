@@ -1,0 +1,20 @@
+[
+  {
+    "userName": "Beef",
+    "userID": "751885320936620162",
+    "streakDate": "2021-12-13T01:17:48.970Z",
+    "streak": 0,
+    "maxStreak": 0,
+    "streakFreeze": 0,
+    "firstStreak": true,
+    "enterTime": "2021-12-13T01:24:10.135Z",
+    "inVoiceChannel": false,
+    "dayTrackerTime": 4035,
+    "dayTrackerDay": "2021-12-13T01:17:48.970Z",
+    "weekTime": 2001,
+    "weekTracker": "2021-12-13T01:24:10.135Z",
+    "monthlyTime": 2001,
+    "monthlyTracker": "2021-12-13T01:24:10.135Z",
+    "totalTime": 4035
+  }
+]

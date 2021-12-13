@@ -130,8 +130,25 @@ Client.on('message', async message =>{
 //     return;
 //   }
 // });
+// Checks to see if a date is within this week!!
+function isThisWeek(date) {
+	const now = new Date();
 
-// maybe get a formatter
+	const weekDay = (now.getDay() + 6) % 7; // Make sure Sunday is 6, not 0
+	const monthDay = now.getDate();
+	const mondayThisWeek = monthDay - weekDay;
+
+	const startOfThisWeek = new Date(Number(now));
+	startOfThisWeek.setDate(mondayThisWeek);
+	startOfThisWeek.setHours(0, 0, 0, 0);
+
+	const startOfNextWeek = new Date(Number(startOfThisWeek));
+	startOfNextWeek.setDate(mondayThisWeek + 7);
+
+	return date >= startOfThisWeek && date < startOfNextWeek;
+}
+
+// Maybe get a formatter
 const getTimeDifference = timeDiff => {
 	// Returns an array of formatted hrs, mins and secs of a time difference
 	const hrs = Math.floor(timeDiff / (3600 * 1000));
@@ -220,6 +237,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 					userData[i].dayTrackerDay = new Date();
 				}
 
+				// If a weekly tracker hasn't been made, then make it
+				if (userData[i].weekTime === undefined || userData[i].weekTime === null) {
+					userData[i].weekTime = 0;
+					userData[i].weekTracker = new Date();
+				}
+
 				// If a monthly time tracker hasn't been made, then make it
 				if (userData[i].monthlyTime === undefined || userData[i].monthlyTime === null) {
 					userData[i].monthlyTime = 0;
@@ -233,11 +256,17 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 				// Checks to see if it's a new day
 				const dayTrackerCheck = new Date(userData[i].dayTrackerDay).toDateString() === new Date().toDateString();
-
-				// This also checks if Null
 				if (!dayTrackerCheck) {
 					userData[i].dayTrackerDay = new Date();
 					userData[i].dayTrackerTime = 0;
+				}
+
+				// Check to see if it's a new week
+				const weekDay = new Date(userData[i].weekTracker);
+				const weekTrackerCheck = isThisWeek(weekDay);
+				if (!weekTrackerCheck) {
+					userData[i].weekTracker = new Date();
+					userData[i].weekTime = 0;
 				}
 
 				// Checks to see if it's a new month
@@ -352,6 +381,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 				// DAY TRACKER
 				userData[i].dayTrackerTime += timeDif;
 				const dayTime = getTimeDifference(userData[i].dayTrackerTime);
+
+				// WEEK TIME TRACKER
+				userData[i].weekTime += timeDif;
 
 				// MONTHLY TIME TRACKER
 				userData[i].monthlyTime += timeDif;
@@ -603,7 +635,7 @@ client.on('message', message => {
 
 						// Display Total Time Grind Today
 						const dayTime = getTimeDifference(userDatum.dayTrackerTime);
-						let todayGrinded = `${dayTime[0]} hrs, ${dayTime[1]} mins, ${dayTime[2]} secs`;
+						let todayGrinded = `${dayTime[0]} hrs, ${dayTime[1]} mins`;
 
 						// If a new day and haven't grinded today yet
 						// Then display 'haven't grinded yet today
@@ -615,9 +647,37 @@ client.on('message', message => {
 							todayGrinded = 'Hasn\'t grinded today yet.';
 						}
 
+						// Display Week Grind Time
+						const weeklyTime = getTimeDifference(userDatum.weekTime);
+						let weekGrinded = `${weeklyTime[0]} hrs, ${weeklyTime[1]} mins`;
+
+						// If a new week and haven't grinded today yet
+						// Then display haven't grinded this week yet
+						const weekDay = new Date(userDatum.weekTracker);
+						const weekTrackerCheck = isThisWeek(weekDay);
+						if (!weekTrackerCheck) {
+							weekGrinded = 'Hasn\'t grinded this week yet.';
+						}
+
 						// Display Monthly Grind Today
 						const monthTime = getTimeDifference(userDatum.monthlyTime);
-						const monthGrinded = `${monthTime[0]} hrs, ${monthTime[1]} mins, ${monthTime[2]} secs`;
+						let monthGrinded = `${monthTime[0]} hrs, ${monthTime[1]} mins`;
+
+						// If a new month haven't grinded today yet
+						// Then display haven't grinded this month yet
+						const oldMonthDate = new Date(userDatum.monthlyTracker);
+						const oldMonth = oldMonthDate.getMonth();
+						const oldYear = oldMonthDate.getFullYear();
+
+						const currentDate = new Date();
+						const currentMonth = currentDate.getMonth();
+						const currentYear = currentDate.getFullYear();
+
+						const monthTrackerCheck = oldMonth === currentMonth && oldYear === currentYear;
+
+						if (!monthTrackerCheck) {
+							monthGrinded = 'Hasn\'t grinded this month yet.';
+						}
 
 						// Display Total Grind Hours Overall
 						const totalGrindTime = getTimeDifference(userDatum.totalTime);
@@ -637,13 +697,10 @@ client.on('message', message => {
 									name: 'Time Until Lost Streak', value: `\`\`\`${userDatum.timeLeft}\`\`\`---`,
 								},
 								{name: 'Time Grinded Today', value: `\`\`\`${todayGrinded}\`\`\``, inline: true},
-								{name: 'Time Grinded This Month', value: `\`\`\`${monthGrinded}\`\`\``, inline: true},
+								{name: 'Weekly Grind', value: `\`\`\`${weekGrinded}\`\`\``, inline: true},
 
-								{
-
-									name: 'Total Grind Time', value: `\`\`\`${totalGrinded}\`\`\``,
-								},
-
+								{name: 'Monthly Grind', value: `\`\`\`${monthGrinded}\`\`\``, inline: true},
+								{name: 'Total Grind Time', value: `\`\`\`${totalGrinded}\`\`\``, inline: true},
 							);
 						message.channel.send(userProfile);
 					}
