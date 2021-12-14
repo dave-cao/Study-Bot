@@ -700,8 +700,9 @@ client.on('message', message => {
 								{name: 'Weekly Grind', value: `\`\`\`${weekGrinded}\`\`\``, inline: true},
 
 								{name: 'Monthly Grind', value: `\`\`\`${monthGrinded}\`\`\``, inline: true},
-								{name: 'Total Grind Time', value: `\`\`\`${totalGrinded}\`\`\``, inline: true},
-							);
+								{name: 'Total Grind Time', value: `\`\`\`${totalGrinded}\`\`\`---`, inline: true},
+							)
+							.setImage('https://cdn.discordapp.com/attachments/793302883511959613/920142893627346984/ezgif.com-gif-maker.gif');
 						message.channel.send(userProfile);
 					}
 				}
