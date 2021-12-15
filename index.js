@@ -347,35 +347,41 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
               userData = JSON.parse(jsonString);
             }
 
+            const checkAgain =
+              new Date().toDateString() ===
+              new Date(userData[i].streakDate).toDateString();
+
             if (userData[i].inVoiceChannel === false) {
               console.log("he left!");
             } else if (
               newUserChannel === grindTimeVC &&
               oldUserChannel !== grindTimeVC
             ) {
-              console.log("he didn't leave!");
-              userData[i].firstStreak = false;
-              userData[i].streak++;
-              // Update max score
-              if (userData[i].streak > userData[i].maxStreak) {
-                userData[i].maxStreak = userData[i].streak;
-              }
+              if (!checkAgain || userData[i].firstStreak) {
+                console.log("he didn't leave!");
+                userData[i].firstStreak = false;
+                userData[i].streak++;
+                // Update max score
+                if (userData[i].streak > userData[i].maxStreak) {
+                  userData[i].maxStreak = userData[i].streak;
+                }
 
-              // Update streak freeze
-              if (userData[i].streak % 7 === 0) {
-                userData[i].streakFreeze++;
+                // Update streak freeze
+                if (userData[i].streak % 7 === 0) {
+                  userData[i].streakFreeze++;
+                  streakChannel.send(
+                    `<@${newMember.id}> Good work! You've maintained your streak for a week so you've been given a streak freeze!\n\`You have ${userData[i].streakFreeze} streak freezes\`\n-`
+                  );
+                }
+
                 streakChannel.send(
-                  `<@${newMember.id}> Good work! You've maintained your streak for a week so you've been given a streak freeze!\n\`You have ${userData[i].streakFreeze} streak freezes\`\n-`
+                  `<@${newMember.id}> You're **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nKeep up the good work :).`
                 );
+                // Change the streak date to the current date
+                userData[i].streakDate = new Date();
+                // Update user data
+                saveData(userData);
               }
-
-              streakChannel.send(
-                `<@${newMember.id}> You're **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nKeep up the good work :).`
-              );
-              // Change the streak date to the current date
-              userData[i].streakDate = new Date();
-              // Update user data
-              saveData(userData);
             }
 
             console.log(userData);
