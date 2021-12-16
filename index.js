@@ -324,9 +324,6 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
               streakChannel.send(
                 `<@${newMember.id}> You were about to lose your streak but your freeze saved the day!\nYou now have \`${userData[i].streakFreeze}\` freezes left!`
               );
-              console.log(
-                "You missed a day, but your freeze saved your streak!"
-              );
             } else {
               // if your streak is not zero, then send this message
               if (userData[i].streak !== 0) {
@@ -352,13 +349,11 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
               new Date(userData[i].streakDate).toDateString();
 
             if (userData[i].inVoiceChannel === false) {
-              console.log("he left!");
             } else if (
               newUserChannel === grindTimeVC &&
               oldUserChannel !== grindTimeVC
             ) {
               if (!checkAgain || userData[i].firstStreak) {
-                console.log("he didn't leave!");
                 userData[i].firstStreak = false;
                 userData[i].streak++;
                 // Update max score
@@ -383,13 +378,9 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
                 saveData(userData);
               }
             }
-
-            console.log(userData);
           }, minute * 12);
         }
       }
-
-      console.log(userData);
     }
 
     // Overall save data
@@ -719,7 +710,6 @@ client.on("message", (message) => {
             const totalGrindTime = getTimeDifference(userDatum.totalTime);
             const totalGrinded = `${totalGrindTime[0]} hrs, ${totalGrindTime[1]} mins, ${totalGrindTime[2]} secs`;
 
-            console.log(timeDiff);
             const userProfile = new Discord.MessageEmbed()
               .setColor("#8B0000")
               .setTitle(userDatum.userName)
