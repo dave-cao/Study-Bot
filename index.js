@@ -223,7 +223,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
       }
     }
 
-    for (let i = 0; i < userData.length; i++) {
+    for (let i = 0; i < userData.length; i += 1) {
       // Only change data of entered member
       if (userData[i].userID === newMember.id) {
         // Every time user enters, entertime will be different
@@ -313,8 +313,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
           if (nextDayCheck > 1) {
             // If day diff is 2 then use 1 freezes
             // If day diff is 3 then use 2 freezes
-            for (let q = nextDayCheck; q > 1; q--) {
-              userData[i].streakFreeze--;
+            for (let q = nextDayCheck; q > 1; q -= 1) {
+              userData[i].streakFreeze -= 1;
             }
 
             if (userData[i].streakFreeze >= 0) {
@@ -344,14 +344,11 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
             const checkAgain = new Date().toDateString()
               === new Date(userData[i].streakDate).toDateString();
 
-            if (userData[i].inVoiceChannel === false) {
-            } else if (
-              newUserChannel === grindTimeVC
-              && oldUserChannel !== grindTimeVC
-            ) {
+            if (userData[i].inVoiceChannel) {
+              // Check again in case someone leaves and enters and leaves and enters again
               if (!checkAgain || userData[i].firstStreak) {
                 userData[i].firstStreak = false;
-                userData[i].streak++;
+                userData[i].streak += 1;
                 // Update max score
                 if (userData[i].streak > userData[i].maxStreak) {
                   userData[i].maxStreak = userData[i].streak;
@@ -359,7 +356,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
                 // Update streak freeze
                 if (userData[i].streak % 7 === 0) {
-                  userData[i].streakFreeze++;
+                  userData[i].streakFreeze += 1;
                   streakChannel.send(
                     `<@${newMember.id}> Good work! You've maintained your streak for a week so you've been given a streak freeze!\n\`You have ${userData[i].streakFreeze} streak freezes\`\n-`,
                   );
