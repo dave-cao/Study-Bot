@@ -860,7 +860,7 @@ client.on('message', (message) => {
                   filteredArray.push(' ');
                 }
                 // add placement variable
-                filteredArray.push(`#${rank}`);
+                filteredArray.push(`# ${rank}`);
 
                 // join the array
                 // Return the new string
