@@ -895,8 +895,10 @@ client.on('message', (message) => {
               const [getUser] = rankArray.filter(
                 (user) => user[0] === userDatum.userID,
               );
-
-              return getUser[2];
+              if (getUser) {
+                return getUser[2];
+              }
+              return 'NA';
             };
             getRank(sortedDayRanks);
 
