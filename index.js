@@ -176,9 +176,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const person = client.users.cache.get(newMember.id);
   let hasMember = 0;
 
-  const grindTimeVC = '787354978523545634';
-  const streakChannel = client.channels.cache.get('839226206276812800');
-  const accountabilityChannel = client.channels.cache.get('821951428717183006');
+  const grindTimeVC = '822826357100249098';
+  const streakChannel = client.channels.cache.get('793302938453803008');
+  const accountabilityChannel = client.channels.cache.get('793302938453803008');
   const minute = 1000 * 60;
 
   let userData = [];
@@ -250,11 +250,11 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
         // If a monthly time tracker hasn't been made, then make it
         if (
-          userData[i].monthlyTime === undefined
-          || userData[i].monthlyTime === null
+          userData[i].monthTime === undefined
+          || userData[i].monthTime === null
         ) {
-          userData[i].monthlyTime = 0;
-          userData[i].monthlyTracker = new Date();
+          userData[i].monthTime = 0;
+          userData[i].monthDate = new Date();
         }
 
         // If a total time tracker hasn't been made, then make it
@@ -282,7 +282,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         }
 
         // Checks to see if it's a new month
-        const oldMonthDate = new Date(userData[i].monthlyTracker);
+        const oldMonthDate = new Date(userData[i].monthDate);
         const oldMonth = oldMonthDate.getMonth();
         const oldYear = oldMonthDate.getFullYear();
 
@@ -292,8 +292,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
         const monthTrackerCheck = oldMonth === currentMonth && oldYear === currentYear;
         if (!monthTrackerCheck) {
-          userData[i].monthlyTracker = new Date();
-          userData[i].monthlyTime = 0;
+          userData[i].monthDate = new Date();
+          userData[i].monthTime = 0;
         }
 
         // ===================================================================
@@ -399,7 +399,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         userData[i].weekTime += timeDif;
 
         // MONTHLY TIME TRACKER
-        userData[i].monthlyTime += timeDif;
+        userData[i].monthTime += timeDif;
 
         // TOTAL TIME TRACKER
         userData[i].totalTime += timeDif;
@@ -612,7 +612,7 @@ client.on('message', (message) => {
     }
 
     // User Profile Display
-    if (message.content === 'grind profile') {
+    if (message.content === 'profile') {
       // Read file data
       const userID = message.guild.member(message.author.id).user.id;
       if (fs.existsSync('userData.json')) {
@@ -631,10 +631,16 @@ client.on('message', (message) => {
             const day = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
             // Tells user how much time they have left on streak
-
+            let showStreak = userDatum.streak;
             userDatum.timeLeft = timeDiff > 0
               ? `${streakTimeLeft[0]} hrs, ${streakTimeLeft[1]} mins, ${streakTimeLeft[2]} secs`
               : `You've been gone for ${-day} day(s), maybe a streak freeze can save it?`;
+
+            // If the user is gone for a long time and pulls up profile, current streak
+            // will display ??
+            if (timeDiff <= 0) {
+              showStreak = '??';
+            }
 
             // If they've completed the streak in the past
             // 24 hours and it's the same day, then they've
@@ -659,7 +665,7 @@ client.on('message', (message) => {
             const checkGrindedToday = actualDate.toDateString() === userGrindToday.toDateString();
 
             if (!checkGrindedToday) {
-              todayGrinded = "Hasn't grinded today yet.";
+              todayGrinded = '0';
             }
 
             // Display Week Grind Time
@@ -671,16 +677,16 @@ client.on('message', (message) => {
             const weekDay = new Date(userDatum.weekTracker);
             const weekTrackerCheck = isThisWeek(weekDay);
             if (!weekTrackerCheck) {
-              weekGrinded = "Hasn't grinded this week yet.";
+              weekGrinded = '0';
             }
 
             // Display Monthly Grind Today
-            const monthTime = getTimeDifference(userDatum.monthlyTime);
+            const monthTime = getTimeDifference(userDatum.monthTime);
             let monthGrinded = `${monthTime[0]} hrs, ${monthTime[1]} mins`;
 
             // If a new month haven't grinded today yet
             // Then display haven't grinded this month yet
-            const oldMonthDate = new Date(userDatum.monthlyTracker);
+            const oldMonthDate = new Date(userDatum.monthDate);
             const oldMonth = oldMonthDate.getMonth();
             const oldYear = oldMonthDate.getFullYear();
 
@@ -691,23 +697,101 @@ client.on('message', (message) => {
             const monthTrackerCheck = oldMonth === currentMonth && oldYear === currentYear;
 
             if (!monthTrackerCheck) {
-              monthGrinded = "Hasn't grinded this month yet.";
+              monthGrinded = '0';
             }
 
             // Display Total Grind Hours Overall
             const totalGrindTime = getTimeDifference(userDatum.totalTime);
-            const totalGrinded = `${totalGrindTime[0]} hrs, ${totalGrindTime[1]} mins, ${totalGrindTime[2]} secs`;
+            const totalGrinded = `${totalGrindTime[0]} hrs, ${totalGrindTime[1]} mins`;
+
+            // Display AVERAGE time grinded per day for the month
+
+            // got the milli difference from when month date was grabbed
+            // to now
+            const monthDifference = currentDate - oldMonthDate;
+            // Calculate the days between months
+            const daysBetween = Math.floor(monthDifference / (1000 * 60 * 60 * 24)) + 1;
+            const dailyAverage = getTimeDifference(
+              userDatum.monthTime / daysBetween,
+            );
+
+            const displayDailyAverage = `${dailyAverage[0]} hrs, ${dailyAverage[1]} mins`;
+
+            // USE CASE for displaying Time Grinded in profile with too much characters
+            const whiteSpaceBA = (variable, string) => {
+              const defVarLength = 13;
+              const needsChange = defVarLength !== variable.length;
+              const test = string.split(' ');
+              // BEFORE IS THE AMOUNT OF WHITESPACES BEFORE
+              function whiteSpaceCount(array, start) {
+                let before = 0;
+                let i = start;
+                let notFound = true;
+                while (notFound && i < array.length) {
+                  const current = array[i];
+                  const next = array[i + 1];
+
+                  if (!current) {
+                    before += 1;
+                  } else if (current && next) {
+                    notFound = false;
+                  }
+                  i += 1;
+                }
+                return before;
+              }
+
+              const before = whiteSpaceCount(test, 0);
+
+              // AFTER IS THE AMOUNT OF WHITESPACE AFTER
+              // find where we start
+              const varArrLen = variable.split(' ').length;
+              // plus one doesn't matter since we start at 0
+              const afterStart = varArrLen + before;
+              const after = whiteSpaceCount(test, afterStart);
+              console.log(test);
+              console.log(after);
+
+              if (needsChange) {
+                // count whitespace before today Grinded
+                // USE before
+                // count whitespace after today Grinded
+                // USE after
+
+                const difference = variable.length - defVarLength; // 1 or 2
+                // Subtract the difference from before
+                // Add the difference to after
+
+                // Strip all white space from array test
+                // Add new amount of white space after first word
+                // Add new amount of white space before second last word
+
+                // join the array
+                // Return the new string
+              }
+            };
+
+            whiteSpaceBA(
+              todayGrinded,
+              `Daily          ${weekGrinded}        rank 1`,
+            );
 
             const userProfile = new Discord.MessageEmbed()
               .setColor('#8B0000')
               .setTitle(userDatum.userName)
+              // If the length of the todayGrinded variable inreases by one
+              // then we take out a white space before it and add it after it
+              // Make a function that does this
               .setDescription(
-                "The following is your Grind Time Information. I will slowly add more stuff into the profile such as **economy**, **items**, and more! Also, if you didn't already known, some Grinders have their own profile! Try to type your name to see if you have one.",
+                '```'
+                  + 'Time Frame      Time Grinded       Place\n'
+                  + `Daily           ${todayGrinded}    rank 1`
+                  + '```',
               )
               .addFields(
                 {
                   name: 'Current Streak',
-                  value: `\`\`\`${userDatum.streak}\`\`\``,
+                  value: `\`\`\`${showStreak}\`\`\``,
                   inline: true,
                 },
                 {
@@ -744,6 +828,11 @@ client.on('message', (message) => {
                 {
                   name: 'Total Grind Time',
                   value: `\`\`\`${totalGrinded}\`\`\`---`,
+                  inline: true,
+                },
+                {
+                  name: 'Daily Average',
+                  value: `\`\`\`${displayDailyAverage}\`\`\`---`,
                   inline: true,
                 },
               )
