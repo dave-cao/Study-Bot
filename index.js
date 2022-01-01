@@ -909,25 +909,25 @@ client.on('message', (message) => {
 
             // ================================================================
             // Strings to display
-            const dayString = `Daily:             ${todayGrinded}         #${userDayRank}`;
+            const dayString = `Daily:             ${todayGrinded}         # ${userDayRank}`;
             const dayDisplay = whiteSpaceBA(
               todayGrinded,
               dayString,
               userDayRank,
             );
-            const weekString = `Weekly:            ${weekGrinded}         #${userWeekRank}`;
+            const weekString = `Weekly:            ${weekGrinded}         # ${userWeekRank}`;
             const weekDisplay = whiteSpaceBA(
               weekGrinded,
               weekString,
               userWeekRank,
             );
-            const monthString = `Monthly:           ${monthGrinded}         #${userMonthRank}`;
+            const monthString = `Monthly:           ${monthGrinded}         # ${userMonthRank}`;
             const monthDisplay = whiteSpaceBA(
               monthGrinded,
               monthString,
               userMonthRank,
             );
-            const totalString = `All-time:          ${totalGrinded}         #${userTotalRank}`;
+            const totalString = `All-time:          ${totalGrinded}         # ${userTotalRank}`;
             const totalDisplay = whiteSpaceBA(
               totalGrinded,
               totalString,
