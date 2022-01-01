@@ -951,7 +951,7 @@ client.on('message', (message) => {
                   + `${monthDisplay}\n`
                   + `${totalDisplay}\n\n`
                   + `Daily Average (${monthNames[currentMonth]}): ${displayDailyAverage}`
-                  + '```',
+                  + '```---',
               )
               .addFields(
                 {
