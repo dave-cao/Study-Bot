@@ -177,9 +177,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const person = client.users.cache.get(newMember.id);
   let hasMember = 0;
 
-  const grindTimeVC = '822826357100249098';
-  const streakChannel = client.channels.cache.get('793302938453803008');
-  const accountabilityChannel = client.channels.cache.get('793302938453803008');
+  const grindTimeVC = '787354978523545634';
+  const streakChannel = client.channels.cache.get('839226206276812800');
+  const accountabilityChannel = client.channels.cache.get('821951428717183006');
   const minute = 1000 * 60;
 
   let userData = [];
@@ -641,7 +641,7 @@ client.on('message', (message) => {
     }
 
     // User Profile Display
-    if (message.content === 'profile') {
+    if (message.content === 'grind profile') {
       // Read file data
       const userID = message.guild.member(message.author.id).user.id;
       if (fs.existsSync('userData.json')) {
