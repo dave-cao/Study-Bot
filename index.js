@@ -639,6 +639,99 @@ client.on('message', (message) => {
         .member(message.author.id)
         .voice.setChannel('787354978523545634');
     }
+    // Display Leaderboard
+    if (message.content === 'leaderboard') {
+      // FIXME: I legit copied this from grind profile message!!
+      const userID = message.guild.member(message.author.id).user.id;
+      if (fs.existsSync('userData.json')) {
+        const jsonString = fs.readFileSync('userData.json', 'utf8');
+        const userData = JSON.parse(jsonString);
+        let userExists = userData.length;
+        // ==========================================
+        // GET USER RANKINGS
+        // ==========================================
+        // SORT THIS
+        function getHighest(rankArray) {
+          let max = 0;
+          let maxUser = [];
+          rankArray.forEach((user) => {
+            if (user[1] > max) {
+              max = user[1];
+              maxUser = user;
+            }
+          });
+          return maxUser;
+        }
+
+        // function that adds rank number to rank
+        const addRankNumber = (sortedRankArray) => {
+          const arrayCopy = [...sortedRankArray];
+          for (let i = 0; i < sortedRankArray.length; i += 1) {
+            arrayCopy[i].push(i + 1);
+          }
+          return arrayCopy;
+        };
+
+        function sortRanks(rankArray) {
+          const rankCopy = [...rankArray];
+          let sortedArray = [];
+          for (let i = 0; i < rankArray.length; i += 1) {
+            const currentHighest = getHighest(rankCopy);
+            sortedArray.push(currentHighest);
+            const highestIndex = rankCopy.indexOf(currentHighest);
+            rankCopy.splice(highestIndex, 1);
+          }
+          sortedArray = addRankNumber(sortedArray);
+
+          return sortedArray;
+        }
+
+        const now = new Date();
+        const dayRanks = [];
+        const weekRanks = [];
+        const monthRanks = [];
+        const totalRanks = [];
+        for (const userDatum of userData) {
+          // if user hasn't grinded today then not in rankings
+          const userGrindToday = new Date(userDatum.dayTrackerDay);
+          const checkGrindedToday = now.toDateString() === userGrindToday.toDateString();
+          if (checkGrindedToday) {
+            dayRanks.push([userDatum.userID, userDatum.dayTrackerTime]);
+          }
+
+          // if user hasn't grinded this week then not in rankings
+          const weekDay = new Date(userDatum.weekTracker);
+          const weekTrackerCheck = isThisWeek(weekDay);
+          if (weekTrackerCheck) {
+            weekRanks.push([userDatum.userID, userDatum.weekTime]);
+          }
+
+          // is user hasn't grinded this month then not in rankings
+          const oldMonthDate = new Date(userDatum.monthlyTracker);
+          const oldMonth = oldMonthDate.getMonth();
+          const oldYear = oldMonthDate.getFullYear();
+          const currentDate = new Date();
+          const currentMonth = currentDate.getMonth();
+          const currentYear = currentDate.getFullYear();
+          const monthTrackerCheck = oldMonth === currentMonth && oldYear === currentYear;
+          if (monthTrackerCheck) {
+            monthRanks.push([userDatum.userID, userDatum.monthlyTime]);
+          }
+
+          // push total time grinded
+          totalRanks.push([userDatum.userID, userDatum.totalTime]);
+        }
+
+      const sortedDayRanks = sortRanks(dayRanks);
+      const sortedWeekRanks = sortRanks(weekRanks);
+      const sortedMonthRanks = sortRanks(monthRanks);
+      const sortedTotalRanks = sortRanks(totalRanks);
+      // ================================
+        
+
+
+
+    }
 
     // User Profile Display
     if (message.content === 'grind profile') {
