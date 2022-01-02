@@ -132,16 +132,17 @@ Client.on('message', async message =>{
 // Checks to see if a date is within this week!!
 function isThisWeek(date) {
   const now = new Date();
-
   const weekDay = (now.getDay() + 6) % 7; // Make sure Sunday is 6, not 0
   const monthDay = now.getDate();
-  const mondayThisWeek = monthDay - weekDay;
+  let mondayThisWeek = monthDay - weekDay;
 
   const startOfThisWeek = new Date(Number(now));
   startOfThisWeek.setDate(mondayThisWeek);
   startOfThisWeek.setHours(0, 0, 0, 0);
 
   const startOfNextWeek = new Date(Number(startOfThisWeek));
+  // In cases where this is a neg number, re-read mondayThisWeek
+  mondayThisWeek = startOfThisWeek.getDate();
   startOfNextWeek.setDate(mondayThisWeek + 7);
 
   return date >= startOfThisWeek && date < startOfNextWeek;
@@ -176,9 +177,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const person = client.users.cache.get(newMember.id);
   let hasMember = 0;
 
-  const grindTimeVC = '787354978523545634';
-  const streakChannel = client.channels.cache.get('839226206276812800');
-  const accountabilityChannel = client.channels.cache.get('821951428717183006');
+  const grindTimeVC = '822826357100249098';
+  const streakChannel = client.channels.cache.get('793302938453803008');
+  const accountabilityChannel = client.channels.cache.get('793302938453803008');
   const minute = 1000 * 60;
 
   let userData = [];
@@ -321,6 +322,35 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
               streakChannel.send(
                 `<@${newMember.id}> You were about to lose your streak but your freeze saved the day!\nYou now have \`${userData[i].streakFreeze}\` freezes left!`,
               );
+              // TODO: Implement the case where the user uses a streak freeze
+              // however, they don't complete the streak freeze
+              // If they come back into the voice channel they will lose
+              // even more streak freezes.
+              //
+              // My thought process here is to set the streak Date to yesterday
+              // once the user gets here. Thus, the streak freezes are used
+              // but are not used again.
+              //
+              // If we set it to yesterday, then if they come back tomorrow,
+              // their streak will now only decrease by 1 day since they already
+              // used their streaks
+              //
+              // Code Example:
+              //
+              // const ONE_DAY_MILLI = 24 * 60 * 60 * 1000 || 86 400 000
+              // userData[i].streakDate = currentDate - ONE_DAY_MILLI
+              //
+              // Bug Example:
+              //  - user comes into voice channel and has not grinded for
+              //    20 days. They have 30 streak freezes, thus once they enter
+              //    their streak freezes decreases by 20 and they have 10 left.
+              //    Howwever, they don't complete their streak and leave. If
+              //    they come again the next day, it will now be subtracted by
+              //    21 days but they only have 10 streak freezes left, thus
+              //    losing their streak.
+              const ONE_DAY_MILL = 24 * 60 * 60 * 1000;
+              const yesterday = actualDate - ONE_DAY_MILL;
+              userData[i].streakDate = new Date(yesterday);
             } else {
               // if your streak is not zero, then send this message
               if (userData[i].streak !== 0) {
@@ -381,7 +411,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
     // If user leaves voice channel
   } else if (oldUserChannel === grindTimeVC && newUserChannel !== grindTimeVC) {
-    // Console.log(newUserChannel, oldUserChannel)
     for (let i = 0; i < userData.length; i++) {
       if (userData[i].userID === newMember.id) {
         userData[i].inVoiceChannel = false;
@@ -612,7 +641,7 @@ client.on('message', (message) => {
     }
 
     // User Profile Display
-    if (message.content === 'grind profile') {
+    if (message.content === 'profile') {
       // Read file data
       const userID = message.guild.member(message.author.id).user.id;
       if (fs.existsSync('userData.json')) {
@@ -622,7 +651,7 @@ client.on('message', (message) => {
         // ==========================================
         // GET USER RANKINGS
         // ==========================================
-        // SORT THIS BITCH
+        // SORT THIS
         function getHighest(rankArray) {
           let max = 0;
           let maxUser = [];
