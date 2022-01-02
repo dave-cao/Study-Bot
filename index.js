@@ -618,7 +618,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 client.login(config.token);
 
-function displayLeaderboardFunction(timeframe) {
+function displayLeaderboardFunction(message, timeframe) {
+  const userID = message.guild.member(message.author.id).user.id;
   // Returns a message embed of the leaderboard of the timeframe
   if (fs.existsSync('userData.json')) {
     const jsonString = fs.readFileSync('userData.json', 'utf8');
@@ -722,7 +723,8 @@ function displayLeaderboardFunction(timeframe) {
     const getPerson = (array) => {
       // array is the user rank info
       if (array.length > 1) {
-        return [array[2], array[3], array[1]];
+        // I'm literally returning the same array but with different order smh
+        return [array[2], array[3], array[1], array[0]];
       }
       return 0;
     };
@@ -747,8 +749,15 @@ function displayLeaderboardFunction(timeframe) {
         for (let i = 0; i < leaderboardLength; i += 1) {
           const displayInfo = getPerson(sortedRanks[i]);
           const time = getTimeDifference(displayInfo[2]);
+
+          let statsString = `${time[0]} hrs, ${time[1]} mins: ${displayInfo[0]}`;
+          if (displayInfo[3] === userID) {
+            statsString = `**${statsString}**`;
+          }
+
+          // Check to see if hours and minutes are 0 and don't display
           if (displayInfo) {
-            const displayString = `\`# ${displayInfo[1]}.\` ${time[0]} hrs, ${time[1]} mins: **${displayInfo[0]}** \n\n`;
+            const displayString = `\`# ${displayInfo[1]}.\` ${statsString} \n\n`;
             leaderboardStr += displayString;
           }
         }
@@ -793,6 +802,7 @@ function displayLeaderboardFunction(timeframe) {
     return leaderboard;
     // ================================
   }
+  return 'There is no user data to display!';
 }
 
 // People comments
@@ -819,16 +829,16 @@ client.on('message', (message) => {
     // Display Leaderboard
     switch (message.content) {
       case '-d':
-        message.channel.send(displayLeaderboardFunction('-d'));
+        message.channel.send(displayLeaderboardFunction(message, '-d'));
         break;
       case '-w':
-        message.channel.send(displayLeaderboardFunction('-w'));
+        message.channel.send(displayLeaderboardFunction(message, '-w'));
         break;
       case '-m':
-        message.channel.send(displayLeaderboardFunction('-m'));
+        message.channel.send(displayLeaderboardFunction(message, '-m'));
         break;
       case '-t':
-        message.channel.send(displayLeaderboardFunction('-t'));
+        message.channel.send(displayLeaderboardFunction(message, '-t'));
         break;
       case 'leaderboard':
         message.channel.send(
