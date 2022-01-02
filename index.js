@@ -730,12 +730,27 @@ function displayLeaderboardFunction(timeframe) {
     // FUNCTION FOR DISPLAY LEADERBOARD
     const displayLeaderboard = (sortedRanks) => {
       let leaderboardStr = '';
-      for (let i = 0; i < sortedRanks.length; i += 1) {
-        const displayInfo = getPerson(sortedRanks[i]);
-        const time = getTimeDifference(displayInfo[2]);
-        if (displayInfo) {
-          const displayString = `\`# ${displayInfo[1]}.\` ${time[0]} hrs, ${time[1]} mins: **${displayInfo[0]}** \n\n`;
-          leaderboardStr += displayString;
+      let count = 0; // this is for the empty ranks
+      sortedRanks.forEach((rank) => {
+        if (rank.length > 1) {
+          count += 1;
+        }
+      });
+      // Maximum length should only be 25 in case something breaks
+      let leaderboardLength = sortedRanks.length;
+      if (count > 25) {
+        leaderboardLength = 25;
+      }
+
+      // Make the display string
+      if (sortedRanks.length) {
+        for (let i = 0; i < leaderboardLength; i += 1) {
+          const displayInfo = getPerson(sortedRanks[i]);
+          const time = getTimeDifference(displayInfo[2]);
+          if (displayInfo) {
+            const displayString = `\`# ${displayInfo[1]}.\` ${time[0]} hrs, ${time[1]} mins: **${displayInfo[0]}** \n\n`;
+            leaderboardStr += displayString;
+          }
         }
       }
       if (!sortedRanks.length) {
@@ -745,26 +760,32 @@ function displayLeaderboardFunction(timeframe) {
     };
 
     let leaderboardStr = '';
+    let title = '';
     switch (timeframe) {
       case '-d':
         leaderboardStr = displayLeaderboard(sortedDayRanks);
+        title = 'Daily';
         break;
       case '-w':
         leaderboardStr = displayLeaderboard(sortedWeekRanks);
+        title = 'Weekly';
         break;
       case '-m':
         leaderboardStr = displayLeaderboard(sortedMonthRanks);
+        title = 'Monthly';
         break;
       case '-t':
         leaderboardStr = displayLeaderboard(sortedTotalRanks);
+        title = 'All-Time';
         break;
       default:
         leaderboardStr = 'No one has grinded yet!';
+        title = 'Something went wrong here';
     }
 
     const leaderboard = new Discord.MessageEmbed()
       .setColor('#8B0000')
-      .setTitle('Leaderboard!')
+      .setTitle(`${title} Leaderboard!`)
       // If the length of the todayGrinded variable inreases by one
       // then we take out a white space before it and add it after it
       // Make a function that does this
