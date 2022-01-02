@@ -618,6 +618,162 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 client.login(config.token);
 
+function displayLeaderboardFunction(timeframe) {
+  // Returns a message embed of the leaderboard of the timeframe
+  if (fs.existsSync('userData.json')) {
+    const jsonString = fs.readFileSync('userData.json', 'utf8');
+    const userData = JSON.parse(jsonString);
+    // ==========================================
+    // GET USER RANKINGS
+    // ==========================================
+    // SORT THIS
+    function getHighest(rankArray) {
+      let max = 0;
+      let maxUser = [];
+      rankArray.forEach((user) => {
+        if (user[1] > max) {
+          max = user[1];
+          maxUser = user;
+        }
+      });
+      return maxUser;
+    }
+
+    // function that adds rank number to rank
+    const addRankNumber = (sortedRankArray) => {
+      const arrayCopy = [...sortedRankArray];
+      for (let i = 0; i < sortedRankArray.length; i += 1) {
+        arrayCopy[i].push(i + 1);
+      }
+      return arrayCopy;
+    };
+
+    function sortRanks(rankArray) {
+      const rankCopy = [...rankArray];
+      let sortedArray = [];
+      for (let i = 0; i < rankArray.length; i += 1) {
+        const currentHighest = getHighest(rankCopy);
+        sortedArray.push(currentHighest);
+        const highestIndex = rankCopy.indexOf(currentHighest);
+        rankCopy.splice(highestIndex, 1);
+      }
+      sortedArray = addRankNumber(sortedArray);
+
+      return sortedArray;
+    }
+
+    const now = new Date();
+    const dayRanks = [];
+    const weekRanks = [];
+    const monthRanks = [];
+    const totalRanks = [];
+    for (const userDatum of userData) {
+      // if user hasn't grinded today then not in rankings
+      const userGrindToday = new Date(userDatum.dayTrackerDay);
+      const checkGrindedToday = now.toDateString() === userGrindToday.toDateString();
+      if (checkGrindedToday) {
+        dayRanks.push([
+          userDatum.userID,
+          userDatum.dayTrackerTime,
+          userDatum.userName,
+        ]);
+      }
+
+      // if user hasn't grinded this week then not in rankings
+      const weekDay = new Date(userDatum.weekTracker);
+      const weekTrackerCheck = isThisWeek(weekDay);
+      if (weekTrackerCheck) {
+        weekRanks.push([
+          userDatum.userID,
+          userDatum.weekTime,
+          userDatum.userName, // THIS PART DIFFERENT THEN PROFILE
+        ]);
+      }
+
+      // is user hasn't grinded this month then not in rankings
+      const oldMonthDate = new Date(userDatum.monthlyTracker);
+      const oldMonth = oldMonthDate.getMonth();
+      const oldYear = oldMonthDate.getFullYear();
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth();
+      const currentYear = currentDate.getFullYear();
+      const monthTrackerCheck = oldMonth === currentMonth && oldYear === currentYear;
+      if (monthTrackerCheck) {
+        monthRanks.push([
+          userDatum.userID,
+          userDatum.monthlyTime,
+          userDatum.userName,
+        ]);
+      }
+
+      // push total time grinded
+      totalRanks.push([
+        userDatum.userID,
+        userDatum.totalTime,
+        userDatum.userName,
+      ]);
+    }
+    const sortedDayRanks = sortRanks(dayRanks);
+    const sortedWeekRanks = sortRanks(weekRanks);
+    const sortedMonthRanks = sortRanks(monthRanks);
+    const sortedTotalRanks = sortRanks(totalRanks);
+
+    // GETTING INFORMATION FROM ARRAY
+    const getPerson = (array) => {
+      // array is the user rank info
+      if (array.length > 1) {
+        return [array[2], array[3], array[1]];
+      }
+      return 0;
+    };
+
+    // FUNCTION FOR DISPLAY LEADERBOARD
+    const displayLeaderboard = (sortedRanks) => {
+      let leaderboardStr = '';
+      for (let i = 0; i < sortedRanks.length; i += 1) {
+        const displayInfo = getPerson(sortedRanks[i]);
+        const time = getTimeDifference(displayInfo[2]);
+        if (displayInfo) {
+          const displayString = `\`# ${displayInfo[1]}.\` ${time[0]} hrs, ${time[1]} mins: **${displayInfo[0]}** \n\n`;
+          leaderboardStr += displayString;
+        }
+      }
+      if (!sortedRanks.length) {
+        leaderboardStr = 'No one has grinded yet!';
+      }
+      return leaderboardStr;
+    };
+
+    let leaderboardStr = '';
+    switch (timeframe) {
+      case '-d':
+        leaderboardStr = displayLeaderboard(sortedDayRanks);
+        break;
+      case '-w':
+        leaderboardStr = displayLeaderboard(sortedWeekRanks);
+        break;
+      case '-m':
+        leaderboardStr = displayLeaderboard(sortedMonthRanks);
+        break;
+      case '-t':
+        leaderboardStr = displayLeaderboard(sortedTotalRanks);
+        break;
+      default:
+        leaderboardStr = 'No one has grinded yet!';
+    }
+
+    const leaderboard = new Discord.MessageEmbed()
+      .setColor('#8B0000')
+      .setTitle('Leaderboard!')
+      // If the length of the todayGrinded variable inreases by one
+      // then we take out a white space before it and add it after it
+      // Make a function that does this
+      .setDescription(leaderboardStr);
+    return leaderboard;
+    // ================================
+  }
+}
+
 // People comments
 client.on('message', (message) => {
   // Move voice channel code
@@ -639,7 +795,31 @@ client.on('message', (message) => {
         .member(message.author.id)
         .voice.setChannel('787354978523545634');
     }
+    // Display Leaderboard
+    switch (message.content) {
+      case '-d':
+        message.channel.send(displayLeaderboardFunction('-d'));
+        break;
+      case '-w':
+        message.channel.send(displayLeaderboardFunction('-w'));
+        break;
+      case '-m':
+        message.channel.send(displayLeaderboardFunction('-m'));
+        break;
+      case '-t':
+        message.channel.send(displayLeaderboardFunction('-t'));
+        break;
+      case 'leaderboard':
+        message.channel.send(
+          'To view the leaderboards please type:\n'
+            + '`-d` for the Daily Leaderboard\n'
+            + '`-w` for the Weekly Leaderboard\n'
+            + '`-m` for the Monthly Leaderboard\n'
+            + '`-t` for the All-time Leaderboard',
+        );
+    }
 
+    // ==================================================================
     // User Profile Display
     if (message.content === 'grind profile') {
       // Read file data
