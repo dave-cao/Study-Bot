@@ -887,7 +887,7 @@ function displayLeaderboardFunction(message, timeframe, displayTop) {
         break;
       case '-t':
         leaderboardStr = displayLeaderboard(sortedTotalRanks);
-        title = 'All-Time';
+        title = 'All-Time Leaderboard';
         break;
       default:
         leaderboardStr = 'No one has grinded yet!';
