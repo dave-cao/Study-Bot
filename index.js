@@ -172,6 +172,9 @@ const saveData = (userData) => {
 
 // STREAK SYSTEM IMPLEMENTATION
 client.on('voiceStateUpdate', (oldMember, newMember) => {
+  // check is user is bot
+  if (oldMember.member.user.bot) return;
+
   const newUserChannel = newMember.channelID;
   const oldUserChannel = oldMember.channelID;
   const person = client.users.cache.get(newMember.id);
@@ -618,7 +621,10 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 client.login(config.token);
 
-function displayLeaderboardFunction(message, timeframe) {
+function displayLeaderboardFunction(message, timeframe, displayTop) {
+  // message is from the message object of discord
+  // time frame is -d, -w, -m, or -t string from message
+  // displayTop is a boolean true or false to send top 20 or just current user
   const userID = message.guild.member(message.author.id).user.id;
   // Returns a message embed of the leaderboard of the timeframe
   if (fs.existsSync('userData.json')) {
@@ -740,24 +746,50 @@ function displayLeaderboardFunction(message, timeframe) {
       });
       // Maximum length should only be 25 in case something breaks
       let leaderboardLength = sortedRanks.length;
-      if (count > 25) {
-        leaderboardLength = 25;
+      if (count > 20) {
+        leaderboardLength = 20;
+      }
+
+      // Show above and below 5 from user
+      let startPos = 0;
+      let endPos = leaderboardLength;
+
+      // If they type "top" before the rank, then it will display top 20
+      if (!displayTop) {
+        const padding = 5;
+        const [currentUser] = sortedRanks.filter((user) => user[0] === userID);
+        if (currentUser !== undefined) {
+          const currentPosition = currentUser[3];
+          startPos = currentPosition - padding;
+          endPos = currentPosition + padding;
+
+          // End limit cases
+          if (startPos < 0) {
+            startPos = 0;
+          }
+          if (endPos > count) {
+            endPos = count;
+          }
+        }
       }
 
       // Make the display string
       if (sortedRanks.length) {
-        for (let i = 0; i < leaderboardLength; i += 1) {
+        for (let i = startPos; i < endPos; i += 1) {
           const displayInfo = getPerson(sortedRanks[i]);
           const time = getTimeDifference(displayInfo[2]);
 
-          let statsString = `${time[0]} hrs, ${time[1]} mins: ${displayInfo[0]}`;
-          if (displayInfo[3] === userID) {
-            statsString = `**${statsString}**`;
-          }
+          const statsString = `${time[0]} hrs, ${time[1]} mins: ${displayInfo[0]}`;
 
           // Check to see if hours and minutes are 0 and don't display
           if (displayInfo) {
-            const displayString = `\`# ${displayInfo[1]}.\` ${statsString} \n\n`;
+            let displayString = `\`# ${displayInfo[1]}.\` ${statsString} \n\n`;
+
+            // Grabs the user
+            if (displayInfo[3] === userID) {
+              displayString = `\`# ${displayInfo[1]}.\` **${statsString}** \n\n`;
+            }
+
             leaderboardStr += displayString;
           }
         }
@@ -793,8 +825,8 @@ function displayLeaderboardFunction(message, timeframe) {
     }
 
     const leaderboard = new Discord.MessageEmbed()
-      .setColor('#8B0000')
-      .setTitle(`${title} Leaderboard!`)
+      .setColor('#5D3FD3')
+      .setTitle(`${title} Leaderboard`)
       // If the length of the todayGrinded variable inreases by one
       // then we take out a white space before it and add it after it
       // Make a function that does this
@@ -826,28 +858,49 @@ client.on('message', (message) => {
         .member(message.author.id)
         .voice.setChannel('787354978523545634');
     }
-    // Display Leaderboard
+    // Display Leaderboard at current user position
     switch (message.content) {
       case '-d':
-        message.channel.send(displayLeaderboardFunction(message, '-d'));
+        message.channel.send(displayLeaderboardFunction(message, '-d', false));
         break;
       case '-w':
-        message.channel.send(displayLeaderboardFunction(message, '-w'));
+        message.channel.send(displayLeaderboardFunction(message, '-w', false));
         break;
       case '-m':
-        message.channel.send(displayLeaderboardFunction(message, '-m'));
+        message.channel.send(displayLeaderboardFunction(message, '-m', false));
         break;
       case '-t':
-        message.channel.send(displayLeaderboardFunction(message, '-t'));
+        message.channel.send(displayLeaderboardFunction(message, '-t', false));
         break;
       case 'leaderboard':
         message.channel.send(
-          'To view the leaderboards please type:\n'
+          'To view **your current position** on the leaderboard please type:\n'
             + '`-d` for the Daily Leaderboard\n'
             + '`-w` for the Weekly Leaderboard\n'
             + '`-m` for the Monthly Leaderboard\n'
-            + '`-t` for the All-time Leaderboard',
+            + '`-t` for the All-time Leaderboard\n\n'
+            + 'To view the **Top 20 leaderboards** please type:\n'
+            + '`top -d` for the Daily Leaderboard\n'
+            + '`top -w` for the Weekly Leaderboard\n'
+            + '`top -m` for the Monthly Leaderboard\n'
+            + '`top -t` for the All-time Leaderboard\n\n',
         );
+        break;
+    }
+    // Display Top 20 Leaderboard
+    switch (message.content) {
+      case 'top -d':
+        message.channel.send(displayLeaderboardFunction(message, '-d', true));
+        break;
+      case 'top -w':
+        message.channel.send(displayLeaderboardFunction(message, '-w', true));
+        break;
+      case 'top -m':
+        message.channel.send(displayLeaderboardFunction(message, '-m', true));
+        break;
+      case 'top -t':
+        message.channel.send(displayLeaderboardFunction(message, '-t', true));
+        break;
     }
 
     // ==================================================================
