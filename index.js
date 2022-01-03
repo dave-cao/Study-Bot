@@ -174,8 +174,7 @@ const saveData = (userData) => {
 client.on('voiceStateUpdate', (oldMember, newMember) => {
   // check is user is bot
   if (oldMember.member.user.bot) return;
-  // check if user is Beef
-  if (newMember.id === '751885320936620162') return;
+  const isBeef = newMember.id === '751885320936620162';
 
   const newUserChannel = newMember.channelID;
   const oldUserChannel = oldMember.channelID;
@@ -196,6 +195,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   // If user enters voice channel
   if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
+    // check if user is Beef
+    if (isBeef) {
+      newMember.setMute(true);
+
+      return;
+    }
     // TODO: MAKE A ACCOUNTABIILTY TWO HOUR BOT FOR THOSE WHO DON't HAVE CAMS ON
     // When member enters grind time, give them a role that unlocks the goals channel
     // FIXME: we have to make it on old AND new member as new too
@@ -457,7 +462,11 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     saveData(userData);
 
     // If user leaves voice channel
-  } else if (oldUserChannel === grindTimeVC && newUserChannel !== grindTimeVC) {
+  } else if (
+    oldUserChannel === grindTimeVC
+    && newUserChannel !== grindTimeVC
+    && !isBeef
+  ) {
     for (let i = 0; i < userData.length; i++) {
       if (userData[i].userID === newMember.id) {
         userData[i].inVoiceChannel = false;
