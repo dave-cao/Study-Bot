@@ -174,6 +174,8 @@ const saveData = (userData) => {
 client.on('voiceStateUpdate', (oldMember, newMember) => {
   // check is user is bot
   if (oldMember.member.user.bot) return;
+  // check if user is Beef
+  if (newMember.id === '751885320936620162') return;
 
   const newUserChannel = newMember.channelID;
   const oldUserChannel = oldMember.channelID;
@@ -194,6 +196,48 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   // If user enters voice channel
   if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
+    // TODO: MAKE A ACCOUNTABIILTY TWO HOUR BOT FOR THOSE WHO DON't HAVE CAMS ON
+    // When member enters grind time, give them a role that unlocks the goals channel
+    // FIXME: we have to make it on old AND new member as new too
+    //  not just when they first enter.
+    //
+    // setTimeout(() => {
+    //   // notice if user has cams on or screensharing, if yes, return
+    //   // notice if user has sent a message in goals session, if yes, return.
+    //   //
+    //   //
+    //   // if user is not cams on / screensharing then ping message
+    //   //  "it looks like you have not put on cams or screensharing, please type in a
+    //   //    goal in the Goals Channel for this session in the next 5 minutes or you
+    //   //    will be kicked"
+    //   setTimeout(() => {
+    //     // notice if user has cams on or screensharing, if yes return
+    //     // notice if user has sent message in goals channel, if yes, return.
+    //     //
+    //     // if not, kick them out
+    //   }, 5min)
+
+    // }, 5min)
+    // TODO: Make this is a message channel
+    // if member has typed in goals channel:
+    //  check to see if user has already logged in session goal, if yes, return.
+    //  send message = "successfully logged in your session goal, I will check back
+    //    with you in 2 hours"
+    //  setTimeout (2 hours):
+    //    check to see if user is in voice channel, if yes continue, if not, return.
+    //    reset the users session goal back to 0 so they have to retype it.
+    //    send message = "Did you finish your tasks for this session? If you want to
+    //      continue, please type again in the session goals, if not, you will be kicked
+    //      in the next 5 minutes."
+    //    setTimeout (5 minutes):
+    //      check to see if user is still in voice channel
+    //      if user has typed in a new session goal, return.
+    //      if user has not type in a new session goal, kick from channel.
+    //
+    //
+    //
+    //
+    //
     // Push an object of new member into list
     if (userData.length === 0) {
       // If there is nothing in array then push
