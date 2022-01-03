@@ -846,18 +846,35 @@ function displayLeaderboardFunction(message, timeframe, displayTop) {
 
     let leaderboardStr = '';
     let title = '';
+    // All the names of the months to get the month date
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    const thisMonth = new Date().getMonth();
+
     switch (timeframe) {
       case '-d':
         leaderboardStr = displayLeaderboard(sortedDayRanks);
-        title = 'Daily';
+        title = 'Daily Leaderboard';
         break;
       case '-w':
         leaderboardStr = displayLeaderboard(sortedWeekRanks);
-        title = 'Weekly';
+        title = 'Weekly Leaderboard';
         break;
       case '-m':
         leaderboardStr = displayLeaderboard(sortedMonthRanks);
-        title = 'Monthly';
+        title = `Monthly Leaderboard (${monthNames[thisMonth]})`;
         break;
       case '-t':
         leaderboardStr = displayLeaderboard(sortedTotalRanks);
@@ -867,10 +884,10 @@ function displayLeaderboardFunction(message, timeframe, displayTop) {
         leaderboardStr = 'No one has grinded yet!';
         title = 'Something went wrong here';
     }
-
     const leaderboard = new Discord.MessageEmbed()
+
       .setColor('#5D3FD3')
-      .setTitle(`${title} Leaderboard`)
+      .setTitle(`${title}`)
       // If the length of the todayGrinded variable inreases by one
       // then we take out a white space before it and add it after it
       // Make a function that does this
