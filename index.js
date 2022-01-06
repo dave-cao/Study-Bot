@@ -1337,10 +1337,12 @@ client.on('message', (message) => {
                   name: 'Time Until Lost Streak',
                   value: `\`\`\`${userDatum.timeLeft}\`\`\`---`,
                 },
-              )
-              .setImage(
-                'https://cdn.discordapp.com/attachments/793302883511959613/920142893627346984/ezgif.com-gif-maker.gif',
               );
+
+            // COMING SOON WITH POINTS AND STORE SYSTEM
+            // .setImage(
+            //   'https://cdn.discordapp.com/attachments/793302883511959613/920142893627346984/ezgif.com-gif-maker.gif',
+            // );
             message.channel.send(userProfile);
           }
         }
