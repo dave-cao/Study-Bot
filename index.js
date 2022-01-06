@@ -1335,7 +1335,7 @@ client.on('message', (message) => {
 
                 {
                   name: 'Time Until Lost Streak',
-                  value: `\`\`\`${userDatum.timeLeft}\`\`\`---`,
+                  value: `\`\`\`${userDatum.timeLeft}\`\`\``,
                 },
               );
 
