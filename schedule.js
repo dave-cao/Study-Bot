@@ -5,6 +5,8 @@ const client = new Discord.Client();
 const fs = require('fs');
 const config = require('./config.json');
 
+const now = new Date();
+
 client.login(config.token);
 client.once('ready', () => {
   console.log('Scheduler is ready!');
@@ -38,7 +40,11 @@ client.once('ready', () => {
       weekRanks.sort(compare);
 
       // Display message
-      let message = '';
+      const monthDay = now.getDate();
+      const lastWeekDay = monthDay - 7;
+      const lastWeekDate = new Date(now.setDate(lastWeekDay));
+      // TODO: finish up this here
+      const weekMessage = `The week of: ${lastWeekDate.toDateString()} - ${now.toDateString()}`;
       weekRanks.forEach((user, index) => {
         message += `\`#${index}.\`${user[2]}: ${user[0]}\n`;
       });
