@@ -18,7 +18,7 @@ client.login(config.token);
 client.once('ready', () => {
   console.log('Scheduler is ready!');
   const guild = client.guilds.cache.get('787354978166898708');
-  const channel = client.channels.cache.get('793302938453803008');
+  const channel = client.channels.cache.get('790658695834763296');
 
   if (guild && channel) {
     if (fs.existsSync('userData.json')) {
