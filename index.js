@@ -832,7 +832,7 @@ function displayLeaderboardFunction(message, timeframe, displayTop) {
           const displayInfo = getPerson(sortedRanks[i]);
           const time = getTimeDifference(displayInfo[2]);
 
-          const statsString = `${time[0]} hrs, ${time[1]} mins: ${displayInfo[0]}`;
+          const statsString = `${time[0]} hrs, ${time[1]} mins: <@${displayInfo[3]}>`;
 
           // Check to see if hours and minutes are 0 and don't display
           if (displayInfo) {
@@ -840,7 +840,7 @@ function displayLeaderboardFunction(message, timeframe, displayTop) {
 
             // Grabs the user
             if (displayInfo[3] === userID) {
-              displayString = `\`# ${displayInfo[1]}.\` **${statsString}** \n\n`;
+              displayString = `\`# ${displayInfo[1]}.\` **${statsString}** **<<**\n\n`;
             }
 
             leaderboardStr += displayString;
