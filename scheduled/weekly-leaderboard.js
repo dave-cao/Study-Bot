@@ -13,6 +13,22 @@ const getTimeDifference = (timeDiff) => {
   const sec = Math.floor((timeDiff % (1000 * 60)) / 1000);
   return [hrs, min, sec];
 };
+function isThisWeek(date) {
+  const today = new Date();
+  const weekDay = (today.getDay() + 6) % 7; // Make sure Sunday is 6, not 0
+  const monthDay = today.getDate();
+  let mondayThisWeek = monthDay - weekDay;
+
+  const startOfThisWeek = new Date(Number(today));
+  startOfThisWeek.setDate(mondayThisWeek);
+  startOfThisWeek.setHours(0, 0, 0, 0);
+  mondayThisWeek = startOfThisWeek.getDate(); // take into account negative numbers
+
+  const startOfNextWeek = new Date(Number(startOfThisWeek));
+  startOfNextWeek.setDate(mondayThisWeek + 7);
+
+  return date >= startOfThisWeek && date < startOfNextWeek;
+}
 
 client.login(config.token);
 client.once('ready', () => {
@@ -21,9 +37,9 @@ client.once('ready', () => {
   const channel = client.channels.cache.get('790658695834763296');
 
   if (guild && channel) {
-    if (fs.existsSync('../userData.json')) {
+    if (fs.existsSync('/home/milk/personalBot/Personal-Bot/userData.json')) {
       // get array of user data
-      const jsonString = fs.readFileSync('../userData.json', 'utf8');
+      const jsonString = fs.readFileSync('/home/milk/personalBot/Personal-Bot/userData.json', 'utf8');
       const userData = JSON.parse(jsonString);
 
       // Sart ranks
@@ -39,10 +55,16 @@ client.once('ready', () => {
       }
       const weekRanks = [];
       userData.forEach((user) => {
-        if (user.weekTime) {
+        if (user.weekTime && isThisWeek(new Date(user.weekTracker))) {
           weekRanks.push([user.userName, user.userID, user.weekTime]);
         }
       });
+
+      // If there is no users at the moment
+      if (!weekRanks.length) {
+        client.destroy();
+        return;
+      }
       weekRanks.sort(compare);
 
       // Create message
@@ -73,13 +95,16 @@ client.once('ready', () => {
         .setTitle(`${title}`)
         .setDescription(message);
 
-      channel.send(
-        `<@&801137353623076864>\n\n${weekMessage}\n\n`
+      // Only display if top 3 exists
+      if (weekRanks[0] && weekRanks[1] && weekRanks[2]) {
+        channel.send(
+          `<@&801137353623076864>\n\n${weekMessage}\n\n`
           + `:first_place: : <@${weekRanks[0][1]}>\n`
           + `:second_place: : <@${weekRanks[1][1]}>\n`
           + `:third_place: : <@${weekRanks[2][1]}>\n`
           + '-',
-      );
+        );
+      }
       channel.send(leaderboard).then(() => client.destroy());
     } else {
       channel.send('There is no data to display!').then(() => client.destroy());
