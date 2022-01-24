@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const fs = require('fs');
-const config = require('./config.json');
+const config = require('../config.json');
 
 const now = new Date();
 const getTimeDifference = (timeDiff) => {
@@ -21,9 +21,9 @@ client.once('ready', () => {
   const channel = client.channels.cache.get('790658695834763296');
 
   if (guild && channel) {
-    if (fs.existsSync('userData.json')) {
+    if (fs.existsSync('../userData.json')) {
       // get array of user data
-      const jsonString = fs.readFileSync('userData.json', 'utf8');
+      const jsonString = fs.readFileSync('../userData.json', 'utf8');
       const userData = JSON.parse(jsonString);
 
       // Sart ranks
@@ -51,29 +51,34 @@ client.once('ready', () => {
       const lastWeekDay = monthDay - 6; // display monday instead of sunday
       let lastWeekDate = new Date();
       lastWeekDate = new Date(lastWeekDate.setDate(lastWeekDay));
-      const weekMessage = `*${lastWeekDate.toDateString()} - ${now.toDateString()}*\n\nTop Grinders for the Week`;
+      const weekMessage = `${lastWeekDate.toDateString()} - ${now.toDateString()}`;
+      const title = 'Top Grinders for the Week';
       let message = '';
       weekRanks.forEach((user, index) => {
         const time = getTimeDifference(user[2]);
         if (index + 1 <= 3) {
-          message += `\`#${index + 1}.\` **${time[0]} hrs, ${time[1]} mins: ${
-            user[0]
-          }**\n\n`;
+          message += `\`#${index + 1}.\` **${time[0]} hrs, ${time[1]} mins: <@${
+            user[1]
+          }>**\n\n`;
         } else if (index + 1 <= 10) {
-          message += `\`#${index + 1}.\` ${time[0]} hrs, ${time[1]} mins: ${
-            user[0]
-          }\n\n`;
+          message += `\`#${index + 1}.\` ${time[0]} hrs, ${time[1]} mins: <@${
+            user[1]
+          }>\n\n`;
         }
       });
 
       // Display Embed
       const leaderboard = new Discord.MessageEmbed()
         .setColor('#5D3FD3')
-        .setTitle(`${weekMessage}`)
+        .setTitle(`${title}`)
         .setDescription(message);
 
       channel.send(
-        '<@&801137353623076864> These are the top 10 Grinders for this week, congratulations!',
+        `<@&801137353623076864>\n\n${weekMessage}\n\n`
+          + `:first_place: : <@${weekRanks[0][1]}>\n`
+          + `:second_place: : <@${weekRanks[1][1]}>\n`
+          + `:third_place: : <@${weekRanks[2][1]}>\n`
+          + '-',
       );
       channel.send(leaderboard).then(() => client.destroy());
     } else {
