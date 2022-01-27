@@ -407,7 +407,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
               // if your streak is not zero, then send this message
               if (userData[i].streak !== 0) {
                 streakChannel.send(
-                  `<@${newMember.id}> You lost you're ${userData[i].streak} day streak! Try to gain it back!`,
+                  `<@${newMember.id}> You lost your ${userData[i].streak} day streak! Try to gain it back!`,
                 );
               }
 
