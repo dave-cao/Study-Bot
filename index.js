@@ -445,7 +445,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                 }
 
                 streakChannel.send(
-                  `<@${newMember.id}> Your **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nKeep up the good work :).`,
+                  `<@${newMember.id}> You're **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nKeep up the good work :).`,
                 );
                 // Change the streak date to the current date
                 userData[i].streakDate = new Date();
@@ -1090,7 +1090,7 @@ client.on('message', (message) => {
             // Completed their streak
             const timeLeftDayCheck = actualDate.toDateString() === dateToCheck.toDateString();
             if (streakTimeLeft[0] > 23 && timeLeftDayCheck) {
-              userDatum.timeLeft = "You've completed your streak for the day!";
+              userDatum.timeLeft = "You've completed you're streak for the day!";
             }
 
             if (userDatum.firstStreak === true) {
@@ -1300,7 +1300,7 @@ client.on('message', (message) => {
             const userProfile = new Discord.MessageEmbed()
               .setColor('#8B0000')
               .setTitle(
-                `${userDatum.userName}\n\nYour Personal Grind Statistics`,
+                `${userDatum.userName}\n\nYou're Personal Grind Statistics`,
               )
               // If the length of the todayGrinded variable inreases by one
               // then we take out a white space before it and add it after it
