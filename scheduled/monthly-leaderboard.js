@@ -50,13 +50,13 @@ client.login(config.token);
 client.once('ready', () => {
   console.log('Monthly Scheduler is ready');
   const guild = client.guilds.cache.get('787354978166898708');
-  const channel = client.channels.cache.get('793302938453803008');
+  const channel = client.channels.cache.get('937227182185529405');
 
   // If guild and channel exist then execute logic
   if (guild && channel) {
-    if (fs.existsSync('../userData.json')) {
+    if (fs.existsSync('/home/milk/personalBot/Personal-Bot/userData.json')) {
       // get array of user data
-      const jsonString = fs.readFileSync('../userData.json', 'utf8');
+      const jsonString = fs.readFileSync('/home/milk/personalBot/Personal-Bot/userData.json', 'utf8');
       const userData = JSON.parse(jsonString);
 
       const monthRanks = [];
@@ -76,9 +76,9 @@ client.once('ready', () => {
       // Create message
       const now = new Date();
       const currentMonth = new Date().getMonth();
-      const title = `:medal: **The Top 10 Grinders of ${
+      const title = `<@&801137353623076864>\n\n:trophy: **The Top 10 Grinders of ${
         monthNames[currentMonth]
-      } ${now.getFullYear()}** :medal: `;
+      } ${now.getFullYear()}** :trophy:`;
       let message = '';
       monthRanks.forEach((user, index) => {
         const time = getTimeDifference(user[2]);
