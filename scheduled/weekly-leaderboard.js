@@ -39,7 +39,10 @@ client.once('ready', () => {
   if (guild && channel) {
     if (fs.existsSync('/home/milk/personalBot/Personal-Bot/userData.json')) {
       // get array of user data
-      const jsonString = fs.readFileSync('/home/milk/personalBot/Personal-Bot/userData.json', 'utf8');
+      const jsonString = fs.readFileSync(
+        '/home/milk/personalBot/Personal-Bot/userData.json',
+        'utf8',
+      );
       const userData = JSON.parse(jsonString);
 
       // Sart ranks
@@ -99,10 +102,10 @@ client.once('ready', () => {
       if (weekRanks[0] && weekRanks[1] && weekRanks[2]) {
         channel.send(
           `<@&801137353623076864>\n\n${weekMessage}\n\n`
-          + `:first_place: : <@${weekRanks[0][1]}>\n`
-          + `:second_place: : <@${weekRanks[1][1]}>\n`
-          + `:third_place: : <@${weekRanks[2][1]}>\n`
-          + '-',
+            + `:first_place: : <@${weekRanks[0][1]}>\n`
+            + `:second_place: : <@${weekRanks[1][1]}>\n`
+            + `:third_place: : <@${weekRanks[2][1]}>\n`
+            + '-',
         );
       }
       channel.send(leaderboard).then(() => client.destroy());
