@@ -77,38 +77,27 @@ client.once('ready', () => {
       let lastWeekDate = new Date();
       lastWeekDate = new Date(lastWeekDate.setDate(lastWeekDay));
       const weekMessage = `${lastWeekDate.toDateString()} - ${now.toDateString()}`;
-      const title = 'Top Grinders for the Week';
+      const title = ':medal: **The Top 10 Grinders of the Week** :medal:';
       let message = '';
       weekRanks.forEach((user, index) => {
         const time = getTimeDifference(user[2]);
         if (index + 1 <= 3) {
-          message += `\`#${index + 1}.\` **${time[0]} hrs, ${time[1]} mins: <@${
+          message += `> \`${index + 1}.\` **${time[0]} hrs, ${time[1]} mins: <@${
             user[1]
-          }>**\n\n`;
+          }>**\n`;
         } else if (index + 1 <= 10) {
-          message += `\`#${index + 1}.\` ${time[0]} hrs, ${time[1]} mins: <@${
+          message += `> \`${index + 1}.\` ${time[0]} hrs, ${time[1]} mins: <@${
             user[1]
-          }>\n\n`;
+          }>\n`;
+        }
+        if (index === 2) {
+          message += '\n';
         }
       });
 
-      // Display Embed
-      const leaderboard = new Discord.MessageEmbed()
-        .setColor('#5D3FD3')
-        .setTitle(`${title}`)
-        .setDescription(message);
+      message += `\n> *${weekMessage}*`;
 
-      // Only display if top 3 exists
-      if (weekRanks[0] && weekRanks[1] && weekRanks[2]) {
-        channel.send(
-          `<@&801137353623076864>\n\n${weekMessage}\n\n`
-            + `:first_place: : <@${weekRanks[0][1]}>\n`
-            + `:second_place: : <@${weekRanks[1][1]}>\n`
-            + `:third_place: : <@${weekRanks[2][1]}>\n`
-            + '-',
-        );
-      }
-      channel.send(leaderboard).then(() => client.destroy());
+      channel.send(`${title}\n\n${message}`).then(() => client.destroy());
     } else {
       channel.send('There is no data to display!').then(() => client.destroy());
     }
