@@ -8,9 +8,9 @@ const client = new Discord.Client();
 const fs = require('fs');
 const config = require('../../config.json');
 
-const saveFileName = './QOTDData.json';
-const quoteFile = './combined_quotes.txt';
-const questionFile = './raw_questions.txt';
+const saveFileName = '/home/milk/personalBot/Personal-Bot/scheduled/QOTD/QOTDData.json';
+const quoteFile = '/home/milk/personalBot/Personal-Bot/scheduled/QOTD/combined_quotes.txt';
+const questionFile = '/home/milk/personalBot/Personal-Bot/scheduled/QOTD/raw_questions.txt';
 
 const saveData = (userData) => {
   // Saves current userData to JSON file
@@ -28,7 +28,7 @@ client.login(config.token);
 client.once('ready', () => {
   console.log('QOTD Scheduler is ready');
   const guild = client.guilds.cache.get('787354978166898708');
-  const channel = client.channels.cache.get('793302938453803008');
+  const channel = client.channels.cache.get('813852697462833173');
 
   if (guild && channel) {
     // Display a question of the day
