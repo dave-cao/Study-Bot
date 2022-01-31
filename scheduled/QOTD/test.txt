@@ -1,0 +1,13 @@
+Don't worry about what anybody else is going to do. The best way to
+predict the future is to invent it.
+-- Alan Kay
+
+Premature optimization is the root of all evil (or at least most of it)
+in programming.
+-- Donald Knuth
+
+Lisp has jokingly been called "the most intelligent way to misuse a
+computer". I think that description is a great compliment because it
+transmits the full flavor of liberation: it has assisted a number of our
+most gifted fellow humans in thinking previously impossible thoughts.
+-- Edsger Dijkstra, CACM, 15:10

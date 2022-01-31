@@ -1,3 +1,8 @@
+/*
+The purpose of this file is to display the monthly top 10 rankings for
+the Grind Time server at the end of each month.
+*/
+
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
@@ -56,7 +61,10 @@ client.once('ready', () => {
   if (guild && channel) {
     if (fs.existsSync('/home/milk/personalBot/Personal-Bot/userData.json')) {
       // get array of user data
-      const jsonString = fs.readFileSync('/home/milk/personalBot/Personal-Bot/userData.json', 'utf8');
+      const jsonString = fs.readFileSync(
+        '/home/milk/personalBot/Personal-Bot/userData.json',
+        'utf8',
+      );
       const userData = JSON.parse(jsonString);
 
       const monthRanks = [];
