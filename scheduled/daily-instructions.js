@@ -103,15 +103,27 @@ const streaksEmbed = new Discord.MessageEmbed()
     'https://cdn.discordapp.com/attachments/793302938453803008/801248403916455946/Untitled_design_17.png',
   );
 
+// Accountability Embed
+const accountabilityEmbed = new Discord.MessageEmbed()
+  .setColor('#aa6c39')
+  .setTitle('A brand new day has started!')
+  .setDescription(
+    'The time spent in Grind Time will be reported here. Your hours will be recorded once you leave the Grind Time VC',
+  )
+  .setThumbnail(
+    'https://cdn.discordapp.com/attachments/793302938453803008/937933821297455114/kisspng-pocket-watch-antique-vintage-clothing-pocket-watch-5ac3268d8da2f8.1692691715227388295802.png',
+  );
+
 client.login(config.token);
 client.once('ready', () => {
   console.log('Daily Instructions Scheduler is ready');
-  const guild = client.guilds.cache.get('787354978166898708');
-  const leaderboardChannel = client.channels.cache.get('793302938453803008');
-  const pomoChannel = client.channels.cache.get('793302938453803008');
-  const todoChannel = client.channels.cache.get('793302938453803008');
-  const musicChannel = client.channels.cache.get('793302938453803008');
-  const streaksChannel = client.channels.cache.get('793302938453803008');
+  // const guild = client.guilds.cache.get('787354978166898708');
+  const leaderboardChannel = client.channels.cache.get('789206330522468403');
+  const pomoChannel = client.channels.cache.get('787808422175178834');
+  const todoChannel = client.channels.cache.get('806327504364371989');
+  const musicChannel = client.channels.cache.get('787881524753858561');
+  const streaksChannel = client.channels.cache.get('839226206276812800');
+  const accountabilityChannel = client.channels.cache.get('821951428717183006');
 
   leaderboardChannel
     .send(leaderboardEmbed)
@@ -121,5 +133,8 @@ client.once('ready', () => {
         .send(todoEmbed)
         .then(() => musicChannel
           .send(musicEmbed)
-          .then(() => streaksChannel.send(streaksEmbed).then(() => client.destroy())))));
+          .then(() => streaksChannel
+            .send(streaksEmbed)
+            .then(() => accountabilityChannel.send(accountabilityEmbed)
+              .then(() => client.destroy()))))));
 });
