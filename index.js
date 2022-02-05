@@ -929,7 +929,7 @@ client.on('message', (message) => {
         .voice.setChannel('787354978523545634');
     }
     // Display Leaderboard at current user position
-    switch (message.content) {
+    switch (message.content.toLowerCase()) {
       case '-d':
         message.channel.send(displayLeaderboardFunction(message, '-d', false));
         break;
@@ -975,7 +975,7 @@ client.on('message', (message) => {
 
     // ==================================================================
     // User Profile Display
-    if (message.content === 'grind profile') {
+    if (message.content.toLowerCase() === 'grind profile') {
       // Read file data
       const userID = message.guild.member(message.author.id).user.id;
       if (fs.existsSync('userData.json')) {
