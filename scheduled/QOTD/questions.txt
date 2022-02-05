@@ -1,0 +1,971 @@
+"Is cereal soup? Why or why not?"
+"What secret conspiracy would you like to start?"
+"What’s invisible but you wish people could see?"
+"What’s the weirdest smell you have ever smelled?"
+"Is a hotdog a sandwich? Why or why not?"
+"What’s the most ridiculous fact you know?"
+"What is something that everyone looks stupid doing?"
+"What is the funniest joke you know by heart?"
+"In 40 years, what will people be nostalgic for?"
+"What are the unwritten rules of where you work?"
+"How do you feel about putting pineapple on pizza?"
+"What part of a kid’s movie completely scarred you?"
+"If animals could talk, which would be the rudest?"
+"How many chickens would it take to kill an elephant?"
+"What is the most embarrassing thing you have ever worn?"
+"What’s the most imaginative insult you can come up with?"
+"Which body part do you wish you could detach and why?"
+"What used to be considered trashy but now is very classy?"
+"What’s the weirdest thing a guest has done at your house?"
+"What mythical creature would improve the world most if it existed?"
+"What inanimate object do you wish you could eliminate from existence?"
+"What would be the absolute worst name you could give your child?"
+"If peanut butter wasn’t called peanut butter, what would it be called?"
+"What movie would be greatly improved if it was made into a musical?"
+"If life were a video game, what would some of the cheat codes be?"
+"What would be the coolest animal to scale up to the size of a horse?"
+"What would the world be like if it was filled with male and female copies of you?"
+"What are some things that are okay to occasionally do but definitely not okay to do every day?"
+"If you were arrested with no explanation, what would your friends and family assume you had done?"
+"You’re a mad scientist, what scientific experiment would you run if money and ethics weren’t an issue?"
+"If someone asked to be your apprentice and learn all that you know, what would you teach them?"
+"If your five-year-old self suddenly found themselves inhabiting your current body, what would your five-year-old self do first?"
+"What is something that is really popular now, but in 5 years everyone will look back on and be embarrassed by?"
+"If you were transported 400 years into the past with no clothes or anything else, how would you prove that you were from the future?"
+"If you were wrongfully put into an insane asylum, how would you convince them that you’re actually sane and not just pretending to be sane?"
+"What fictional character is amazing in their book / show / movie, but would be insufferable if you had to deal with them in mundane everyday situations?"
+"Where was the most in appropriate / most embarrassing place you’ve farted?"
+"What weird food combinations do you really enjoy?"
+"What social stigma does society need to get over?"
+"What food have you never eaten but would really like to try?"
+"What’s something you really resent paying for?"
+"What would a world populated by clones of you be like?"
+"Do you think that aliens exist?"
+"What are you currently worried about?"
+"Where are some unusual places you’ve been?"
+"Where do you get your news?"
+"What are some red flags to watch out for in daily life?"
+"What movie can you watch over and over without ever getting tired of?"
+"When you are old, what do you think children will ask you to tell stories about?"
+"If you could switch two movie characters, what switch would lead to the most inappropriate movies?"
+"What inanimate object would be the most annoying if it played loud upbeat music while being used?"
+"When did something start out badly for you but in the end, it was great?"
+"How would your country change if everyone, regardless of age, could vote?"
+"What animal would be cutest if scaled down to the size of a cat?"
+"If your job gave you a surprise three day paid break to rest and recuperate, what would you do with those three days?"
+"What’s wrong but sounds right?"
+"What’s the most epic way you’ve seen someone quit or be fired?"
+"If you couldn’t be convicted of any one type of crime, what criminal charge would you like to be immune to?"
+"What’s something that will always be in fashion, no matter how much time passes?"
+"What actors or actresses play the same character in almost every movie or show they do?"
+"In the past people were buried with the items they would need in the afterlife, what would you want buried with you so you could use it in the afterlife?"
+"What’s the best / worst practical joke that you’ve played on someone or that was played on you?"
+"Who do you go out of your way to be nice to?"
+"Where do you get most of the decorations for your home?"
+"What food is delicious but a pain to eat?"
+"Who was your craziest / most interesting teacher?"
+"What “old person” things do you do?"
+"What was the last photo you took?"
+"What is the most amazing slow motion video you’ve seen?"
+"Which celebrity do you think is the most down to earth?"
+"What would be the worst thing to hear as you are going under anesthesia before heart surgery?"
+"What’s the spiciest thing you’ve ever eaten?"
+"What’s the most expensive thing you’ve broken?"
+"What obstacles would be included in the World’s most amazing obstacle course?"
+"What makes you roll your eyes every time you hear it?"
+"What do you think you are much better at than you actually are?"
+"Should kidneys be able to be bought and sold?"
+"When was the last time you got to tell someone “I told you so.”?"
+"What’s your cure for hiccups?"
+"What invention doesn’t get a lot of love, but has greatly improved the world?"
+"What’s the most interesting building you’ve ever seen or been in?"
+"What mythical creature do you wish actually existed?"
+"What are your most important rules when going on a date?"
+"How do you judge a person?"
+"If someone narrated your life, who would you want to be the narrator?"
+"What was the most unsettling film you’ve seen?"
+"What unethical experiment would have the biggest positive impact on society as a whole?"
+"When was the last time you were snooping, and found something you wish you hadn’t?"
+"Which celebrity or band has the worst fan base?"
+"What are you interested in that most people aren’t?"
+"If you were given a PhD degree, but had no more knowledge of the subject of the degree besides what you have now, what degree would you want to be given to you?"
+"What smartphone feature would you actually be excited for a company to implement?"
+"What’s something people don’t worry about but really should?"
+"What movie quotes do you use on a regular basis?"
+"Do you think that children born today will have better or worse lives than their parents?"
+"What’s the funniest joke you know by heart?"
+"When was the last time you felt you had a new lease on life?"
+"What’s the funniest actual name you’ve heard of someone having?"
+"Which charity or charitable cause is most deserving of money?"
+"What TV show character would it be the most fun to change places with for a week?"
+"What was cool when you were young but isn’t cool now?"
+"If you were moving to another country, but could only pack one carry-on sized bag, what would you pack?"
+"What’s the most ironic thing you’ve seen happen?"
+"If magic was real, what spell would you try to learn first?"
+"If you were a ghost and could possess people, what would you make them do?"
+"What goal do you think humanity is not focused enough on achieving?"
+"What character in a movie could have been great, but the actor they cast didn’t fit the role?"
+"What game have you spent the most hours playing?"
+"What’s the most comfortable bed or chair you’ve ever been in?"
+"What’s the craziest conversation you’ve overheard?"
+"What’s the hardest you’ve ever worked?"
+"What movie, picture, or video always makes you laugh no matter how often you watch it?"
+"What artist or band do you always recommend when someone asks for a music recommendation?"
+"If you could have an all-expenses paid trip to see any famous world monument, which monument would you choose?"
+"If animals could talk, which animal would be the most annoying?"
+"What’s the most addicted to a game you’ve ever been?"
+"Which protagonist from a book or movie would make the worst roommate?"
+"Do you eat food that’s past its expiration date if it still smells and looks fine?"
+"What’s the most ridiculous thing you have bought?"
+"What’s the funniest comedy skit you’ve seen?"
+"What’s the most depressing meal you’ve eaten?"
+"What tips or tricks have you picked up from your job / jobs?"
+"What outdoor activity haven’t you tried, but would like to?"
+"What songs hit you with a wave of nostalgia every time you hear them?"
+"What’s the worst backhanded compliment you could give someone?"
+"What’s the most interesting documentary you’ve ever watched?"
+"What was the last song you sang along to?"
+"What’s the funniest thing you’ve done or had happen while your mind was wandering?"
+"What app can you not believe someone hasn’t made yet?"
+"When was the last time you face palmed?"
+"If you were given five million dollars to open a small museum, what kind of museum would you create?"
+"Which of your vices or bad habits would be the hardest to give up?"
+"What really needs to be modernized?"
+"When was the last time you slept more than nine hours?"
+"How comfortable are you speaking in front of large groups of people?"
+"What’s your worst example of procrastination"
+"Who has zero filter between their brain and mouth?"
+"What was your most recent lie?"
+"When was the last time you immediately regretted something you said?"
+"What would be the best thing you could reasonably expect to find in a cave?"
+"What did you think was going to be amazing but turned out to be horrible?"
+"What bit of trivia do you know that is very interesting but also very useless?"
+"What’s the silliest thing you’ve seen someone get upset about?"
+"What animal or plant do you think should be renamed?"
+"What was the best thing that happened to you today?"
+"As a child, what did you think would be awesome about being an adult, but isn’t as awesome as you thought it would be?"
+"When’s censorship warranted?"
+"What’s the most boring super hero you can come up with?"
+"What would be some of the downsides of certain superpowers?"
+"What word is a lot of fun to say?"
+"What current trend do you hope will go on for a long time?"
+"What actors or actresses can’t play a different character because they played their most famous character too well?"
+"Where’s your go to restaurant for amazing food?"
+"What’s something that all your friends agree on?"
+"What’s your best story from a wedding?"
+"What languages do you wish you could speak?"
+"What’s the most pleasant sounding accent?"
+"What’s something that everyone, absolutely everyone, in the entire world can agree on?"
+"What country is the strangest?"
+"What’s the funniest word in the English language?"
+"What’s some insider knowledge that only people in your line of work have?"
+"Who do you wish you could get back into contact with?"
+"How do you make yourself sleep when you can’t seem to get to sleep?"
+"If people receive a purple heart for bravery, what would other color hearts represent?"
+"What are some of the best vacations you’ve had?"
+"If there was a book of commandments for the modern world, what would some of the rules beIf there was a book of commandments for the modern world, what would some of the rules be?"
+"What’s the craziest video you’ve ever seen?"
+"What’s your “Back in my day, we…”?"
+"If you could know the truth behind every conspiracy, but you would instantly die if you hinted that you knew the truth, would you want to know?"
+"What animal would be the most terrifying if it could speak?"
+"What’s the worst hairstyle you’ve ever had?"
+"What habit do you have now that you wish you started much earlier?"
+"If you were given one thousand acres of land that you didn’t need to pay taxes on but couldn’t sell, what would you do with it?"
+"What about the opposite sex confuses you the most?"
+"When was the last time you yelled at someone?"
+"What’s the opposite of a koala?"
+"What kinds of things do you like to cook or are good at cooking?"
+"What life skills are rarely taught but extremely useful?"
+"What movie universe would be the worst to live out your life in?"
+"If you could hack into any one computer, which computer would you choose?"
+"Who do you feel like you know even though you’ve never met them?"
+"What’s the most ridiculous animal on the planet?"
+"What’s the worst thing you’ve eaten out of politeness?"
+"What’s the most historic thing that has happened in your lifetime?"
+"What happens in your country regularly that people in most countries would find strange or bizarre?"
+"What has been blown way out of proportion?"
+"When was a time you acted nonchalant but were going crazy inside?"
+"What’s about to get much better?"
+"What are some clever examples of misdirection you’ve seen?"
+"What’s your funniest story involving a car?"
+"What would be the click-bait titles of some popular movies?"
+"If you built a themed hotel, what would the theme be and what would the rooms look like?"
+"What scientific discovery would change the course of humanity overnight if it was discovered?"
+"Do you think that humans will ever be able to live together in harmony?"
+"What would your perfect bar look like?"
+"What’s the scariest non-horror movie?"
+"What’s the most amazing true story you’ve heard?"
+"What’s the grossest food that you just can’t get enough of?"
+"What brand are you most loyal to?"
+"What’s the most awkward thing that happens to you on a regular basis?"
+"If you had to disappear and start a whole new life, what would you want your new life to look like?"
+"What movie or book do you know the most quotes from?"
+"What was one of the most interesting concerts you’ve been to?"
+"Where are you not welcome anymore?"
+"What do you think could be done to improve the media?"
+"What’s the most recent show you’ve binge watched?"
+"What’s the worst movie trope?"
+"What’s a common experience for many people that you’ve never experienced?"
+"What are some misconceptions about your hobby?"
+"What’s the smartest thing you’ve seen an animal do?"
+"What’s the most annoying noise?"
+"What’s your haunted house story?"
+"What did you Google last?"
+"What’s the dumbest thing someone has argued with you about?"
+"If money and practicality weren’t a problem, what would be the most interesting way to get around town?"
+"What’s the longest rabbit hole you’ve been down?"
+"What’s the saddest scene in a movie or TV series?"
+"What’s the saddest scene in a movie or TV series?"
+"What inconsequential super power would you like to have?"
+"What qualities do all your friends have in common?"
+"What odd smell do you really enjoy?"
+"What’s the coolest animal you’ve seen in the wild?"
+"What’s the best lesson you’ve learned from a work of fiction?"
+"What food do you crave most often?"
+"Who in your life has the best / worst luck?"
+"What fashion trend makes you cringe or laugh every time you see it?"
+"What fashion trend makes you cringe or laugh every time you see it?"
+"Which apocalyptic dystopia do you think is most likely?"
+"What’s the funniest thing you’ve seen a kid do?"
+"What’s your secret talent?"
+"What’s the best way you or someone you know has gotten out of a ticket / trouble with the law?"
+"Tear gas makes people cry and laughing gas makes people giggle, what other kinds of gases do you wish existed?"
+"What’s the most beautiful beach you’ve been to?"
+"What’s the most anxiety inducing thing you do on a regular basis?"
+"What’s something that everyone agrees we should change, but somehow it never changes?"
+"What trend are you tired of?"
+"What’s incredibly cheap and you would pay way more for?"
+"What’s your grossest bug story?"
+"What would the adult version of an ice-cream truck sell and what song would it play?"
+"What company do you despise?"
+"When was the most inappropriate time you busted out in laughter?"
+"What would be an accurate tag line for each month?"
+"What’s the most overrated product out on the market?"
+"What word do you always misspell?"
+"What naps are the most satisfying?"
+"What’s the weirdest thing you’ve found lying on the ground / side of the road?"
+"What’s the funniest TV show you’ve ever seen?"
+"What’s the most embarrassing story from your childhood?"
+"What animal is the most majestic?"
+"What’s something that everyone knows is true, but we don’t like to admit it?"
+"What’s the weirdest text or email you’ve gotten?"
+"What always cheers you up when you think about it?"
+"What sport could you play the longest in a televised game, without anyone discovering you aren’t a professional athlete?"
+"If you could talk to animals and they would understand you, but you couldn’t understand them, what would you do with that power?"
+"What’s the most boring sport, and what would you do to make it more exciting?"
+"What’s the creepiest tech out there?"
+"Who did you use to look up to, but they screwed up and you lost faith in them?"
+"What’s fine in small numbers but terrifying in large numbers?"
+"Do you like things to be carefully planned or do you prefer to just go with the flow?"
+"What animal would you most like to eat?"
+"What fictional characters have you had a crush on over the years?"
+"What would the box with all your hopes and dreams inside look like?"
+"What was the worst shopping experience you’ve ever had?"
+"What story you’ve heard has stayed with you and always disturbs you every time you think about it?"
+"What was the most important appointment or deadline you missed?"
+"If you were a clown themed super hero, what powers would you have?"
+"If you could airdrop anything you want, worth two million dollars or less, anywhere you want, what would you airdrop and where would you airdrop it?"
+"If you lived in a virtual reality world of your own creation, what would it look like?"
+"What escalated very quickly?"
+"What two things are terrible when separate but great when you put them together?"
+"What did you believe for way too long as a child?"
+"What big event do you think will happen soon that most people aren’t expecting?"
+"What still makes you cringe when you think back on it?"
+"What current trend makes no sense to you?"
+"If you owned a restaurant, what kind of food would it serve?"
+"Which celebrity is the most likely to have a collection of canes that are just for show?"
+"What’s the weirdest crush you’ve had?"
+"What do a lot of people have very strong opinions about, even though they know very little about it?"
+"What’s your go to casino game?"
+"An epic feast is held in your honor, what’s on the table?"
+"What’s your favorite holiday movie?"
+"Who is the most manipulative person you’ve ever met?"
+"Who is the most creative person you know?"
+"What’s the funniest pick up line you’ve heard?"
+"What seemingly innocent question makes you think “It’s a trap!”?"
+"How ambitious are you?"
+"What did you like / dislike about where you grew up?"
+"What elements of pop culture will be forever tied in your mind to your childhood?"
+"What’s your good luck charm?"
+"What’s legal now, but probably won’t be in 25 years?"
+"Would you want the ability to hear the thoughts of people near you if you couldn’t turn the ability off?"
+"When was the last time you stayed up through the entire night?"
+"What’s something that people think makes them look cool, but actually has the opposite effect?"
+"What’s the oldest thing you own?"
+"What has someone borrowed but never given back?"
+"Where is the best place you’ve been for taking walks?"
+"If cartoon physics suddenly replaced real physics, what are some things you would want to try?"
+"What from the present will withstand the test of time?"
+"Who in your life is the worst at using technology?"
+"What’s the weirdest conversation you’ve eavesdropped on?"
+"What just around the corner tech are you eager to get your hands on?"
+"What was the darkest movie you’ve ever seen?"
+"What do you do when you hear something fall in the middle of the night while you are in bed?"
+"What outfit could you put together from clothes you own to get the most laughs?"
+"What’s the most disgusting sounding word in the English language?"
+"What was ruined because it became popular?"
+"What outdated slang do you use on a regular basis?"
+"What was the biggest realization you had about yourself?"
+"What’s your best example of easy come, easy go?"
+"What small change greatly improves a person’s appearance?"
+"What topic could you spend hours talking about?"
+"What happens regularly that would horrify a person from 100 years ago?"
+"What's your favourite colour and why?"
+"What do a lot of people hope will happen but is just not going to happen?"
+"What’s the weirdest thing that has happened to you while working at your job?"
+"What questions would you like to ask a time traveler from 200 years in the future?"
+"What’s the most physically painful thing you’ve ever experienced?"
+"What horror story do you have from a job you’ve had?"
+"What’s the most rage inducing game you’ve ever played?"
+"What’s the biggest overreaction you’ve ever seen?"
+"What are some of the most common misconceptions?"
+"What job doesn’t exist now but will exist in the future?"
+"What awful movie do you love?"
+"What normally delicious food gets ruined when you wrap it in a tortilla?"
+"What’s your best example of fake it till you make it?"
+"What were you completely certain of until you found out you were wrong?"
+"What’s something commonly done that gets progressively weirder the more you think about it?"
+"What’s the cutest thing you can imagine? Something so cute it’s almost painful."
+"If you were given unlimited resources, how would you lure the worst of humanity into one stadium at the same time?"
+"What do you think about when you hear the word “classy”?"
+"What near future predictions do you have?"
+"What do you need help with most often?"
+"What piece of “art” would you create if you had to pretend to be an artist and submit something to a gallery?"
+"What do you do to make the world a better place?"
+"What’s the best and worst thing about the country you are from?"
+"If you were in charge renaming things so that their names would be more accurate, what names would you come up with?"
+"What’s better broken than whole?"
+"What values are most important to you?"
+"What’s the best sandwich you’ve ever had?"
+"What’s the worst thing you ate from a fast food restaurant?"
+"What’s something that I don’t know?"
+"What profession doesn’t get enough credit or respect?"
+"What memory of yours feels real but is most likely false?"
+"What’s your “and then it got worse” story?"
+"What was the most amazing physical feat you’ve managed to pull off?"
+"What’s the most annoying thing about the social media platform you use most often?"
+"If you were hired to show tourists what life is really like where you live, what would you show them / have them do?"
+"What would be the most unsettling thing to keep occasionally finding around your house?"
+"What nicknames do you have for people in your life?"
+"What does the opposite sex do that you wish that you could do, but it’s not anatomically feasible or it’s socially frowned upon?"
+"How much do you plan / prepare for the future?"
+"What do you hate most and love most about your car?"
+"What weird potato chip flavor that doesn’t exist would you like to try?"
+"What’s the silliest thing you’ve convinced someone of?"
+"How much do you think names affect the outcomes of people’s lives?"
+"What product or service is way more expensive than it needs to be?"
+"What’s the shadiest thing you’ve seen someone do?"
+"What was the last situation where some weird stuff went down and everyone acted like it was normal, and you weren’t sure if you were crazy or everyone around you was crazy?"
+"What did you eat so much of that now you hate it?"
+"What are some of the dumbest lyrics you’ve heard in a song?"
+"Where’s the line between soup and cereal?"
+"What word do you always mispronounce?"
+"What do you think you do better than 90 percent of people?"
+"What would be the worst food to be liquefied and drunk through a straw?"
+"What’s the weirdest thing about modern life that people just accept as normal?"
+"How much of your body would you cybernetically enhance if you could?"
+"If you wanted to slowly drive a roommate insane using only notes, what kind of notes would you leave around the house?"
+"If you had a giraffe that you needed to hide, where would you hide it?"
+"What’s the clumsiest thing you’ve done?"
+"What songs do you only know the chorus to?"
+"Think of a brand, now what would an honest slogan for that brand be?"
+"What’s something common from your childhood that will seem strange to future generations?"
+"What’s the most amazing place in nature you’ve been?"
+"What’s quickly becoming obsolete?"
+"Where is the most uncomfortable place you have ever slept?"
+"What’s the most annoying animal you’ve encountered?"
+"What’s your best example of correlation not equaling causation?"
+"In what situations, do you wish you could throw down a smoke bomb and disappear?"
+"When was the last time you were hopelessly lost?"
+"What songs do you feel compelled to sing along with when you hear them, even if you don’t totally know all the words"
+"What product do you wish a company would make a “smart” version of?"
+"What two films would you like to combine into one?"
+"Do you love working from home or would you rather be in the office? Is there a balance of both that you like best?"
+"What did you eat for breakfast?"
+"What does your morning routine look like when working from home?"
+"How many cups of coffee, tea, or beverage-of-choice do you have each morning?"
+"What does your typical work from home uniform look like?"
+"What’s your favorite flower or plant?"
+"What is your most used emoji?"
+"What is one article of clothing that someone could wear that would make you walk out on a date with them?"
+"Who was your childhood actor/actress crush?"
+"What was the worst haircut you ever had?"
+"If you were famous, what would you be famous for?"
+"If you were left on a deserted island with either your worst enemy or no one, which would you choose? Why?"
+"When you die, what do you want to be remembered for?"
+"Say you’re independently wealthy and don’t have to work, what would you do with your time?"
+"You’re going sail around the world, what’s the name of your boat?"
+"What sport would you compete in if you were in the Olympics?"
+"You can have anyone fictional as your imaginary friend, who do you choose and why?"
+"Which band / artist – dead or alive would play at your funeral?"
+"What would your superpower be and why?"
+"As a child, what did you want to be when you grew up?"
+"What’s your favorite tradition or holiday?"
+"What is your favorite breakfast food?"
+"Teleportation or flying?"
+"What is your favorite TV show?"
+"If you had a time machine, would go back in time or into the future?"
+"What’s the weirdest food you’ve ever eaten?"
+"Would you go with aliens if they beamed down to Earth?"
+"What fruit or vegetable would you most want to be?"
+"What is your cellphone wallpaper?"
+"You can have an unlimited supply of one thing for the rest of your life, what is it? Sushi? Scotch Tape?"
+"If you could live anywhere in the world for a year, where would it be?"
+"If you could live in any country, where would you live?"
+"If you could choose any two famous people to have dinner with who would they be?"
+"If you could do anything in the world as your career, what would you do?"
+"If you could change places with anyone in the world, who would it be and why?"
+"If you could be guaranteed one thing in life (besides money), what would it be?"
+"If you could magically become fluent in any language, what would it be?"
+"If you could be immortal, what age would you choose to stop aging at and why?"
+"If you could be on a reality TV show, which one would you choose and why?"
+"If you could eliminate one thing from your daily routine, what would it be and why?"
+"If you could have the power of teleportation right now, where would you go and why?"
+"If you could go to Mars, would you? Why or why not?"
+"If you could write a book that was guaranteed to be a best seller, what would you write?"
+"If you were me, what would your icebreaker question be?"
+"Would you rather live in the ocean or on the moon?"
+"Would you rather lose all of your money or all of your friends?"
+"Would you rather have invisibility or flight?"
+"Would you rather be the funniest or smartest person in the room?"
+"Would you rather be able to run at 100 miles per hour or fly at 10 miles per hour?"
+"Would you rather be an Olympic gold medallist or an astronaut?"
+"What school subject is your least favorite?"
+"What is the best dish you can cook?"
+"What is the strangest habit you have?"
+"What is your favorite midnight snack?"
+"What current fact about your life would most impress your five year old self?"
+"What is your favorite zoo animal?"
+"Sweet, salty, or sour?"
+"What is something you can’t cook but wish you could?"
+"If you could eliminate one food so no one could eat it ever again, what would you destroy?"
+"Favorite grocery item while shopping locally?"
+"What two things do you consider yourself to be very good at?"
+"What two things do you consider yourself to be very bad at?"
+"What is something you hate doing? Why?"
+"If you had to delete all but 3 apps from your smartphone, which ones would you keep? (Three apps that have changed your life.)"
+"How many Facebook friends do you have? How many of them do you actually communicate with?"
+"If you had to choose between only having a cell phone or a car for the rest of your life, which would you choose?"
+"Desktop, laptop, or tablet? Which do you prefer to use?"
+"If you could go back in time and make little changes to your childhood, what is one thing you’d learn and master over the years so you’d be an expert at it today?"
+"If you had to change your name, what would your new name be, and why would you choose that name?"
+"What is your most treasured material possession?"
+"Who is your hero, and why?"
+"If you could choose an age to remain forever, which age would you choose?"
+"What is one important skill every person should have?"
+"What was the best thing that happened to you this weekend? This month? This year?"
+"What is your favorite holiday?"
+"What coworker characteristic do you find most irritating?"
+"Professional, casual or sweatpants? If there were no dress code, how would you dress for work?"
+"What “old person” things do you do?"
+"How long would you last in a zombie apocalypse?"
+"What is your guilty pleasure?"
+"What did you get into the most trouble for with your parents as a kid?"
+"What’s the worst haircut you ever had?"
+"What commercial jingle gets stuck in your head all the time?"
+"As a kid, did you ever do something wrong but manage to pin it on your siblings?"
+"What’s the most ridiculous thing your parents ever did to embarrass you?"
+"Who is your favorite Disney character?"
+"Show us your phone background and tell the story behind why you picked this image."
+"Show us the weirdest thing you have in the room with you right now."
+"What emoji best describes how you are feeling right now?"
+"What are you drinking right now? If nothing, what was the last thing you drank?"
+"What is an item on your bucket list?"
+"Imagine you no longer have to work. How would you spend a Tuesday?"
+"What is your favorite seasoning?"
+"What actor or actress would you want to play you in the movie about your life?"
+"Imagine you can instantly learn any language. Which would you choose?"
+"Do you prefer big dogs or small dogs?"
+"Cats or dogs?"
+"What is your worst dance move?"
+"What season would you be?"
+"You are the best criminal mastermind in the world. What crime would you commit if you knew you would get away with it?"
+"Would you want to have a personal assistant follow you around everywhere and do what you asked of them?"
+"Pick any band to play at your funeral."
+"What does [insert coworker]’s laugh sound like to you? (Tell us by imitating it.)"
+"What's your go-to karaoke song"
+"What’s the silliest walk you’ve ever seen? (Imitate it)"
+"You’re forming a team of treasure hunters. Which job do you assign to everyone in the room?"
+"What’s something you’d like to talk about that no one has asked you about recently?"
+"What’s something that always confuses you about the work we do here?"
+"Where would you travel if you knew there was a chance you would have to stay there for up to a year?"
+"If you had to choose one car to drive forever, what would you pick?"
+"If you could keep only one appliance in your house, which one would you choose and why?"
+"What was the strangest non-scary dream you ever had?"
+"Break up with yourself. How do you let yourself down easy?"
+"What excuse do you use all the time?"
+"What’s something your mom or dad does that you always find yourself doing?"
+"If you had to pick a new part of your body to sit on, what would you choose? "
+"What does an elephant sound like?"
+"How would you say your name if you were an alien?"
+"If you were a condiment, what would you be, and why?"
+"What’s something you wish you could stop people from assuming about you?"
+"What was the first thing you thought about when you woke up this morning?"
+"Would you be willing to fight in one of the past wars?"
+"What makes you feel excited to be alive right now?"
+"What was the last thing you put 100 percent into?"
+"If you could have credit for any invention in history, what would you choose?"
+"If you were a refrigerator, what item would you hate holding?"
+"What does your aura look like?"
+"What’s the strangest thing you’ve ever been asked to do during a meeting?"
+"What did your 5th grade teacher say about you during your parent-teacher conference?"
+"Imitate your own professional meeting voice."
+"What was the silliest thing you or someone else has ever said during a meeting?"
+"What is your first memory speaking in front of a group?"
+"When was the last time you felt like you were “in trouble”?"
+"What would your name be if your first name was your father’s middle name and your last name was your childhood favorite food?"
+"If you had to replace your legs with the legs of an animal, what would you choose?"
+"If you had to eat a crayon, what color would you choose?"
+"What’s something you would change if you ran the world?"
+"What talent would you show off in a talent show?"
+"What three hashtags describe your work persona? What three hashtags describe your social persona?"
+"Can I see your browser history?"
+"Are you an Introvert or an extrovert?"
+"What’s your campaign slogan if you’re running for public office?"
+"What is one place you never ever want to go?"
+"What is the most embarrassing thing you accidentally messaged to someone?"
+"In one word, what is the greatest challenge you have faced this month?
+Have you ever smiled at a stranger and then wished you hadn’t? Why or why not?
+If you could eat as much of one food as you wanted without ever getting full or fat, which food would you choose?
+If you could shop for free at any store, which store would you choose and why?
+If you were one of the seven dwarfs, which one would you be?
+If your pet could talk, what would it say to you?
+What action or activity makes everyone doing it look stupid?
+What comedy or drama movie would you make into a musical and what would be the name?
+What is something popular now, but everyone will look back at five years from now and think it is stupid and embarrassing?
+If you could make any small animal as large as a cow, which animal would you choose and why?
+If you could make one thing illegal, what would it be?
+There are people who believe the world is really flat. How would you convince them it isn’t?
+What is the most embarrassing clothing item you have ever worn?
+What is the silliest thing you have ever done?
+What is the weirdest thing you have ever seen someone do?
+What rumor or conspiracy theory would you start and how would you start it?
+What superhero would improve the world most if he/she existed?
+Who is the funniest person you know and why do you consider them the funniest?
+Do you go online when feeling bad to diagnose your disease?
+Do you speed when no one is watching?
+Have you ever intentionally broken the law? When, where, and how?
+If you could be an animal, which animal would you be and why?
+If you could have a personal chef or a live-in maid, which would you choose and why?
+What fictional character would you like to become real and why?
+Are there any unwritten rules where you work? If so, what are they?
+Do you prefer salty or sweet treats and snacks?
+If you went to a store, what three items could you buy that would make the cashier uncomfortable?
+If you were given $500 to spend on anything you wanted, what would you buy?
+What is something you recently realized that you can’t believe you didn’t realize earlier?
+What would be the worst name you might give a son? A daughter?
+What would your family and friends think you had done if you were arrested?
+Which would you rather be in, an insane asylum or prison? Why?
+Would you describe yourself as a good loser when playing cards and board games?
+If you had enough money that you never needed to work again, what would you do with your time?
+If you had to lose a body part, which one would you choose and why?
+If you were given only one week to live, how would you spend it?
+Who should be responsible for taking care of the elderly? The family, the government, or should the elderly take care of themselves?
+Have you passed up any chances that you now regret? What were they?
+How would you describe yourself in ten words or less?
+If they made a movie of your life, what would the title be? Would it be drama, comedy, or musical?
+If you could start your life over and change one thing, what would you change?
+If you were told you would live forever, what would you change about your life?
+What are you most afraid of?
+What do you believe is keeping you from complete happiness?
+What do you consider your greatest strength? Your greatest weakness?
+What do you think is your greatest achievement in your life so far?
+What do you think people will say at your funeral about you and your life?
+What is one way two countries considering war could settle their differences without violence?
+If you could be granted one wish of any kind, what would you wish for?
+If you had no physical, financial, or other obstacles, what skill would you like to have?
+What did you think you would be when you were a child?
+What have you tried lately that is new and exciting?
+What makes you happiest and when you think about it you cannot help but smile?
+What one thing did you do in the last twenty-four hours to make someone’s life better or more enjoyable?
+What was the greatest adventure in your life so far?
+When you are old and look back on your life, what do you think will matter most to you?
+Where in the world would you most like to live and why haven’t you moved there?
+Who had the greatest impact on your life? What was it?
+Whose life do you believe you have had the greatest impact on? What was it?
+Would you lie to your friend or spouse for a large sum of money? How much?
+WouldIf you didn’t have to sleep, what would you do with the extra time?
+What’s your favorite piece of clothing you own / owned?
+What hobby would you get into if time and money weren’t an issue?
+What would your perfect room look like?
+How often do you play sports?
+What fictional place would you most like to go?
+What job would you be terrible at?
+When was the last time you climbed a tree?
+If you could turn any activity into an Olympic sport, what would you have a good chance at winning medal for?
+What is the most annoying habit that other people have?
+What job do you think you’d be really good at?
+What skill would you like to master?
+What would be the most amazing adventure to go on?
+If you had unlimited funds to build a house that you would live in for the rest of your life, what would the finished house be like?
+What’s your favorite drink?
+What state or country do you never want to go back to?
+What songs have you completely memorized?
+What game or movie universe would you most like to live in?
+What do you consider to be your best find?
+Are you usually early or late?
+What pets did you have while you were growing up?
+When people come to you for help, what do they usually want help with?
+What takes up too much of your time?
+What do you wish you knew more about?
+What would be your first question after waking up from being cryogenically frozen for 100 years?
+What are some small things that make your day better?
+Who’s your go to band or artist when you can’t decide on something to listen to?
+What’s the best way to start the day?
+What shows are you into?
+What TV channel doesn’t exist but really should?
+Who has impressed you most with what they’ve accomplished?
+What age do you wish you could permanently be?
+What TV show or movie do you refuse to watch?
+What would be your ideal way to spend the weekend?
+What is something that is considered a luxury, but you don’t think you could live without?
+What’s your claim to fame?
+What’s something you like to do the old-fashioned way?
+What’s your favorite genre of book or movie?
+How often do you people watch?
+What have you only recently formed an opinion about?
+What’s the best single day on the calendar?
+What are you interested in that most people haven’t heard of?
+How do you relax after a hard day of work?
+What was the best book or series that you’ve ever read?
+What’s the farthest you’ve ever been from home?
+What is the most heartwarming thing you’ve ever seen?
+What is the most annoying question that people ask you?
+What could you give a 40-minute presentation on with absolutely no preparation?
+If you were dictator of a small island nation, what crazy dictator stuff would you do?
+What is something you think everyone should do at least once in their lives?
+Would you rather go hang gliding or whitewater rafting?
+What’s your dream car?
+What’s worth spending more on to get the best?
+What is something that a ton of people are obsessed with but you just don’t get the
+point of?
+What are you most looking forward to in the next 10 years?
+Where is the most interesting place you’ve been?
+What’s something you’ve been meaning to try but just haven’t gotten around to it?
+What’s the best thing that happened to you last week?
+What piece of entertainment do you wish you could erase from your mind so that you
+could experience for the first time again?
+If all jobs had the same pay and hours, what job would you like to have?
+What amazing thing did you do that no one was around to see?
+How different was your life one year ago?
+What quirks do you have?
+What would you rate 10 / 10?
+What fad or trend do you hope comes back?
+What’s the most interesting piece of art you’ve seen?
+What kind of art do you enjoy most?
+What do you hope never changes?
+What city would you most like to live in?
+What movie title best describes your life?
+Why did you decide to do the work you are doing now?
+What’s the best way a person can spend their time?
+If you suddenly became a master at woodworking, what would you make?
+Where is the most relaxing place you’ve ever been?
+What is the luckiest thing that has happened to you?
+Where would you rather be from?
+What are some things you’ve had to unlearn?
+What are you looking forward to in the coming months?
+What website do you visit most often?
+What one thing do you really want but can’t afford?
+Where do you usually go when you when you have time off?
+Where would you spend all your time if you could?
+What is special about the place you grew up?
+What age do you want to live to?
+What are you most likely to become famous for?
+What are you absolutely determined to do?
+What is the most impressive thing you know how to do?
+What do you wish you knew more about?
+What question would you most like to know the answ you rather drive a luxury vehicle or a more practical one? Why?
+What would your life look like if you changed one major decision that you have made?
+If the world would end tomorrow and you could only spend your last day with 2 people who would it be?
+What would your life look like if you were born 50 years before your time?
+Do you believe your opinions are solely your own or are they impacted by your surroundings?
+If you won the lottery, what would your life look like in 2 years?
+If you could cure a life-treating disease or instantly become 3million dollars richer, what would you choose?
+What would you choose to be in love and poor or rich and alone?
+Who are you in 5 words or less?
+If you could erase any moment from the last year, would you? What would it be and why?
+Try to think back to your earliest memory (not a photo, video or story that has been told) what it is? 
+What is the worst piece of advice you have ever received?
+What is the worst piece of advice you have ever given?
+Are you an open book, or do you overshare to avoid your true feelings?
+Have you ever had a paranormal experience?
+Do you believe in love at first sight?
+Fight or flight – what is it for you?
+What would be a worse fate losing your sight, hearing, or taste?
+Would you rather be lonely or alone?
+What can you do today that can change your life tomorrow?
+If you could have anything in the world, what would it be?
+Do you prefer to love or be loved?
+Are you ignorant or simply innocent?
+Does social media bring positivity or negativity to your life? Why do you use it?
+Aside from loved ones and (maybe your job) what do you love most in the world?
+Would you allow your friends to speak to you the way you speak to yourself?
+Would you want to know when you were going to die?
+If you could have dinner with anyone in the world right now, who would it be and why?
+Do we all hear the same sounds?
+If you had a real-life jiminy cricket, what would he be telling you right now?
+There was only one song ever written; what is it?
+If you could write your obituary, what would it say?
+Do you think you will ever truly be happy?
+Do you think you will ever truly be satisfied?
+What is your purpose?
+What does death mean to you?
+What is the harsh truth about yourself that you ignore?
+Is it possible to be standing backwards on a staircase?
+What if your dreams are recollections of your past life?
+If you had the option to become immortal, would you?
+When do you truly become an adult?
+Name a moment when you were truly happy…
+What do you consider your greatest weakness?
+If you add up all the time you have spent watching tv and the result shocked you, would you change your habits?
+What is the best thing about your life at this very moment?
+What will the world look like in 500 years?
+Do you believe we can truly stop climate change?
+Do you believe that it is morally okay to keep pets?
+Who decided that humans were the superior species?
+What is one thing that has changed the world for the better
+What is one thing that has changed the world for the worst
+How would you explain color?
+Do you think we were better off without mobile phones?
+How long before we stop selling pens and paper?
+Who or what do you think you would’ve been in a past life?
+Is the earth round or flat?
+Did we really walk on the moon?
+If you could create your own society, what law would you implement first? 
+If there was an alternative version of you on another planet would you want to meet it?
+Is there really a reason the alphabet has an order?
+Do power and corruption go hand in hand?
+If a tree falls in the woods, but no one is around to hear, it does it make a sound?
+Do you believe other life-forces exist?
+What if the air was poisonous and just killed us in 75-100 years?
+Do guns protect or kill people?
+Have you ever thought about how many people are looking up at the sky when you are?
+Do you think we are the biggest threat to humanity?
+Is it fair to bring children into the world when the Earth is dying?
+Are people inherently good or bad?
+Think about nature vs nurture, do you believe our environment reflects the person you are OR does the way you are raised reflect the person you are?
+How was language formed?
+Who decided the calendar?
+If you accidentally ran someone over, but no one saw would you turn yourself in or keep driving? Why?
+What is your conscious? When do you first remember feeling it?
+Do we have a predetermined path?
+What happens when we die?
+What if this is all dream?
+Are we the aliens on a different planet?
+How do we know that the colors we personally see are the same colors that everyone else sees?
+Did you know that not everyone’s mind has an ongoing narration?
+Is happiness a choice?
+What constitutes as a life-altering moment?
+To experience sadness is to be human, but what if we had the option not to feel…
+Why are more inclined to remember traumatic experiences over happy ones? 
+You are driving a car, and you can only make 2 turns; on one end you will kill 1000 people you don’t know on the other side is a loved one – what would you do?
+Are you living, or are you existing?
+How far would you go to save a loved one, would you break the law?
+Would your opinion change of someone if you found out they had committed a crime in the past?
+Would you rather be naive or jaded?
+Pick a memory: would you rather relive that memory for a week or completely forget it?
+Pick an item, any item. Now imagine that it doesn’t exist, how does that make you feel?
+What does a feeling feel like?
+What do you find stranger: that our life is completely out of our control or that we have complete control over our lives?
+Does suffering promote growth?
+Is reality just a construct of our minds?
+Is everything you perceive just a figment of your imagination?
+Why do we exist if, in the end, we will all fade away?
+Does knowledge have value, or do we consider being knowledgeable to inform our own perception of value?
+How do we form thoughts?
+Do you believe in coincidences or fate?
+What is life without love?
+Are you the person you want to be?
+If a movie was made about your life, what situation would be the climax of it?
+If human beings were born with an item, which one would be yours? 
+What would be your plan in the case of a zombie apocalypse? 
+If you had to become a teacher, what discipline would you pick to teach? 
+If you could meet any politician in the world, who would it be and why? 
+If your country was a student in University, which course would it get A+ in? 
+If you could be famous for any reason, what reason would you like it to be? 
+If you could come up with a college course, what would it be? 
+You hit your head on a rock and now you’re only able to say a single phrase to everything for the rest of your life, what phrase would it be?
+What historical event would you delete from history and why?  
+If you could only listen to one song for the rest of your life, what would it be? 
+if you could instantly get a PhD in a topic, what topic would you choose? 
+If you died tomorrow, what would be your biggest regret? 
+If you could choose a date and a place for when Jesus was born, when and where would you choose? 
+If you could pick one robot (or cyborg) from any movie to be your lifelong companion, which one would you pick? 
+If you could walk through walls, would you invade places? And if so, which places you would invade and why? 
+If you could name one human being to become immortal, who would you pick? 
+If you were assigned to pick a spot on Earth where an atomic bomb would be dropped. Where would it be and why? 
+If you could remove all suffering at the cost of removing all happiness, would you still do it? 
+If you could own any social media platform, which one would it be and what would you change about it? 
+If you could be a fly on the wall of any restricted place, what would that place be? 
+If you had $1,000,000 dollars but could only spend $1 on yourself, what would you do with the other $999,999? 
+If you had to live for a year in the last video game you played, what video game would it be and how would your life be on there? 
+If you could make a weird thing socially acceptable, what would that thing be? 
+If you built a secret bunker in your backyard, what would you keep on it? 
+If you could bring back any cancelled TV show, what would it be? 
+If you were offered millions of dollars to be locked in a room for 40 minutes with a 50/50 chance when you leave the room, you will either be 40 days or 40 years in the future. Would you do it? Why or why not? 
+If you were given your own brand-new planet and you could create any form of life in it, which would be the first one?
+If you had to invent a new flavor of ice cream – one that doesn’t exist – what would it be? 
+If you had the power to make a company or corporation disappear as if it never existed, which one would you choose?
+If you woke up one morning in the perfect version of your body, what would be the first thing you would do? 
+If you had the power to turn an unhealthy food or drink into healthy, which one would you pick and why? 
+If you could make any animal or monster from any video game or movie as your loyal pet forever, which would you choose? 
+If happiness has a flavor, what would it taste like? 
+If you weren’t related to your brothers and sisters, would you still be friends with them? Why or why not? 
+If you could permanently delete any invention from history, what would it be? 
+If your life had its own national anthem, what would it be? 
+If your brain was a room, what would it look like inside? 
+You have 10 minutes to ride a paperclip in your home. A detective will come and will look for it during 24h, if they don’t, then you win a certain amount of money. Where would you hide it? 
+If you suddenly woke up 15 years in the past, you’re child/teenage yourself once again, but you still keep your current memories and experiences. What would you do? 
+If you had to choose between being the tallest or the shortest person on the planet, which one would you choose and why? 
+If you could choose one thing from science fiction to exist in the real world, what would it be?
+If cars could have any shape or forms, what kind of cars would you like to see in the streets? 
+If someone told you “say a movie quote!”, what is the first that comes to your mind? 
+If If animals could go to University and could actually graduate and get degrees, which animals would you choose with each profession?
+If you could have a person narrating your life out loud 24/7, who would this person be? 
+If you could see an invisible measuring scale above everybody’s heads, what would you want that scale to show? 
+If you learned you could be completely immune to disease and sickness, what would you choose? 
+If you could create any law that is applicable to everybody else but not to you, what would it be? 
+If you could make a song suddenly play on someone’s phone without them being able to stop it, which song would you choose? 
+If you could design one giant room that people would come to have the best experience of their lives, what would that room be like? 
+If you could communicate to your cat/dog but instead you would never be able to talk to your best (human) friend, would you take it? Why? 
+If you had the ability to shapeshift into anything you want, what would be the first thing you would try to become?
+If adult humans were the “cocoon” phase that butterflies have, what would the final fully mature form of humans look like? 
+If you had to go live on national TV for 1 hour, what would you talk or do during that time?  
+If you were stuck in a supermarket for a whole night and you’re allowed to consume anything you choose for free, what would you do? 
+You find a book and as you keep reading it, you discover it’s actually about your life. You get to the point where you are right now (reading the book), do you flip the page and keep reading or do you stop? Why? 
+What would the world be like if babies were born knowing about everything we already know as adults? 
+Everybody has a button which when you press it, it does something. What does your button do? 
+Would you rather have no elbows or no knees? Why? 
+Would you rather fight 100 duck-sized horses or one horse-sized duck? 
+If you could start a secret society, what would it be about and who would its members be? 
+If you had to give up your favorite food to keep your phone or computer, would you?you could pick a sixth sense to have, which one would it be? 
+Would you accept a $50k a week job offer if it meant you would get paid to sit in a pitch black room with nothing to do for 8 hours every day?
+If you had to describe your life in 10 seconds, what would you say? 
+Would you rather know all the languages in the world or know how to play every instrument in the world? Why? 
+If animals had evolved just as much as human beings, what would be the dominating species on Earth today? 
+If you could choose between having an amazing chef, a driver, or a masseuse at your service for the rest of your life, which one would you choose? 
+In your next reincarnation, you will come back as an object, just you can choose which one. Which one would you choose? 
+If you had to give up one sense (hearing, smell, sight, taste, touch) which would you choose? 
+You have to go back to medieval times and you can only take one object from our times. What object would it be? 
+You’re invited to be one of the first people to live on Mars, rent-free, and have everything you need provided to you for the rest of your life, but you can’t come back to Earth. Would you go? 
+Would you rather know a little about a lot or a lot about a little? 
+At what time did time begin?
+Which came first: the sun or the earth?
+Is the opposite of opposite the same or opposite?
+Why is there a fridge light but no freezer light?
+Does a staircase go up or down?
+How far east can you travel before you are travelling west?
+Is there another word for “thesaurus”?
+Why is a “manhole” round?
+Why do we call them buildings if buildings are already built?
+If you decide to be indecisive, which are you?
+Did humans invent maths or discover maths?
+When you forget a thought, where does it go?
+If God invented humans, who created God?
+What came first: the seed or the plant?
+How do you know that you are not hallucinating?
+Why do we make exceptions to rules if we all should follow the rules?
+How can you describe something indescribable?
+Are we living, or are we dying?
+Who is the world in debt to if humans invented money?
+Can someone blind from birth see in their dreams?
+Can you have a daydream at night-time?
+Are child actors in adult-rated movies allowed to watch the film?
+If you are bald, can you get dandruff?
+Can you yawn when you are asleep?
+If the sky is the limit, then what is space?
+Does a dentist go to other dentists for their teeth?
+Why does Tarzan never have a beard?
+Where do the missing socks go?
+If a cave has a cave-in, is it still called a cave?
+Do cannibals think clowns taste funny?
+How do we know that a new dogfood has an “improved taste”?
+If heaps of cats are lying on top of each other, is it still called a dog pile?
+Is it okay for an endangered animal to eat an endangered plant?
+Why does the Easter Bunny bring eggs when rabbits don’t lay eggs?
+Can a fish get seasick?
+Why did the chicken cross the road?
+Are animals that don’t live in houses homeless?
+How can a jellyfish stand up for itself when it has no backbone?
+Do you call “a fly” a fly if it can’t fly?
+Why do we say spineless snake when a snake has a spine?
+Why is a pizza box square when a pizza is round?
+Why do we cook bacon and bake cookies?
+Why is vanilla ice cream white but vanilla extract brown?
+Why are bread square and sandwich meat round?
+Can you drink something without eating it?
+If a grape is sweet, why did we call the grapefruit by its name?
+A tomato is a fruit, so why is ketchup not called a smoothie?
+If you have dinner for breakfast, is it still dinner?
+If you can be allergic to anything, can you have an allergy to water?
+How can anyone taste the rainbow?
+How do you learn about something that doesn’t exist?
+If the truth is different for each of us, how can we call it the truth?
+Why are cars made that go faster than the worlds speed limits?
+Does a mirror have a colour, or does it reflect a colour?
+If you have fun wasting time, is it time wasted?
+How do we know we all see the same colours in the same way?
+If, in an instant, a moving object looks the same as an unmoving object, is movement possible?
+If a tree falls and no one hears it, does it make a sound?
+Will tomorrow ever come?
+Who decided what makes us human?
+If anything is possible, can anything be impossible?
+Is it possible to know everything?
+Why is it a raindrop but a snowfall?
+Is it possible to know if something is good or bad?
+Which came first: the universe or time?
+Will you exist in the future if you can’t ever go there?
+What is the purpose of death?
+If you restore a ship piece by piece, is it the same ship?
+Why is the word dictionary in the dictionary?
+How do you expect the unexpected?
+If you try to fail to succeed, then which have you done?
+Why is abbreviated a long word?
+Why is a stage ring square in shape?
+Did Adam and Eve have a bellybutton?
+Why does your nose run and your feet smell?
+How can you throw away a garbage can?
+If you hate a hater, do you hate yourself?
+Why does bottled water expire?
+Why do we count sheep before bed?
+On a flight, which armrest is yours?
+If something is new, how can it be both new and improved?
+Why does the early bird get the worm, but patience is a virtue?
+What existed before the universe?
+Could you drown in the fountain of youth?
+Would time continue if everything in the world was frozen?
+Is the world eternal?
+When does the future begin?
+Is your glass half-empty or half-full?
+Do you have to swallow gum to get the calories?
+How do you know that you exist?
+Can you cry underwater?
+If you are halfway from your destination, is it from the beginning or the end?
+Is the earth alive?
+Why are we called humans?
+Why does “slim chance” and “fat chance” have the same meaning?
+Can we ever reach the future?
+How does the universe expand if there is nothing outside of it?
+What is a dream?
+Can God create a stone that is too heavy for even him to lift?
+Is a question with no answer still called a question? 
+What sleeping position do you always revert to?
+What’s one name you would never call your kid and why?
+Is there a fictional character that you think is exactly like you?
+What is the stupidest thing you’ve always wanted to do?
+What quote would you get framed for your bedroom wall?
+Who is one person you wish you’d never met and why?
+What’s the dirtiest thing you’ve ever done?
+What is the most money you’d give to a charity in one go?
+How many times have you had sex in one day?
+What’s the worst argument you’ve ever had with someone?
+What’s one juicy secret about someone else you’ve never said out loud before?
+What is the best cure for a bad day?
+Do you ever question your own sanity?
+Have you ever tried meditation, and if so, how do you meditate?
+What is one joke that never fails to make you laugh?
+What is your one guilty pleasure that no one would expect?
+What would you want your legacy to be?
+What is the most elaborate way you would propose to someone?
+Are you afraid of something unusual?
+What is your go-to dinner place?
