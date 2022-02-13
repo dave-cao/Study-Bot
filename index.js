@@ -254,6 +254,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         maxStreak: 0,
         streakFreeze: 0,
         firstStreak: true,
+        hello: false,
       });
     } else {
       for (const userDatum of userData) {
