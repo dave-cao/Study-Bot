@@ -130,6 +130,33 @@ Client.on('message', async message =>{
 //   }
 // });
 // Checks to see if a date is within this week!!
+function isThisSeason(oldDate, newDate) {
+  const yearsMatch = !(newDate.getFullYear() - oldDate.getFullYear());
+
+  // Place the old and new date into zone
+
+  const oldMonthDay = oldDate.getMonth();
+  const newMonth = newDate.getMonth();
+
+  const checkZone = (month) => {
+    // Checks to see what zone the current month is in
+    // Zone 1: January - April
+    // Zone 2: May - August
+    // Zone 3: September - December
+    let zone;
+    if (month >= 8) {
+      zone = 3;
+    } else if (month >= 4) {
+      zone = 2;
+    } else {
+      zone = 1;
+    }
+    return zone;
+  };
+
+  // Compare the check zones
+  return checkZone(oldMonthDay) === checkZone(newMonth) && yearsMatch;
+}
 function isThisWeek(date) {
   const now = new Date();
   const weekDay = (now.getDay() + 6) % 7; // Make sure Sunday is 6, not 0
@@ -180,10 +207,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const oldUserChannel = oldMember.channelID;
   const person = client.users.cache.get(newMember.id);
   let hasMember = 0;
-
-  const grindTimeVC = '787354978523545634';
-  const streakChannel = client.channels.cache.get('839226206276812800');
-  const accountabilityChannel = client.channels.cache.get('821951428717183006');
+  const grindTimeVC = '921966065108521005'; // '787354978523545634';
+  const streakChannel = client.channels.cache.get('921966065108521004'); // ('839226206276812800');
+  const accountabilityChannel = client.channels.cache.get('921966065108521004'); // ('821951428717183006');
   const minute = 1000 * 60;
 
   let userData = [];
@@ -254,7 +280,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         maxStreak: 0,
         streakFreeze: 0,
         firstStreak: true,
-        hello: false,
       });
     } else {
       for (const userDatum of userData) {
@@ -311,6 +336,15 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
           userData[i].monthlyTracker = new Date();
         }
 
+        // If a seasonal time tracker hasn't been made, then make it
+        if (
+          userData[i].seasonTime === undefined
+          || userData[i].seasonTime === null
+        ) {
+          userData[i].seasonTime = 0;
+          userData[i].seasonDate = new Date();
+        }
+
         // If a total time tracker hasn't been made, then make it
         if (
           userData[i].totalTime === undefined
@@ -348,6 +382,14 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         if (!monthTrackerCheck) {
           userData[i].monthlyTracker = new Date();
           userData[i].monthlyTime = 0;
+        }
+
+        // Checks to see if it's a new season
+
+        const oldSeasonData = new Date(userData[i].seasonDate);
+        if (!isThisSeason(oldSeasonData, currentDate)) {
+          userData[i].seasonDate = new Date();
+          userData[i].seasonTime = 0;
         }
 
         // ===================================================================
@@ -486,6 +528,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
         // MONTHLY TIME TRACKER
         userData[i].monthlyTime += timeDif;
+
+        // SEASONAL TIME TRACKER
+        userData[i].seasonTime += timeDif;
 
         // TOTAL TIME TRACKER
         userData[i].totalTime += timeDif;
@@ -727,6 +772,7 @@ function displayLeaderboardFunction(message, timeframe, displayTop) {
     const dayRanks = [];
     const weekRanks = [];
     const monthRanks = [];
+    const seasonRanks = [];
     const totalRanks = [];
     for (const userDatum of userData) {
       // if user hasn't grinded today then not in rankings
@@ -767,6 +813,16 @@ function displayLeaderboardFunction(message, timeframe, displayTop) {
         ]);
       }
 
+      // If user hasn't grinded this season then not in rankings
+      const oldSeasonData = new Date(userDatum.seasonDate);
+      if (isThisSeason(oldSeasonData, currentDate)) {
+        seasonRanks.push([
+          userDatum.userID,
+          userDatum.seasonTime,
+          userDatum.userName,
+        ]);
+      }
+
       // push total time grinded
       totalRanks.push([
         userDatum.userID,
@@ -777,6 +833,7 @@ function displayLeaderboardFunction(message, timeframe, displayTop) {
     const sortedDayRanks = sortRanks(dayRanks);
     const sortedWeekRanks = sortRanks(weekRanks);
     const sortedMonthRanks = sortRanks(monthRanks);
+    const sortedSeasonRanks = sortRanks(seasonRanks);
     const sortedTotalRanks = sortRanks(totalRanks);
 
     // GETTING INFORMATION FROM ARRAY
@@ -886,6 +943,10 @@ function displayLeaderboardFunction(message, timeframe, displayTop) {
         leaderboardStr = displayLeaderboard(sortedMonthRanks);
         title = `Monthly Leaderboard (${monthNames[thisMonth]})`;
         break;
+      case '-s':
+        leaderboardStr = displayLeaderboard(sortedSeasonRanks);
+        title = 'Seasonal Leaderboard';
+        break;
       case '-t':
         leaderboardStr = displayLeaderboard(sortedTotalRanks);
         title = 'All-Time Leaderboard';
@@ -940,6 +1001,9 @@ client.on('message', (message) => {
       case '-m':
         message.channel.send(displayLeaderboardFunction(message, '-m', false));
         break;
+      case '-s':
+        message.channel.send(displayLeaderboardFunction(message, '-s', false));
+        break;
       case '-t':
         message.channel.send(displayLeaderboardFunction(message, '-t', false));
         break;
@@ -949,11 +1013,13 @@ client.on('message', (message) => {
             + '`-d` for the Daily Leaderboard\n'
             + '`-w` for the Weekly Leaderboard\n'
             + '`-m` for the Monthly Leaderboard\n'
+            + '`-s` for the Seasonal Leaderboard\n'
             + '`-t` for the All-time Leaderboard\n\n'
             + 'To view the **Top 20 leaderboards** please type:\n'
             + '`top -d` for the Daily Leaderboard\n'
             + '`top -w` for the Weekly Leaderboard\n'
             + '`top -m` for the Monthly Leaderboard\n'
+            + '`top -s` for the Seasonal Leaderboard\n'
             + '`top -t` for the All-time Leaderboard\n\n',
         );
         break;
@@ -969,6 +1035,9 @@ client.on('message', (message) => {
       case 'top -m':
         message.channel.send(displayLeaderboardFunction(message, '-m', true));
         break;
+      case 'top -s':
+        message.channel.send(displayLeaderboardFunction(message, '-s', true));
+        break;
       case 'top -t':
         message.channel.send(displayLeaderboardFunction(message, '-t', true));
         break;
@@ -976,7 +1045,7 @@ client.on('message', (message) => {
 
     // ==================================================================
     // User Profile Display
-    if (message.content.toLowerCase() === 'grind profile') {
+    if (message.content.toLowerCase() === 'profile') {
       // Read file data
       const userID = message.guild.member(message.author.id).user.id;
       if (fs.existsSync('userData.json')) {
@@ -1026,6 +1095,7 @@ client.on('message', (message) => {
         const dayRanks = [];
         const weekRanks = [];
         const monthRanks = [];
+        const seasonRanks = [];
         const totalRanks = [];
         for (const userDatum of userData) {
           // if user hasn't grinded today then not in rankings
@@ -1054,6 +1124,12 @@ client.on('message', (message) => {
             monthRanks.push([userDatum.userID, userDatum.monthlyTime]);
           }
 
+          // If user hasn't grinded this season then not in rankings
+          const oldSeasonData = new Date(userDatum.seasonDate);
+          if (isThisSeason(oldSeasonData, currentDate)) {
+            seasonRanks.push([userDatum.userID, userDatum.seasonTime]);
+          }
+
           // push total time grinded
           totalRanks.push([userDatum.userID, userDatum.totalTime]);
         }
@@ -1061,6 +1137,7 @@ client.on('message', (message) => {
         const sortedDayRanks = sortRanks(dayRanks);
         const sortedWeekRanks = sortRanks(weekRanks);
         const sortedMonthRanks = sortRanks(monthRanks);
+        const sortedSeasonRanks = sortRanks(seasonRanks);
         const sortedTotalRanks = sortRanks(totalRanks);
         // ================================
 
@@ -1141,6 +1218,16 @@ client.on('message', (message) => {
             // Display Monthly Grind Today
             const monthlyTime = getTimeDifference(userDatum.monthlyTime);
             const monthGrinded = `${monthlyTime[0]} hrs, ${monthlyTime[1]} mins`;
+
+            // If a new season haven't grinded today yet
+            // Then display haven't grinded this month yet
+            const oldSeasonData = new Date(userDatum.seasonDate);
+            if (isThisSeason(oldSeasonData, currentDate)) {
+              userDatum.seasonTime = 0;
+            }
+            // Disp[lay Seasonal Grind Today]
+            const seasonTime = getTimeDifference(userDatum.seasonTime);
+            const seasonGrinded = `${seasonTime[0]} hrs, ${seasonTime[1]} mins`;
 
             // Display Total Grind Hours Overall
             const totalGrindTime = getTimeDifference(userDatum.totalTime);
@@ -1269,6 +1356,7 @@ client.on('message', (message) => {
             const userDayRank = getRank(sortedDayRanks);
             const userWeekRank = getRank(sortedWeekRanks);
             const userMonthRank = getRank(sortedMonthRanks);
+            const userSeasonRank = getRank(sortedSeasonRanks);
             const userTotalRank = getRank(sortedTotalRanks);
 
             // ================================================================
@@ -1291,11 +1379,11 @@ client.on('message', (message) => {
               monthString,
               userMonthRank,
             );
-            const totalString = `All-time:          ${totalGrinded}         # ${userTotalRank}`;
-            const totalDisplay = whiteSpaceBA(
-              totalGrinded,
-              totalString,
-              userTotalRank,
+            const seasonString = `Seasonal:          ${seasonGrinded}         # ${userSeasonRank}`;
+            const seasonDisplay = whiteSpaceBA(
+              seasonGrinded,
+              seasonString,
+              userSeasonRank,
             );
 
             const userProfile = new Discord.MessageEmbed()
@@ -1313,7 +1401,7 @@ client.on('message', (message) => {
                   + `${dayDisplay}\n`
                   + `${weekDisplay}\n`
                   + `${monthDisplay}\n`
-                  + `${totalDisplay}\n\n`
+                  + `${seasonDisplay}\n\n`
                   + `Daily Average (${monthNames[currentMonth]}): ${displayDailyAverage}`
                   + '```---',
               )
