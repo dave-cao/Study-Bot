@@ -129,6 +129,31 @@ Client.on('message', async message =>{
 //     return;
 //   }
 // });
+
+function checkRank(hours) {
+  // return what rank a user should be based on the time that they have
+  // in season
+  // When remaking, have it return an array consisting of rank, logical key,
+  // and foreign key. That way I wouldn't need the object at all.
+  const ranks = [
+    [0, 'slacker', 'Slacker', '966518395963072523'],
+    [10, 'baby', 'Baby Grinder', '966518473285074964'],
+    [30, 'novice', 'Novice Grinder', '966518497385513030'],
+    [95, 'apprentice', 'Apprentice Grinder', '966518523524431972'],
+    [193, 'adept', 'Adept Grinder', '966518543527067709'],
+    [325, 'rune', 'Rune Grinder', '966518558039363654'],
+    [490, 'master', 'Master Grinder', '966518579153481779'],
+    [688, 'grandmaster', 'Grandmaster Grinder', '966518628944068659'],
+    [920, 'grindmaster', 'GrindMaster Supreme', '966518651199057982'],
+    [999999, 'impossible', 'Impossible Grinder', '999999999999'], // placeholder for ranks[i + 1]
+  ];
+
+  // loop through the ranks and figure out where the user belongs in rank
+  const currentRank = ranks.filter(
+    (rank, q) => hours >= rank[0] && hours < ranks[q + 1][0],
+  );
+  return currentRank[0];
+}
 // Checks to see if a date is within this week!!
 function isThisSeason(oldDate, newDate) {
   const yearsMatch = !(newDate.getFullYear() - oldDate.getFullYear());
@@ -538,6 +563,60 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         accountabilityChannel.send(
           `<@${newMember.id}> You have grinded for \`${sessionTime[0]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[2]} second(s)\` in **Grind Time**!\n\nThis comes to a total of \`${dayTime[0]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[2]} second(s)\` grinded **Today**!`,
         );
+        // ========================================================
+        // SEASONAL ADDING ROLES
+        // ========================================================
+        // Give role to member at a certain number of hours
+        // We'll be using seasonal data here
+        const grindRoles = {
+          slacker: ['966518395963072523', 'Congratz for becoming a slacker'], // '787836823300472894',
+          baby: ['966518473285074964', 'Congratz for becoming a baby'], // '789886143276515339',
+          novice: ['966518497385513030', 'Congratz for becoming a novice'], // '789158970513555526',
+          apprentice: [
+            '966518523524431972',
+            'Congratz for becoming a apprentice',
+          ], // '789159063555801118',
+          adept: ['966518543527067709', 'Congratz for becoming a adept'], //  '789159121676009483',
+          rune: ['966518558039363654', 'Congratz for becoming a rune'], //  '789159182381088778',
+          master: ['966518579153481779', 'Congratz for becoming a master'], // '789159231227035688',
+          grandmaster: [
+            '966518628944068659',
+            'Congratz for becoming a grandmaster',
+          ], // '789159341328302141',
+          grindmaster: [
+            '966518651199057982',
+            'Congratz for becoming a grindmaster',
+          ], // '789159476182646794',
+        };
+        //
+        // If user leaves and their seasonTime is a certain time, then give role
+        // Assign role based on string
+        const seasonTime = getTimeDifference(userData[i].seasonTime);
+        const seasonHours = seasonTime[0];
+        const stringRole = checkRank(seasonHours)[1]; // the actual string role is strongRole[1]
+        const role = oldMember.guild.roles.cache.get(grindRoles[stringRole][0]);
+        // Find if member already has the selected role
+        const hasRole = oldMember.member.roles.cache.some(
+          (r) => r.id === grindRoles[stringRole][0],
+        );
+
+        // Only send message and add role if user doesn't already have role
+        if (!hasRole) {
+          // Get rid of all roles
+          const rankKeys = Object.keys(grindRoles);
+          rankKeys.forEach((rank) => {
+            const removeRole = newMember.guild.roles.cache.get(
+              grindRoles[rank][0],
+            );
+            newMember.member.roles.remove(removeRole).catch(console.error);
+          });
+
+          // add rank role based on hours
+          oldMember.member.roles.add(role).catch(console.error);
+          // FIXME: change this annoucements channel
+          accountabilityChannel.send(grindRoles[stringRole][1]);
+        }
+
         // Save data on leave
         saveData(userData);
       }
@@ -1222,7 +1301,7 @@ client.on('message', (message) => {
             // If a new season haven't grinded today yet
             // Then display haven't grinded this month yet
             const oldSeasonData = new Date(userDatum.seasonDate);
-            if (isThisSeason(oldSeasonData, currentDate)) {
+            if (!isThisSeason(oldSeasonData, currentDate)) {
               userDatum.seasonTime = 0;
             }
             // Disp[lay Seasonal Grind Today]
@@ -1385,7 +1464,8 @@ client.on('message', (message) => {
               seasonString,
               userSeasonRank,
             );
-
+            // Display rank with title
+            const rankID = checkRank(seasonTime[0])[3];
             const userProfile = new Discord.MessageEmbed()
               .setColor('#8B0000')
               .setTitle(
@@ -1395,7 +1475,8 @@ client.on('message', (message) => {
               // then we take out a white space before it and add it after it
               // Make a function that does this
               .setDescription(
-                '```'
+                `Current Rank | <@&${rankID}>`
+                  + '```'
                   + 'Time Frame          Time Grinded         Ranking\n'
                   + '----------          ------------         -------\n'
                   + `${dayDisplay}\n`
