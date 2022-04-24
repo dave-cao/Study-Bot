@@ -140,6 +140,7 @@ const ranks = [
     'Slacker',
     '787836823300472894',
     rankupMessages.slackerMessage,
+    '801137353623076864',
   ],
   [
     10,
@@ -147,6 +148,7 @@ const ranks = [
     'Baby Grinder',
     '789886143276515339',
     rankupMessages.babyMessage,
+    '789886143276515339',
   ],
   [
     30,
@@ -154,6 +156,7 @@ const ranks = [
     'Novice Grinder',
     '789158970513555526',
     rankupMessages.noviceMessage,
+    '791666669185531914',
   ],
   [
     95,
@@ -161,6 +164,7 @@ const ranks = [
     'Apprentice Grinder',
     '789159063555801118',
     rankupMessages.apprenticeMessage,
+    '791666671160655934',
   ],
   [
     193,
@@ -168,6 +172,7 @@ const ranks = [
     'Adept Grinder',
     '789159121676009483',
     rankupMessages.adeptMessage,
+    '791666657164132392',
   ],
   [
     325,
@@ -175,6 +180,7 @@ const ranks = [
     'Rune Grinder',
     '789159182381088778',
     rankupMessages.runeMessage,
+    '791666660229906463',
   ],
   [
     490,
@@ -182,6 +188,7 @@ const ranks = [
     'Master Grinder',
     '789159231227035688',
     rankupMessages.masterMessage,
+    '791666662415663125',
   ],
   [
     744,
@@ -189,6 +196,7 @@ const ranks = [
     'Grandmaster Grinder',
     '789159341328302141',
     rankupMessages.grandmasterMessage,
+    '791666664684650526',
   ],
   [
     1240,
@@ -196,6 +204,7 @@ const ranks = [
     'GrindMaster Supreme',
     '789159476182646794',
     rankupMessages.grindmasterMessage,
+    '791666666567368764',
   ],
   [
     1300,
@@ -203,8 +212,16 @@ const ranks = [
     'Mythical Grindmaster',
     '803294083660382250',
     rankupMessages.mythicalMessage,
+    '803294083660382250',
   ],
-  [999999, 'impossible', 'Impossible Grinder', '999999999999', 'placeholder'], // placeholder for ranks[i + 1]
+  [
+    999999,
+    'impossible',
+    'Impossible Grinder',
+    '967692832246738955',
+    'placeholder',
+    '967692832246738955',
+  ], // placeholder for ranks[i + 1]
 ];
 
 function getRankInfo(hours) {
@@ -645,11 +662,25 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
         // Get the rank info
         const userRankInfo = getRankInfo(seasonHours);
-        const [rankThreshold, rankName, logicalKey, roleID, rankMessage] = userRankInfo;
+        const [
+          rankThreshold,
+          rankName,
+          logicalKey,
+          roleID,
+          rankMessage,
+          legacyID,
+        ] = userRankInfo;
         const roleAdd = oldMember.guild.roles.cache.get(roleID);
+        const legacyAdd = oldMember.guild.roles.cache.get(legacyID);
         // Find if member already has the selected role
         const hasRole = oldMember.member.roles.cache.some(
           (r) => r.id === roleID,
+        );
+
+        const confirmedGrinderID = '801137353623076864';
+        const confirmedGrinderAdd = oldMember.guild.roles.cache.get(confirmedGrinderID);
+        const hasConfirmedGrinder = oldMember.member.roles.cache.some(
+          (r) => r.id === confirmedGrinderID,
         );
 
         // Only send message, add role, and remove unnecessary roles
@@ -657,7 +688,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         if (!hasRole) {
           // Get rid of all roles
           const rankIDs = ranks.map((rankInfo) => rankInfo[3]);
-          rankIDs.forEach((rankID, q) => {
+          const legacyIDs = ranks.map((rankInfo) => rankInfo[5]);
+          const allRoles = rankIDs.concat(legacyIDs);
+          allRoles.forEach((rankID, q) => {
             // Make sure it doesn't use the impossible rank
             if (q !== rankIDs.length - 1) {
               const removeRole = newMember.guild.roles.cache.get(rankID);
@@ -667,13 +700,17 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
           // add rank role based on hours
           oldMember.member.roles.add(roleAdd).catch(console.error);
-          // TODO: add legacy scroll
+          oldMember.member.roles.add(legacyAdd).catch(console.error);
           // send rank message
           const rankMessageDisplay = `<@${userData[i].userID}> - You're rank increased!\n\n`;
           announcementsChannel.send(rankMessageDisplay);
           announcementsChannel.send(
             rankMessage(userData[i].userName, userData[i].userID),
           );
+        }
+        if (!hasConfirmedGrinder) {
+          // and seasonHours >= 1
+          oldMember.member.roles.add(confirmedGrinderAdd).catch(console.error);
         }
 
         // Save data on leave
