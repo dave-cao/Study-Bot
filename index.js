@@ -708,8 +708,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
             rankMessage(userData[i].userName, userData[i].userID),
           );
         }
-        if (!hasConfirmedGrinder) {
-          // and seasonHours >= 1
+        if (!hasConfirmedGrinder && seasonHours >= 1) {
           oldMember.member.roles.add(confirmedGrinderAdd).catch(console.error);
         }
 

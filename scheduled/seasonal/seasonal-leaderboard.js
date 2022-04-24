@@ -14,30 +14,60 @@ const userDataFileName = '/home/milk/personalBot/Personal-Bot/userData.json';
 const seasonalDataName = '/home/milk/personalBot/Personal-Bot/scheduled/seasonal/seasonal.json';
 
 const ranks = [
-  [0, 'slacker', 'Slacker', '787836823300472894', '787836823300472894'],
-  [10, 'baby', 'Baby Grinder', '789886143276515339', '791666555741405224'],
-  [30, 'novice', 'Novice Grinder', '789158970513555526', '791666669185531914'],
+  [0, 'slacker', 'Slacker', '787836823300472894', '1111111'],
+  [
+    10,
+    'baby',
+    'Baby Grinder legacy',
+    '789886143276515339',
+    '791666555741405224',
+  ],
+  [
+    30,
+    'novice',
+    'Novice Grinder legacy',
+    '789158970513555526',
+    '791666669185531914',
+  ],
   [
     95,
     'apprentice',
-    'Apprentice Grinder',
+    'Apprentice Grinder legacy',
     '789159063555801118',
     '791666671160655934',
   ],
-  [193, 'adept', 'Adept Grinder', '789159121676009483', '791666657164132392'],
-  [325, 'rune', 'Rune Grinder', '789159182381088778', '791666660229906463'],
-  [490, 'master', 'Master Grinder', '789159231227035688', '791666662415663125'],
+  [
+    193,
+    'adept',
+    'Adept Grinder legacy',
+    '789159121676009483',
+    '791666657164132392',
+  ],
+  [
+    325,
+    'rune',
+    'Rune Grinder legacy',
+    '789159182381088778',
+    '791666660229906463',
+  ],
+  [
+    490,
+    'master',
+    'Master Grinder legacy',
+    '789159231227035688',
+    '791666662415663125',
+  ],
   [
     744,
     'grandmaster',
-    'Grandmaster Grinder',
+    'Grandmaster Grinder legacy',
     '789159341328302141',
     '791666664684650526',
   ],
   [
     1240,
     'grindmaster',
-    'GrindMaster Supreme',
+    'GrindMaster Supreme legacy',
     '789159476182646794',
     '791666666567368764',
   ],
@@ -151,17 +181,24 @@ function removeRole(member, role, rankName, username) {
 function removeRoles(member, username) {
   let chain = Promise.resolve();
   ranks.forEach((rankInfo) => {
-    const [hrThreshold, rankName, logicalKey, roleID, legacyID] = rankInfo;
+    const [hrThreshold, rankName, legacyName, roleID, legacyID] = rankInfo;
     const role = member.guild.roles.cache.get(roleID);
     const legacyRole = member.guild.roles.cache.get(legacyID);
     const hasRole = member.roles.cache.some((r) => r.id === roleID);
-    if (hasRole) {
-      chain = chain
-        .then(() => removeRole(member, role, rankName, username))
-        .then(Wait)
-        .then(() => removeRole(member, legacyRole, 'legacy', username))
-        .then(Wait);
-    }
+    const hasLegacy = member.roles.cache.some((r) => r.id === legacyID);
+    chain = chain
+      .then(() => {
+        if (hasRole) {
+          removeRole(member, role, rankName, username);
+        }
+      })
+      .then(Wait)
+      .then(() => {
+        if (hasLegacy) {
+          removeRole(member, legacyRole, legacyName, username);
+        }
+      })
+      .then(Wait);
   });
   return chain;
 }
