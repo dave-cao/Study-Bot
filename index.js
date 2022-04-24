@@ -667,6 +667,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
           // add rank role based on hours
           oldMember.member.roles.add(roleAdd).catch(console.error);
+          // TODO: add legacy scroll
           // send rank message
           const rankMessageDisplay = `<@${userData[i].userID}> - You're rank increased!\n\n`;
           announcementsChannel.send(rankMessageDisplay);

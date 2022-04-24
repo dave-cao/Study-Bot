@@ -9,6 +9,10 @@ const client = new Discord.Client();
 const fs = require('fs');
 const config = require('../../config.json');
 
+// File names
+const userDataFileName = '/home/milk/personalBot/Personal-Bot/userData.json';
+const seasonalDataName = '/home/milk/personalBot/Personal-Bot/scheduled/seasonal/seasonal.json';
+
 const ranks = [
   [0, 'slacker', 'Slacker', '787836823300472894'],
   [10, 'baby', 'Baby Grinder', '789886143276515339'],
@@ -173,9 +177,9 @@ client.once('ready', () => {
   const botChannel = client.channels.cache.get('793302938453803008');
 
   if (guild) {
-    if (fs.existsSync('../../userData.json')) {
+    if (fs.existsSync(userDataFileName)) {
       // get array of user data
-      const jsonString = fs.readFileSync('../../userData.json', 'utf8');
+      const jsonString = fs.readFileSync(userDataFileName);
       const userData = JSON.parse(jsonString);
 
       // ===========================================
@@ -199,7 +203,6 @@ client.once('ready', () => {
       // Create Title
       // Get season Number
       let seasonData;
-      const seasonalDataName = './seasonal.json';
       if (fs.existsSync(seasonalDataName)) {
         const seasonString = fs.readFileSync(seasonalDataName, 'utf8');
         seasonData = JSON.parse(seasonString);
