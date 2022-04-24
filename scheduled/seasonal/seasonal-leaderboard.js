@@ -201,7 +201,7 @@ client.once('ready', () => {
       let seasonData;
       const seasonalDataName = './seasonal.json';
       if (fs.existsSync(seasonalDataName)) {
-        const seasonString = fs.readFileSync(seasonalDataName);
+        const seasonString = fs.readFileSync(seasonalDataName, 'utf8');
         seasonData = JSON.parse(seasonString);
       }
       const { seasonNumber } = seasonData;
