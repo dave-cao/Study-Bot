@@ -140,7 +140,7 @@ const ranks = [
     'Slacker',
     '787836823300472894',
     rankupMessages.slackerMessage,
-    '801137353623076864',
+    '787836823300472894',
   ],
   [
     10,
