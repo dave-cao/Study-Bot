@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const fs = require('fs');
+const progressbar = require('string-progressbar');
 const config = require('./config.json');
 const command = require('./command');
 const firstMessage = require('./first-message');
@@ -216,6 +217,9 @@ function getRankInfo(hours) {
   const currentRank = ranks.filter(
     (rank, q) => hours >= rank[0] && hours < ranks[q + 1][0],
   );
+  if (!currentRank[0]) {
+    return ['NA', 'NA', 'NA', '787836823300472894', 'NA'];
+  }
   return currentRank[0];
 }
 // Checks to see if a date is within this week!!
@@ -1178,7 +1182,7 @@ client.on('message', (message) => {
 
     // ==================================================================
     // User Profile Display
-    if (message.content.toLowerCase() === 'grind profile') {
+    if (message.content.toLowerCase() === 'profile') {
       // Read file data
       const userID = message.guild.member(message.author.id).user.id;
       if (fs.existsSync('userData.json')) {
@@ -1519,7 +1523,27 @@ client.on('message', (message) => {
               userSeasonRank,
             );
             // Display rank with title
-            const rankID = getRankInfo(seasonTime[0])[3];
+            const userRankInfo = getRankInfo(seasonTime[0]);
+            const rankID = userRankInfo[3];
+            const userThreshold = userRankInfo[0];
+
+            // Display progress bar
+            // Get all rank thresholds
+            const rankThresholds = ranks.map((rankInfo) => rankInfo[0]);
+
+            // Grab your own rank threshold and get the one above that
+            // to make as the next threshold to meet
+            let nextThreshold = 100;
+            rankThresholds.forEach((threshold, i) => {
+              if (userThreshold === threshold) {
+                nextThreshold = rankThresholds[i + 1];
+              }
+            });
+            const current = seasonTime[0];
+            const displayBar = progressbar.filledBar(nextThreshold, current, [
+              20,
+            ]);
+            const progressPercent = displayBar[1].toFixed(2);
             const userProfile = new Discord.MessageEmbed()
               .setColor('#8B0000')
               .setTitle(
@@ -1529,7 +1553,7 @@ client.on('message', (message) => {
               // then we take out a white space before it and add it after it
               // Make a function that does this
               .setDescription(
-                `Current Rank | <@&${rankID}>`
+                `Current Rank | <@&${rankID}>\n${progressPercent}% |  ${displayBar[0]}\n`
                   + '```'
                   + 'Time Frame          Time Grinded         Ranking\n'
                   + '----------          ------------         -------\n'
