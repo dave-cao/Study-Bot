@@ -21,8 +21,8 @@ const ranks = [
   [193, 'adept', 'Adept Grinder', '789159121676009483'],
   [325, 'rune', 'Rune Grinder', '789159182381088778'],
   [490, 'master', 'Master Grinder', '789159231227035688'],
-  [688, 'grandmaster', 'Grandmaster Grinder', '789159341328302141'],
-  [920, 'grindmaster', 'GrindMaster Supreme', '789159476182646794'],
+  [744, 'grandmaster', 'Grandmaster Grinder', '789159341328302141'],
+  [1240, 'grindmaster', 'GrindMaster Supreme', '789159476182646794'],
   [1488, 'mythical', 'Mythical Grinder', '803294083660382250'],
   [999999, 'impossible', 'Impossible Grinder', '111111111'], // placeholder for ranks[i + 1]
 ];

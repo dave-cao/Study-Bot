@@ -184,14 +184,14 @@ const ranks = [
     rankupMessages.masterMessage,
   ],
   [
-    688,
+    744,
     'grandmaster',
     'Grandmaster Grinder',
     '789159341328302141',
     rankupMessages.grandmasterMessage,
   ],
   [
-    920,
+    1240,
     'grindmaster',
     'GrindMaster Supreme',
     '789159476182646794',
