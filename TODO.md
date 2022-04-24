@@ -11,3 +11,15 @@
 
 - Test the rank remove system but change the userData to only contain Cow and Beef
 - Start bug testing in Grind Time
+- 
+
+
+## New Rank Thresholds
+- Grind Master Supreme : 1240 (10 hours per day)
+- Grandmaster Grinder : 744 (6 hours per day)
+- Master Grinder : 490 (4 hours per day)
+
+Put this after leaderboard has been displayed
+
+
+Just for this season, change seasonTime to totalTime when it displays leaderboard

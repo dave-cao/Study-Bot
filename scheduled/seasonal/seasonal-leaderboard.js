@@ -10,15 +10,16 @@ const fs = require('fs');
 const config = require('../../config.json');
 
 const ranks = [
-  [0, 'slacker', 'Slacker', '966518395963072523'],
-  [10, 'baby', 'Baby Grinder', '966518473285074964'],
-  [30, 'novice', 'Novice Grinder', '966518497385513030'],
-  [95, 'apprentice', 'Apprentice Grinder', '966518523524431972'],
-  [193, 'adept', 'Adept Grinder', '966518543527067709'],
-  [325, 'rune', 'Rune Grinder', '966518558039363654'],
-  [490, 'master', 'Master Grinder', '966518579153481779'],
-  [688, 'grandmaster', 'Grandmaster Grinder', '966518628944068659'],
-  [920, 'grindmaster', 'GrindMaster Supreme', '966518651199057982'],
+  [0, 'slacker', 'Slacker', '787836823300472894'],
+  [10, 'baby', 'Baby Grinder', '789886143276515339'],
+  [30, 'novice', 'Novice Grinder', '789158970513555526'],
+  [95, 'apprentice', 'Apprentice Grinder', '789159063555801118'],
+  [193, 'adept', 'Adept Grinder', '789159121676009483'],
+  [325, 'rune', 'Rune Grinder', '789159182381088778'],
+  [490, 'master', 'Master Grinder', '789159231227035688'],
+  [688, 'grandmaster', 'Grandmaster Grinder', '789159341328302141'],
+  [920, 'grindmaster', 'GrindMaster Supreme', '789159476182646794'],
+  [1488, 'mythical', 'Mythical Grinder', '803294083660382250'],
   [999999, 'impossible', 'Impossible Grinder', '111111111'], // placeholder for ranks[i + 1]
 ];
 
@@ -147,7 +148,7 @@ function addRole(member, role, username) {
 // Go through all user data, remove their grind roles and add slacker role
 function handleRoles(guild, userData) {
   let chain = Promise.resolve();
-  const slackerRole = guild.roles.cache.get('966518395963072523');
+  const slackerRole = guild.roles.cache.get(ranks[0][3]);
   userData.forEach((user) => {
     const member = guild.members.cache.get(user.userID);
     if (member) {
@@ -156,7 +157,7 @@ function handleRoles(guild, userData) {
       chain = chain
         .then(() => console.log(`Starting to remove roles on ${user.userName}.`))
         .then(() => getUserProm(member, user.userName))
-        // .then(() => addRole(member, slackerRole, user.userName))
+        .then(() => addRole(member, slackerRole, user.userName))
         .then(WaitMore);
     }
   });
@@ -167,9 +168,9 @@ function handleRoles(guild, userData) {
 client.login(config.token);
 client.once('ready', () => {
   console.log('Seasonal Scheduler is Ready');
-  const guild = client.guilds.cache.get('921966065108521001');
-  const GFChannel = client.channels.cache.get('921966065108521004');
-  const botChannel = client.channels.cache.get('921966065108521004');
+  const guild = client.guilds.cache.get('787354978166898708');
+  const GFChannel = client.channels.cache.get('838545278679646239');
+  const botChannel = client.channels.cache.get('793302938453803008');
 
   if (guild) {
     if (fs.existsSync('../../userData.json')) {
@@ -182,8 +183,8 @@ client.once('ready', () => {
       // ===========================================
       const seasonRanks = [];
       userData.forEach((user) => {
-        if (user.seasonTime && isThisSeason(new Date(user.seasonDate))) {
-          seasonRanks.push([user.userName, user.userID, user.seasonTime]);
+        if (user.totalTime && isThisSeason(new Date(user.seasonDate))) {
+          seasonRanks.push([user.userName, user.userID, user.totalTime]);
         }
       });
 

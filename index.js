@@ -7,6 +7,9 @@ const config = require('./config.json');
 const command = require('./command');
 const firstMessage = require('./first-message');
 
+// My own files
+const rankupMessages = require('./rankup-embeds');
+
 client.once('ready', () => {
   console.log('Real Grinder is Online!');
 
@@ -129,24 +132,85 @@ Client.on('message', async message =>{
 //     return;
 //   }
 // });
+const ranks = [
+  [
+    0,
+    'slacker',
+    'Slacker',
+    '787836823300472894',
+    rankupMessages.slackerMessage,
+  ],
+  [
+    10,
+    'baby',
+    'Baby Grinder',
+    '789886143276515339',
+    rankupMessages.babyMessage,
+  ],
+  [
+    30,
+    'novice',
+    'Novice Grinder',
+    '789158970513555526',
+    rankupMessages.noviceMessage,
+  ],
+  [
+    95,
+    'apprentice',
+    'Apprentice Grinder',
+    '789159063555801118',
+    rankupMessages.apprenticeMessage,
+  ],
+  [
+    193,
+    'adept',
+    'Adept Grinder',
+    '789159121676009483',
+    rankupMessages.adeptMessage,
+  ],
+  [
+    325,
+    'rune',
+    'Rune Grinder',
+    '789159182381088778',
+    rankupMessages.runeMessage,
+  ],
+  [
+    490,
+    'master',
+    'Master Grinder',
+    '789159231227035688',
+    rankupMessages.masterMessage,
+  ],
+  [
+    688,
+    'grandmaster',
+    'Grandmaster Grinder',
+    '789159341328302141',
+    rankupMessages.grandmasterMessage,
+  ],
+  [
+    920,
+    'grindmaster',
+    'GrindMaster Supreme',
+    '789159476182646794',
+    rankupMessages.grindmasterMessage,
+  ],
+  [
+    1300,
+    'mythical',
+    'Mythical Grindmaster',
+    '803294083660382250',
+    rankupMessages.mythicalMessage,
+  ],
+  [999999, 'impossible', 'Impossible Grinder', '999999999999', 'placeholder'], // placeholder for ranks[i + 1]
+];
 
-function checkRank(hours) {
+function getRankInfo(hours) {
   // return what rank a user should be based on the time that they have
   // in season
   // When remaking, have it return an array consisting of rank, logical key,
   // and foreign key. That way I wouldn't need the object at all.
-  const ranks = [
-    [0, 'slacker', 'Slacker', '966518395963072523'],
-    [10, 'baby', 'Baby Grinder', '966518473285074964'],
-    [30, 'novice', 'Novice Grinder', '966518497385513030'],
-    [95, 'apprentice', 'Apprentice Grinder', '966518523524431972'],
-    [193, 'adept', 'Adept Grinder', '966518543527067709'],
-    [325, 'rune', 'Rune Grinder', '966518558039363654'],
-    [490, 'master', 'Master Grinder', '966518579153481779'],
-    [688, 'grandmaster', 'Grandmaster Grinder', '966518628944068659'],
-    [920, 'grindmaster', 'GrindMaster Supreme', '966518651199057982'],
-    [999999, 'impossible', 'Impossible Grinder', '999999999999'], // placeholder for ranks[i + 1]
-  ];
 
   // loop through the ranks and figure out where the user belongs in rank
   const currentRank = ranks.filter(
@@ -232,9 +296,10 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const oldUserChannel = oldMember.channelID;
   const person = client.users.cache.get(newMember.id);
   let hasMember = 0;
-  const grindTimeVC = '921966065108521005'; // '787354978523545634';
-  const streakChannel = client.channels.cache.get('921966065108521004'); // ('839226206276812800');
-  const accountabilityChannel = client.channels.cache.get('921966065108521004'); // ('821951428717183006');
+  const grindTimeVC = '787354978523545634';
+  const streakChannel = client.channels.cache.get('839226206276812800');
+  const accountabilityChannel = client.channels.cache.get('821951428717183006');
+  const announcementsChannel = client.channels.cache.get('795155126208823297');
   const minute = 1000 * 60;
 
   let userData = [];
@@ -568,53 +633,42 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         // ========================================================
         // Give role to member at a certain number of hours
         // We'll be using seasonal data here
-        const grindRoles = {
-          slacker: ['966518395963072523', 'Congratz for becoming a slacker'], // '787836823300472894',
-          baby: ['966518473285074964', 'Congratz for becoming a baby'], // '789886143276515339',
-          novice: ['966518497385513030', 'Congratz for becoming a novice'], // '789158970513555526',
-          apprentice: [
-            '966518523524431972',
-            'Congratz for becoming a apprentice',
-          ], // '789159063555801118',
-          adept: ['966518543527067709', 'Congratz for becoming a adept'], //  '789159121676009483',
-          rune: ['966518558039363654', 'Congratz for becoming a rune'], //  '789159182381088778',
-          master: ['966518579153481779', 'Congratz for becoming a master'], // '789159231227035688',
-          grandmaster: [
-            '966518628944068659',
-            'Congratz for becoming a grandmaster',
-          ], // '789159341328302141',
-          grindmaster: [
-            '966518651199057982',
-            'Congratz for becoming a grindmaster',
-          ], // '789159476182646794',
-        };
         //
         // If user leaves and their seasonTime is a certain time, then give role
         // Assign role based on string
         const seasonTime = getTimeDifference(userData[i].seasonTime);
         const seasonHours = seasonTime[0];
-        const stringRole = checkRank(seasonHours)[1]; // the actual string role is strongRole[1]
-        const role = oldMember.guild.roles.cache.get(grindRoles[stringRole][0]);
+
+        // Get the rank info
+        const userRankInfo = getRankInfo(seasonHours);
+        const [rankThreshold, rankName, logicalKey, roleID, rankMessage] = userRankInfo;
+        const roleAdd = oldMember.guild.roles.cache.get(roleID);
         // Find if member already has the selected role
         const hasRole = oldMember.member.roles.cache.some(
-          (r) => r.id === grindRoles[stringRole][0],
+          (r) => r.id === roleID,
         );
 
-        // Only send message and add role if user doesn't already have role
+        // Only send message, add role, and remove unnecessary roles
+        // if user doesn't already have role
         if (!hasRole) {
           // Get rid of all roles
-          const rankKeys = Object.keys(grindRoles);
-          rankKeys.forEach((rank) => {
-            const removeRole = newMember.guild.roles.cache.get(
-              grindRoles[rank][0],
-            );
-            newMember.member.roles.remove(removeRole).catch(console.error);
+          const rankIDs = ranks.map((rankInfo) => rankInfo[3]);
+          rankIDs.forEach((rankID, q) => {
+            // Make sure it doesn't use the impossible rank
+            if (q !== rankIDs.length - 1) {
+              const removeRole = newMember.guild.roles.cache.get(rankID);
+              newMember.member.roles.remove(removeRole).catch(console.error);
+            }
           });
 
           // add rank role based on hours
-          oldMember.member.roles.add(role).catch(console.error);
-          // FIXME: change this annoucements channel
-          accountabilityChannel.send(grindRoles[stringRole][1]);
+          oldMember.member.roles.add(roleAdd).catch(console.error);
+          // send rank message
+          const rankMessageDisplay = `<@${userData[i].userID}> - You're rank increased!\n\n`;
+          announcementsChannel.send(rankMessageDisplay);
+          announcementsChannel.send(
+            rankMessage(userData[i].userName, userData[i].userID),
+          );
         }
 
         // Save data on leave
@@ -1124,7 +1178,7 @@ client.on('message', (message) => {
 
     // ==================================================================
     // User Profile Display
-    if (message.content.toLowerCase() === 'profile') {
+    if (message.content.toLowerCase() === 'grind profile') {
       // Read file data
       const userID = message.guild.member(message.author.id).user.id;
       if (fs.existsSync('userData.json')) {
@@ -1465,7 +1519,7 @@ client.on('message', (message) => {
               userSeasonRank,
             );
             // Display rank with title
-            const rankID = checkRank(seasonTime[0])[3];
+            const rankID = getRankInfo(seasonTime[0])[3];
             const userProfile = new Discord.MessageEmbed()
               .setColor('#8B0000')
               .setTitle(
