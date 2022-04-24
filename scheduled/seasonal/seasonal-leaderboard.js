@@ -257,8 +257,8 @@ client.once('ready', () => {
       // ===========================================
       const seasonRanks = [];
       userData.forEach((user) => {
-        if (user.totalTime && isThisSeason(new Date(user.seasonDate))) {
-          seasonRanks.push([user.userName, user.userID, user.totalTime]);
+        if (user.seasonTime && isThisSeason(new Date(user.seasonDate))) {
+          seasonRanks.push([user.userName, user.userID, user.seasonTime]);
         }
       });
 
