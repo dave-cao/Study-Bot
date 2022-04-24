@@ -1182,7 +1182,7 @@ client.on('message', (message) => {
 
     // ==================================================================
     // User Profile Display
-    if (message.content.toLowerCase() === 'profile') {
+    if (message.content.toLowerCase() === 'grind profile') {
       // Read file data
       const userID = message.guild.member(message.author.id).user.id;
       if (fs.existsSync('userData.json')) {
