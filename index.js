@@ -683,6 +683,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
           (r) => r.id === confirmedGrinderID,
         );
 
+        const starRoleID = '925617271609622548';
+        const starRoleAdd = oldMember.guild.roles.cache.get(starRoleID);
+        const hasStarRole = oldMember.member.roles.cache.some(
+          (r) => r.id === confirmedGrinderID,
+        );
+
         // Only send message, add role, and remove unnecessary roles
         // if user doesn't already have role
         if (!hasRole) {
@@ -708,8 +714,15 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
             rankMessage(userData[i].userName, userData[i].userID),
           );
         }
+
+        // Give Confirmed Grinder after 1 hour of grinding
         if (!hasConfirmedGrinder && seasonHours >= 1) {
           oldMember.member.roles.add(confirmedGrinderAdd).catch(console.error);
+        }
+
+        // Give Star role when getting to Grandmaster Grinder
+        if (!hasStarRole && seasonHours >= 744) {
+          oldMember.member.roles.add(starRoleAdd).catch(console.error);
         }
 
         // Save data on leave
