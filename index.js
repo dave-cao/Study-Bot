@@ -594,12 +594,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                 if (userData[i].streak % 7 === 0) {
                   userData[i].streakFreeze += 1;
                   streakChannel.send(
-                    `<@${newMember.id}> Good work! You've maintained your streak for a week so you've been given a streak freeze!\n\`You have ${userData[i].streakFreeze} streak freezes\`\n-`,
+                    `<@${newMember.id}> Good work! You've maintained your streak for a week so you've been given a streak freeze!\n\`You have ${userData[i].streakFreeze} streak freeze(s)\`\n-`,
                   );
                 }
 
                 streakChannel.send(
-                  `<@${newMember.id}> Your **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nKeep up the good work :).`,
+                  `<@${newMember.id}> Your **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nHead over to <#806327504364371989> to let people know what you're doing today!`,
                 );
                 // Change the streak date to the current date
                 userData[i].streakDate = new Date();
