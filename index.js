@@ -708,7 +708,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
           oldMember.member.roles.add(roleAdd).catch(console.error);
           oldMember.member.roles.add(legacyAdd).catch(console.error);
           // send rank message
-          const rankMessageDisplay = `<@${userData[i].userID}> - You're rank increased!\n\n`;
+          const rankMessageDisplay = `<@${userData[i].userID}> - Your rank increased!\n\n`;
           announcementsChannel.send(rankMessageDisplay);
           announcementsChannel.send(
             rankMessage(userData[i].userName, userData[i].userID),
