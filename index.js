@@ -621,6 +621,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     && newUserChannel !== grindTimeVC
     && !isBeef
   ) {
+    const person = client.users.cache.get(newMember.id);
     for (let i = 0; i < userData.length; i++) {
       if (userData[i].userID === newMember.id) {
         userData[i].inVoiceChannel = false;
@@ -647,7 +648,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         userData[i].totalTime += timeDif;
 
         accountabilityChannel.send(
-          `<@${newMember.id}> You have grinded for \`${sessionTime[0]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[2]} second(s)\` in **Grind Time**!\n\nThis comes to a total of \`${dayTime[0]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[2]} second(s)\` grinded **Today**!`,
+          `**${userData[i].userName}** You have grinded for \`${sessionTime[0]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[2]} second(s)\` in **Grind Time**!\n\nThis comes to a total of \`${dayTime[0]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[2]} second(s)\` grinded **Today**!`,
         );
         // ========================================================
         // SEASONAL ADDING ROLES
