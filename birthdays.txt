@@ -1,0 +1,14 @@
+Pauline: November 3
+Rodeem: December 17
+sunflowersatori: December 15
+Kalun: August 17
+Noyan: July 23
+Eva: August 26
+Brittany: Jan 23
+Christina: Nov 18
+Kinshuk: 
+Miran: November 26
+
+
+# Make a crontab that runs every time at 12am. 
+# if date matches birthday, then run, if not, then don't run
