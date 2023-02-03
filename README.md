@@ -4,7 +4,7 @@
 
 <br>
 
-![USAGE GIF OR PIC TO CAPTURE ATTENTION](MEDIA FOLDER)
+![USAGE GIF OR PIC TO CAPTURE ATTENTION](./data/discord.gif)
 
 - I made a [youtube video](https://youtu.be/N7y0gTmXBto) on this project
 - [Join the server](https://discord.gg/QxeTD6V86F) here!
