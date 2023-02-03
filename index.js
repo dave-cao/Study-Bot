@@ -56,7 +56,7 @@ client.once('ready', () => {
         + "If you don't want to read the tutorial in the beginning, you can also watch the short video below to get a handle of everything on Grind Time. \n\n"
         + 'Have fun grinding, I look forward to seeing you on the other side! ~ David (Cow) '
         + '```The more you grind, the higher the level. The current highest is the Grindmaster Supreme...till this day, none has yet to achieve this feat. Can you?``` \n'
-        + 'https://youtu.be/FRBrVgeM1d8',
+        + 'https://youtu.be/mvplUjRQPqw',
     );
   });
 

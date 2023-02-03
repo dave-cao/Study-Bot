@@ -6,9 +6,10 @@
 
 ![USAGE GIF OR PIC TO CAPTURE ATTENTION](./data/discord.gif)
 
-- I made a [youtube video](https://youtu.be/N7y0gTmXBto) on this project
+- I made a [youtube video](https://youtu.be/mvplUjRQPqw) on this project
 - [Join the server](https://discord.gg/QxeTD6V86F) here!
 - Check out my other projects [here](https://davidcao.xyz)!
+- P.S. The code in this project is a mess, I am in the process of refactoring it [here](https://github.com/dave-cao/Grind-Bot)
 
 
 <!-- ABOUT THE PROJECT -->
@@ -45,7 +46,7 @@ Javascript, Discord.js, Node
 
 3. That's pretty much it. You can explore the server, but everything else is pretty much automated! Don't be shy to talk or ask me anything. I'm there everyday!
 
-_For a more comprehensive example of using this application, refer to this [video](https://youtu.be/N7y0gTmXBto)_
+_For a more comprehensive example of using this application, refer to this [video](https://youtu.be/mvplUjRQPqw)_
 
 ### File Explanations - Skip if not interested
 - `index.js` contains the main bulk of the functionality. It houses the time tracker, streaks, and role adding / removing. 
