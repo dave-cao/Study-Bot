@@ -6,7 +6,6 @@ const fs = require('fs');
 const progressbar = require('string-progressbar');
 const config = require('./config.json');
 const command = require('./command');
-const firstMessage = require('./first-message');
 
 // My own files
 const rankupMessages = require('./rankup-embeds');
