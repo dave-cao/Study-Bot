@@ -7,6 +7,7 @@ const progressbar = require('string-progressbar');
 const config = require('./config.json');
 const command = require('./command');
 
+
 // My own files
 const rankupMessages = require('./rankup-embeds');
 
