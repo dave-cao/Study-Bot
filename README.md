@@ -96,6 +96,7 @@ Don't forget to give the project a star! Thanks again!
 - [Linkedin](https://www.linkedin.com/in/david-cao99/)
 - Personal Website: https://davidcao.xyz/
 - Project Link - https://github.com/dave-cao/[Study-Bot]
+- hi
 
 
 
