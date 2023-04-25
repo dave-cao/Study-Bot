@@ -132,6 +132,11 @@ Client.on('message', async message =>{
 //     return;
 //   }
 // });
+function get(object, key, default_value) {
+  const result = object[key];
+  return typeof result !== 'undefined' ? result : default_value;
+}
+
 const ranks = [
   [
     0,
@@ -316,10 +321,10 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const oldUserChannel = oldMember.channelID;
   const person = client.users.cache.get(newMember.id);
   let hasMember = 0;
-  const grindTimeVC = '787354978523545634';
-  const streakChannel = client.channels.cache.get('839226206276812800');
-  const accountabilityChannel = client.channels.cache.get('821951428717183006');
-  const announcementsChannel = client.channels.cache.get('795155126208823297');
+  const grindTimeVC = '822826357100249098'; // changed
+  const streakChannel = client.channels.cache.get('793302938453803008'); // changed
+  const accountabilityChannel = client.channels.cache.get('793302938453803008'); // changed
+  const announcementsChannel = client.channels.cache.get('793302938453803008');
   const minute = 1000 * 60;
 
   let userData = [];
@@ -708,7 +713,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
           oldMember.member.roles.add(roleAdd).catch(console.error);
           oldMember.member.roles.add(legacyAdd).catch(console.error);
 
-          // TODO: Add a counter for ranks
+          // counter for ranks - THIS GET METHOD IS GOOD
+          userData[i][rankName] = get(userData[i], rankName, 0) + 1;
 
           // send rank message
           const rankMessageDisplay = `<@${userData[i].userID}> - Your rank increased!\n\n`;
@@ -1579,6 +1585,10 @@ client.on('message', (message) => {
             const userRankInfo = getRankInfo(seasonTime[0]);
             const rankID = userRankInfo[3];
             const userThreshold = userRankInfo[0];
+            const rankName = userRankInfo[1];
+
+            console.log(userRankInfo);
+            console.log(userDatum[rankName]);
 
             // Display progress bar
             // Get all rank thresholds
@@ -1606,7 +1616,7 @@ client.on('message', (message) => {
               // then we take out a white space before it and add it after it
               // Make a function that does this
               .setDescription(
-                `Current Rank | <@&${rankID}>\n${progressPercent}% |  ${displayBar[0]}\n`
+                `Current Rank | <@&${rankID}> x ${userDatum[rankName]}\n${progressPercent}% |  ${displayBar[0]}\n`
                   + '```'
                   + 'Time Frame          Time Grinded         Ranking\n'
                   + '----------          ------------         -------\n'
