@@ -7,7 +7,6 @@ const progressbar = require('string-progressbar');
 const config = require('./config.json');
 const command = require('./command');
 
-
 // My own files
 const rankupMessages = require('./rankup-embeds');
 
@@ -708,6 +707,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
           // add rank role based on hours
           oldMember.member.roles.add(roleAdd).catch(console.error);
           oldMember.member.roles.add(legacyAdd).catch(console.error);
+
+          // TODO: Add a counter for ranks
+
           // send rank message
           const rankMessageDisplay = `<@${userData[i].userID}> - Your rank increased!\n\n`;
           announcementsChannel.send(rankMessageDisplay);
