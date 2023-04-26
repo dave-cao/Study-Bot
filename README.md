@@ -17,7 +17,7 @@
 
 Because of the quarantine and the growing popularity of online learning, I found myself lonely and unmotivated to study. Therefore, I decided to create a studying community known as **Grind Time**. With that, different ideas started to pop into my head on not only how to motivate myself but motivate others to study.
 
-1. It began with with a **levelling system** where the more hours you study in the *Grind Time* voice channel, the higher your level / rank.
+1. It began with a **levelling system** where the more hours you study in the *Grind Time* voice channel, the higher your level / rank.
     - incentivizing focused studying
     - ![ranks image](img/image0.png)
 2. Then came the **streak system** where each day you study, you increase your streak. However, you have to be in the voice channel for at least 12 minutes for it to update.
