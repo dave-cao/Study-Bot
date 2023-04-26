@@ -284,7 +284,7 @@ client.once('ready', () => {
         seasonData = JSON.parse(seasonString);
       }
       const { seasonNumber } = seasonData;
-      const title = `\n\n:medal: **The Top 15 of Grind Time Season ${seasonNumber}** :medal:`;
+      const title = `@everyone\n\n:medal: **The Top 15 of Grind Time Season ${seasonNumber}** :medal:`;
 
       // Create rank information message
       let message = '';
@@ -298,12 +298,12 @@ client.once('ready', () => {
 
         // Display top 3 in bold
         if (index + 1 <= 3) {
-          message += `> \`${index + 1}.\` <@${user.userName}> - **${
+          message += `> \`${index + 1}.\` <@${user.userID}> - **${
             time[0]
           } hours** : ${rankMention} x **${get(user, rankName, 1)}**\n`;
           // Display the rest up top 15
         } else if (index + 1 <= 15) {
-          message += `> \`${index + 1}.\` <@${user.userName}> - ${
+          message += `> \`${index + 1}.\` <@${user.userID}> - ${
             time[0]
           } hours : ${rankMention} x ${get(user, rankName, 1)}\n`;
         }
@@ -327,9 +327,9 @@ client.once('ready', () => {
 
       // Cycle through each member and get rid of every role
       // that contians a grinder in them
-      // handleRoles(guild, userData)
-      //   .then(() => console.log('FINSHED!'))
-      //   .then(() => client.destroy());
+      handleRoles(guild, userData)
+        .then(() => console.log('FINSHED!'))
+        .then(() => client.destroy());
       //
     } else {
       botChannel
