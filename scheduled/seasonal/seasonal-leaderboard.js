@@ -99,12 +99,18 @@ const saveData = (saveFileName, userData) => {
   fs.writeFileSync(saveFileName, jsonData, finished);
 };
 
+// Javascript version of the python get method
+function get(object, key, default_value) {
+  const result = object[key];
+  return typeof result !== 'undefined' ? result : default_value;
+}
+
 // Sart ranks
 function compare(a, b) {
-  if (a[2] < b[2]) {
+  if (a.seasonTime < b.seasonTime) {
     return 1;
   }
-  if (a[2] > b[2]) {
+  if (a.seasonTime > b.seasonTime) {
     return -1;
   }
   // a must be equal to b
@@ -258,7 +264,7 @@ client.once('ready', () => {
       const seasonRanks = [];
       userData.forEach((user) => {
         if (user.seasonTime && isThisSeason(new Date(user.seasonDate))) {
-          seasonRanks.push([user.userName, user.userID, user.seasonTime]);
+          seasonRanks.push(user);
         }
       });
 
@@ -278,26 +284,28 @@ client.once('ready', () => {
         seasonData = JSON.parse(seasonString);
       }
       const { seasonNumber } = seasonData;
-      const title = `@everyone\n\n:medal: **The Top 15 of Grind Time Season ${seasonNumber}** :medal:`;
+      const title = `\n\n:medal: **The Top 15 of Grind Time Season ${seasonNumber}** :medal:`;
 
       // Create rank information message
       let message = '';
       seasonRanks.forEach((user, index) => {
         // Get rank information for each user
-        const time = getTimeDifference(user[2]);
-        const rankID = getRank(time[0])[3];
+        const time = getTimeDifference(user.seasonTime);
+        const rankInfo = getRank(time[0]);
+        const rankID = rankInfo[3];
+        const rankName = rankInfo[1];
         const rankMention = `<@&${rankID}>`;
 
         // Display top 3 in bold
         if (index + 1 <= 3) {
-          message += `> \`${index + 1}.\` <@${user[1]}> - **${
+          message += `> \`${index + 1}.\` <@${user.userName}> - **${
             time[0]
-          } hours** : ${rankMention}\n`;
+          } hours** : ${rankMention} x **${get(user, rankName, 1)}**\n`;
           // Display the rest up top 15
         } else if (index + 1 <= 15) {
-          message += `> \`${index + 1}.\` <@${user[1]}> - ${
+          message += `> \`${index + 1}.\` <@${user.userName}> - ${
             time[0]
-          } hours : ${rankMention}\n`;
+          } hours : ${rankMention} x ${get(user, rankName, 1)}\n`;
         }
         // Add extra white space between top 3 and rest
         if (index === 2) {
@@ -319,9 +327,9 @@ client.once('ready', () => {
 
       // Cycle through each member and get rid of every role
       // that contians a grinder in them
-      handleRoles(guild, userData)
-        .then(() => console.log('FINSHED!'))
-        .then(() => client.destroy());
+      // handleRoles(guild, userData)
+      //   .then(() => console.log('FINSHED!'))
+      //   .then(() => client.destroy());
       //
     } else {
       botChannel
