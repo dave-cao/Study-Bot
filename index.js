@@ -603,7 +603,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
                 }
 
                 streakChannel.send(
-                  `**${person.username}** Your **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\nHead over to <#806327504364371989> to let people know what you're doing today!\n*Keep up the good work :).*`,
+                  `**${person.username}** Your **Grind Streak** has increased!\n\`Current Streak: ${userData[i].streak}\`\n\`Max Streak: ${userData[i].maxStreak}\`\n\n*Keep up the good work :).*`,
                 );
                 // Change the streak date to the current date
                 userData[i].streakDate = new Date();
