@@ -2,3 +2,4 @@ userData.json
 tmp.json
 node_modules/
 config.json
+./scheduled/daily/members/
