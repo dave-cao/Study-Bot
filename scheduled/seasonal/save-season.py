@@ -9,8 +9,12 @@ def main():
     current_year = datetime.now().year
     season_string = f"season_{current_year}"
 
+    # users_file_name = "../../userData.json"
+    users_file_name = "/home/milk/personalBot/Personal-Bot/userData.json"
+    # save_season_json = "./save-season.json"
+    save_season_json = "/home/milk/personalBot/Personal-Bot/scheduled/seasonal/save-season.json"
+
     # opens user data
-    users_file_name = "../../userData.json"
     with open(users_file_name, "r") as file:
         users = json.load(file)
 
@@ -28,7 +32,7 @@ def main():
                 }
 
     # opens old save file of seasons
-    with open("./save-season.json", "r") as file:
+    with open(save_season_json, "r") as file:
         old_users = json.load(file)
 
     # appends or adds new entry to old save file
@@ -45,7 +49,7 @@ def main():
             old_users[user_id] = user
 
     # write new to old save file
-    with open("./save-season.json", "w") as file:
+    with open(save_season_json, "w") as file:
         file.write(json.dumps(old_users, indent=2))
 
 

@@ -6,7 +6,7 @@ def main():
     today = datetime.today().strftime("%Y-%m-%d")
 
     # get users data
-    users_file_name = "../../userData.json"
+    users_file_name = "/home/milk/personalBot/Personal-Bot/userData.json"
     with open(users_file_name, "r") as file:
         users = json.load(file)
 
@@ -20,7 +20,7 @@ def main():
         date = date.strftime("%Y-%m-%d")
 
         if date == today:
-            write_path_name = f"./members/{name}_{id}_days.txt"
+            write_path_name = f"/home/milk/personalBot/Personal-Bot/scheduled/daily/members/{name}_{id}_days.txt"
             with open(write_path_name, "a") as file:
                 file.write(f"{date},{time}")
     print("Tracking successful!")
