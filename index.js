@@ -63,88 +63,22 @@ client.once('ready', () => {
   // Not working = firstMessage(client, '817984922262306857', 'Nani the fk this dont', [`🔥`])
 });
 
-/*
-Client.on('message', async message =>{
-    //Check message is not Bot
-    if(message.author.bot) return;
-    if(message.content=="!movetome"){
-
-        const channel = message.member.voice.channel;
-    message.guild.members.cache.forEach(member => {
-  //guard clause, early return
-  if(member.id === message.member.id || !member.voice.channel) return;
-  member.voice.setChannel('817111025819975700');
-});
-    }
-});
-*/
-
-// Making a dark Portal KEKW - have them loop for now
-
-// client.on("voiceStateUpdate", (oldMember, newMember) => {
-//   let minuteTime = 15000;
-//   let portalOne = "823394539247108118";
-//   let portalTwo = "823394660906827797";
-//   let portalThree = "823394715092254740";
-//   let portalFour = "823394758486654986";
-//   let portalFive = "823394661636636762";
-//   const textChannel = client.channels.cache.get(`821951428717183006`);
-
-// first Portal
-//   if (newMember.channelID === portalOne && oldMember.channelID !== portalOne) {
-//     setTimeout(function () {
-//       textChannel.send(
-//         `<@${newMember.id}> Please wait a few seconds for your journey to begin!`
-//       );
-//     }, 3000);
-//     setTimeout(function () {
-//       newMember.setChannel(portalTwo);
-//     }, minuteTime);
-//   } else if (
-//     newMember.channelID === portalTwo &&
-//     oldMember.channelID !== portalTwo
-//   ) {
-//     setTimeout(function () {
-//       newMember.setChannel(portalThree);
-//     }, minuteTime);
-//   } else if (
-//     newMember.channelID === portalThree &&
-//     oldMember.channelID !== portalThree
-//   ) {
-//     setTimeout(function () {
-//       newMember.setChannel(portalFour);
-//     }, minuteTime);
-//   } else if (
-//     newMember.channelID === portalFour &&
-//     oldMember.channelID !== portalFour
-//   ) {
-//     setTimeout(function () {
-//       newMember.setChannel(portalFive);
-//     }, minuteTime);
-//   } else if (
-//     newMember.channelID === portalFive &&
-//     oldMember.channelID !== portalFive
-//   ) {
-//     setTimeout(function () {
-//       newMember.setChannel(portalOne);
-//     }, minuteTime);
-//   } else {
-//     return;
-//   }
-// });
 function get(object, key, default_value) {
   const result = object[key];
   return typeof result !== 'undefined' ? result : default_value;
 }
+
+/* CONSTANT VARIABLES */
+SLACKER_ID = "787836823300472894"
 
 const ranks = [
   [
     0,
     'slacker',
     'Slacker',
-    '787836823300472894',
+    SLACKER_ID,
     rankupMessages.slackerMessage,
-    '787836823300472894',
+    SLACKER_ID,
   ],
   [
     10,
@@ -321,10 +255,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const oldUserChannel = oldMember.channelID;
   const person = client.users.cache.get(newMember.id);
   let hasMember = 0;
+
   const grindTimeVC = '787354978523545634'; // changed
   const streakChannel = client.channels.cache.get('839226206276812800'); // changed
   const accountabilityChannel = client.channels.cache.get('821951428717183006'); // changed
   const announcementsChannel = client.channels.cache.get('795155126208823297');
+
   const minute = 1000 * 60;
 
   let userData = [];
@@ -334,59 +270,155 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     userData = JSON.parse(jsonString);
   }
 
-  // lounge, tavern, break/afk, 
-  const nonTrackedChannels = ["787354978523545631", "827744777163243551", "817111025819975700"]
+
+  // lounge, tavern, break/afk, prologue
+  const nonTrackedChannels = ["787354978523545631", "827744777163243551", "817111025819975700", "817298113169195029"]
+  const containsTracked = (channel_id) => {
+    for (const channel of nonTrackedChannels) {
+      if (channel === channel_id) {
+        return true
+      }
+    }
+    return false
+  }
+
+  // checks for user exits and enters
+  const userEnters = (newUserChannel && oldUserChannel === null) || (newUserChannel && newUserChannel !== oldUserChannel)
+  const userExits = (newUserChannel === null && oldUserChannel) || (oldUserChannel && newUserChannel !== oldUserChannel)
+
+  // if user exits voice channel
+  if (userExits && !containsTracked(oldUserChannel) && !isBeef) {
+    const person = client.users.cache.get(newMember.id);
+    for (let i = 0; i < userData.length; i++) {
+      if (userData[i].userID === newMember.id) {
+        userData[i].inVoiceChannel = false;
+
+        // TIME TRACKER
+        const endTime = new Date();
+        const timeDif = Math.floor(endTime - new Date(userData[i].enterTime));
+        const sessionTime = getTimeDifference(timeDif);
+
+        // DAY TRACKER
+        userData[i].dayTrackerTime += timeDif;
+        const dayTime = getTimeDifference(userData[i].dayTrackerTime);
+
+        // WEEK TIME TRACKER
+        userData[i].weekTime += timeDif;
+
+        // MONTHLY TIME TRACKER
+        userData[i].monthlyTime += timeDif;
+
+        // SEASONAL TIME TRACKER
+        userData[i].seasonTime += timeDif;
+
+        // TOTAL TIME TRACKER
+        userData[i].totalTime += timeDif;
+
+        accountabilityChannel.send(
+          `**<@${userData[i].userID}>** You have grinded for \`${sessionTime[0]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[2]} second(s)\` in **<#${oldUserChannel}>**!\n\nThis comes to a total of \`${dayTime[0]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[2]} second(s)\` grinded **Today**!`,
+        );
+        // ========================================================
+        // SEASONAL ADDING ROLES
+        // ========================================================
+        // Give role to member at a certain number of hours
+        // We'll be using seasonal data here
+        //
+        // If user leaves and their seasonTime is a certain time, then give role
+        // Assign role based on string
+        const seasonTime = getTimeDifference(userData[i].seasonTime);
+        const seasonHours = seasonTime[0];
+
+        // Get the rank info
+        const userRankInfo = getRankInfo(seasonHours);
+        const [
+          rankThreshold,
+          rankName,
+          logicalKey,
+          roleID,
+          rankMessage,
+          legacyID,
+        ] = userRankInfo;
+        const roleAdd = oldMember.guild.roles.cache.get(roleID);
+        const legacyAdd = oldMember.guild.roles.cache.get(legacyID);
+        // Find if member already has the selected role
+        const hasRole = oldMember.member.roles.cache.some(
+          (r) => r.id === roleID,
+        );
+
+        const confirmedGrinderID = '801137353623076864';
+        const confirmedGrinderAdd = oldMember.guild.roles.cache.get(confirmedGrinderID);
+        const hasConfirmedGrinder = oldMember.member.roles.cache.some(
+          (r) => r.id === confirmedGrinderID,
+        );
+
+        const starRoleID = '925617271609622548';
+        const starRoleAdd = oldMember.guild.roles.cache.get(starRoleID);
+        const hasStarRole = oldMember.member.roles.cache.some(
+          (r) => r.id === confirmedGrinderID,
+        );
+
+        // Only send message, add role, and remove unnecessary roles
+        // if user doesn't already have role
+        if (!hasRole) {
+          // Get rid of all roles
+          const rankIDs = ranks.map((rankInfo) => rankInfo[3]);
+          const legacyIDs = ranks.map((rankInfo) => rankInfo[5]);
+          const allRoles = rankIDs.concat(legacyIDs);
+          allRoles.forEach((rankID, q) => {
+            // Make sure it doesn't use the impossible rank
+            if (q !== rankIDs.length - 1) {
+              const removeRole = newMember.guild.roles.cache.get(rankID);
+              if (removeRole) {
+                newMember.member.roles.remove(removeRole).catch(console.error);
+              }
+            }
+          });
+
+          // add rank role based on hours
+          oldMember.member.roles.add(roleAdd).catch(console.error);
+          oldMember.member.roles.add(legacyAdd).catch(console.error);
+
+          // counter for ranks - THIS GET METHOD IS GOOD
+          userData[i][rankName] = get(userData[i], rankName, 0) + 1;
+
+          // send rank message
+          const rankMessageDisplay = `<@${userData[i].userID}> - Your rank increased!\n\n`;
+          announcementsChannel.send(rankMessageDisplay);
+          announcementsChannel.send(
+            rankMessage(
+              userData[i].userName,
+              userData[i].userID,
+              get(userData[i], rankName, 1),
+            ),
+          );
+        }
+
+        // Give Confirmed Grinder after 1 hour of grinding
+        if (!hasConfirmedGrinder && seasonHours >= 1) {
+          oldMember.member.roles.add(confirmedGrinderAdd).catch(console.error);
+        }
+
+        // Give Star role when getting to Grandmaster Grinder
+        if (!hasStarRole && seasonHours >= 744) {
+          oldMember.member.roles.add(starRoleAdd).catch(console.error);
+        }
+
+        // Save data on leave
+        saveData(userData);
+      }
+    }
+  }
+
 
   // If user enters voice channel
-  if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
+  if (userEnters && !containsTracked(newUserChannel)) {
     // check if user is Beef
     if (isBeef) {
       newMember.setMute(true);
 
       return;
     }
-    // TODO: MAKE A ACCOUNTABIILTY TWO HOUR BOT FOR THOSE WHO DON't HAVE CAMS ON
-    // When member enters grind time, give them a role that unlocks the goals channel
-    // FIXME: we have to make it on old AND new member as new too
-    //  not just when they first enter.
-    //
-    // setTimeout(() => {
-    //   // notice if user has cams on or screensharing, if yes, return
-    //   // notice if user has sent a message in goals session, if yes, return.
-    //   //
-    //   //
-    //   // if user is not cams on / screensharing then ping message
-    //   //  "it looks like you have not put on cams or screensharing, please type in a
-    //   //    goal in the Goals Channel for this session in the next 5 minutes or you
-    //   //    will be kicked"
-    //   setTimeout(() => {
-    //     // notice if user has cams on or screensharing, if yes return
-    //     // notice if user has sent message in goals channel, if yes, return.
-    //     //
-    //     // if not, kick them out
-    //   }, 5min)
 
-    // }, 5min)
-    // TODO: Make this is a message channel
-    // if member has typed in goals channel:
-    //  check to see if user has already logged in session goal, if yes, return.
-    //  send message = "successfully logged in your session goal, I will check back
-    //    with you in 2 hours"
-    //  setTimeout (2 hours):
-    //    check to see if user is in voice channel, if yes continue, if not, return.
-    //    reset the users session goal back to 0 so they have to retype it.
-    //    send message = "Did you finish your tasks for this session? If you want to
-    //      continue, please type again in the session goals, if not, you will be kicked
-    //      in the next 5 minutes."
-    //    setTimeout (5 minutes):
-    //      check to see if user is still in voice channel
-    //      if user has typed in a new session goal, return.
-    //      if user has not type in a new session goal, kick from channel.
-    //
-    //
-    //
-    //
-    //
     // Push an object of new member into list
     if (userData.length === 0) {
       // If there is nothing in array then push
@@ -535,32 +567,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
               streakChannel.send(
                 `<@${newMember.id}> You were about to lose your streak but your freeze saved the day!\nYou now have \`${userData[i].streakFreeze}\` freezes left!`,
               );
-              // TODO: Implement the case where the user uses a streak freeze
-              // however, they don't complete the streak freeze
-              // If they come back into the voice channel they will lose
-              // even more streak freezes.
-              //
-              // My thought process here is to set the streak Date to yesterday
-              // once the user gets here. Thus, the streak freezes are used
-              // but are not used again.
-              //
-              // If we set it to yesterday, then if they come back tomorrow,
-              // their streak will now only decrease by 1 day since they already
-              // used their streaks
-              //
-              // Code Example:
-              //
-              // const ONE_DAY_MILLI = 24 * 60 * 60 * 1000 || 86 400 000
-              // userData[i].streakDate = currentDate - ONE_DAY_MILLI
-              //
-              // Bug Example:
-              //  - user comes into voice channel and has not grinded for
-              //    20 days. They have 30 streak freezes, thus once they enter
-              //    their streak freezes decreases by 20 and they have 10 left.
-              //    Howwever, they don't complete their streak and leave. If
-              //    they come again the next day, it will now be subtracted by
-              //    21 days but they only have 10 streak freezes left, thus
-              //    losing their streak.
               const ONE_DAY_MILL = 24 * 60 * 60 * 1000;
               const yesterday = actualDate - ONE_DAY_MILL;
               userData[i].streakDate = new Date(yesterday);
@@ -618,149 +624,35 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         }
       }
     }
-
     // Overall save data
     saveData(userData);
-
-    // If user leaves voice channel
-  } else if (
-    oldUserChannel === grindTimeVC
-    && newUserChannel !== grindTimeVC
-    && !isBeef
-  ) {
-    const person = client.users.cache.get(newMember.id);
-    for (let i = 0; i < userData.length; i++) {
-      if (userData[i].userID === newMember.id) {
-        userData[i].inVoiceChannel = false;
-
-        // TIME TRACKER
-        const endTime = new Date();
-        const timeDif = Math.floor(endTime - new Date(userData[i].enterTime));
-        const sessionTime = getTimeDifference(timeDif);
-
-        // DAY TRACKER
-        userData[i].dayTrackerTime += timeDif;
-        const dayTime = getTimeDifference(userData[i].dayTrackerTime);
-
-        // WEEK TIME TRACKER
-        userData[i].weekTime += timeDif;
-
-        // MONTHLY TIME TRACKER
-        userData[i].monthlyTime += timeDif;
-
-        // SEASONAL TIME TRACKER
-        userData[i].seasonTime += timeDif;
-
-        // TOTAL TIME TRACKER
-        userData[i].totalTime += timeDif;
-
-        accountabilityChannel.send(
-          `**${userData[i].userName}** You have grinded for \`${sessionTime[0]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[2]} second(s)\` in **Grind Time**!\n\nThis comes to a total of \`${dayTime[0]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[2]} second(s)\` grinded **Today**!`,
-        );
-        // ========================================================
-        // SEASONAL ADDING ROLES
-        // ========================================================
-        // Give role to member at a certain number of hours
-        // We'll be using seasonal data here
-        //
-        // If user leaves and their seasonTime is a certain time, then give role
-        // Assign role based on string
-        const seasonTime = getTimeDifference(userData[i].seasonTime);
-        const seasonHours = seasonTime[0];
-
-        // Get the rank info
-        const userRankInfo = getRankInfo(seasonHours);
-        const [
-          rankThreshold,
-          rankName,
-          logicalKey,
-          roleID,
-          rankMessage,
-          legacyID,
-        ] = userRankInfo;
-        const roleAdd = oldMember.guild.roles.cache.get(roleID);
-        const legacyAdd = oldMember.guild.roles.cache.get(legacyID);
-        // Find if member already has the selected role
-        const hasRole = oldMember.member.roles.cache.some(
-          (r) => r.id === roleID,
-        );
-
-        const confirmedGrinderID = '801137353623076864';
-        const confirmedGrinderAdd = oldMember.guild.roles.cache.get(confirmedGrinderID);
-        const hasConfirmedGrinder = oldMember.member.roles.cache.some(
-          (r) => r.id === confirmedGrinderID,
-        );
-
-        const starRoleID = '925617271609622548';
-        const starRoleAdd = oldMember.guild.roles.cache.get(starRoleID);
-        const hasStarRole = oldMember.member.roles.cache.some(
-          (r) => r.id === confirmedGrinderID,
-        );
-
-        // Only send message, add role, and remove unnecessary roles
-        // if user doesn't already have role
-        if (!hasRole) {
-          // Get rid of all roles
-          const rankIDs = ranks.map((rankInfo) => rankInfo[3]);
-          const legacyIDs = ranks.map((rankInfo) => rankInfo[5]);
-          const allRoles = rankIDs.concat(legacyIDs);
-          allRoles.forEach((rankID, q) => {
-            // Make sure it doesn't use the impossible rank
-            if (q !== rankIDs.length - 1) {
-              const removeRole = newMember.guild.roles.cache.get(rankID);
-              newMember.member.roles.remove(removeRole).catch(console.error);
-            }
-          });
-
-          // add rank role based on hours
-          oldMember.member.roles.add(roleAdd).catch(console.error);
-          oldMember.member.roles.add(legacyAdd).catch(console.error);
-
-          // counter for ranks - THIS GET METHOD IS GOOD
-          userData[i][rankName] = get(userData[i], rankName, 0) + 1;
-
-          // send rank message
-          const rankMessageDisplay = `<@${userData[i].userID}> - Your rank increased!\n\n`;
-          announcementsChannel.send(rankMessageDisplay);
-          announcementsChannel.send(
-            rankMessage(
-              userData[i].userName,
-              userData[i].userID,
-              get(userData[i], rankName, 1),
-            ),
-          );
-        }
-
-        // Give Confirmed Grinder after 1 hour of grinding
-        if (!hasConfirmedGrinder && seasonHours >= 1) {
-          oldMember.member.roles.add(confirmedGrinderAdd).catch(console.error);
-        }
-
-        // Give Star role when getting to Grandmaster Grinder
-        if (!hasStarRole && seasonHours >= 744) {
-          oldMember.member.roles.add(starRoleAdd).catch(console.error);
-        }
-
-        // Save data on leave
-        saveData(userData);
-      }
-    }
   }
+
+
+  // ADD CURRENTLY GRINDING ROLE
+  const currentlyGrindingRole = '788248531927695421';
+  if (userEnters && !containsTracked(newUserChannel)) {
+    // Add currently grinding role
+    const role = oldMember.guild.roles.cache.get(currentlyGrindingRole);
+    oldMember.member.roles.add(role).catch(console.error);
+  } else if (newUserChannel === null || containsTracked(newUserChannel)) {
+    // Remove currently grinding role
+    const role = newMember.guild.roles.cache.get(currentlyGrindingRole);
+    newMember.member.roles.remove(role).catch(console.error);
+  }
+
 });
 
 // Record time in voice channel
 client.on('voiceStateUpdate', (oldMember, newMember) => {
   const newUserChannel = newMember.channelID;
   const oldUserChannel = oldMember.channelID;
-  // Record time in grind time and hard mode
-  const voiceChannelID1 = '822696684139315261';
-  const voiceChannelID2 = '787354978523545634';
+
   // Enter channel id
   const enterChannelID = '817298113169195029';
   const finishedTutorialRole = '793538214396690442';
+
   // Other
-  const textChannel = client.channels.cache.get('821951428717183006');
-  const currentlyGrindingRole = '788248531927695421';
 
   // Assign Finished Tutorial Role on Enter
   if (newUserChannel === enterChannelID && oldUserChannel !== enterChannelID) {
@@ -770,156 +662,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
       newMember.setChannel(null);
     }, 5000);
   }
-
-  // Record time in voice channel
-  // If user enters voice channel
-  if (
-    newUserChannel === voiceChannelID1
-    && oldUserChannel !== voiceChannelID1
-  ) {
-    newMember.voiceTime1 = new Date();
-
-    // If user leaves voice channel
-  } else if (
-    oldUserChannel === voiceChannelID1
-    && newUserChannel !== voiceChannelID1
-  ) {
-    const endTime = new Date();
-    const timeDif = Math.floor(endTime - newMember.voiceTime1);
-    const hrs = Math.floor(timeDif / (3600 * 1000));
-    const min = Math.floor((timeDif % (1000 * 60 * 60)) / (1000 * 60));
-    const sec = Math.floor((timeDif % (1000 * 60)) / 1000);
-
-    textChannel.send(
-      `<@${newMember.id}> You have grinded for \`${hrs} hour(s), ${min} minute(s) and ${sec} second(s)\` in **Hard Mode**!`,
-    );
-  }
-
-  if (
-    newUserChannel === voiceChannelID2
-    && oldUserChannel !== voiceChannelID2
-  ) {
-    newMember.voiceTime2 = new Date();
-
-    // Add currently grinding role
-    const role = oldMember.guild.roles.cache.get(currentlyGrindingRole);
-    oldMember.member.roles.add(role).catch(console.error);
-  } else if (
-    oldUserChannel === voiceChannelID2
-    && newUserChannel !== voiceChannelID2
-  ) {
-    // Remove currently grinding role
-    const role = newMember.guild.roles.cache.get(currentlyGrindingRole);
-    newMember.member.roles.remove(role).catch(console.error);
-  }
 });
-
-// Real working hard mode system
-// client.on('voiceStateUpdate', (oldMember, newMember) => {
-// 	const newUserChannel = newMember.channelID;
-// 	const oldUserChannel = oldMember.channelID;
-// 	const voiceChannelID = '822696684139315261';
-// 	const textChannel = client.channels.cache.get('821951428717183006');
-// 	const minuteTime = 1000 * 60;
-//
-// 	if (
-// 		newMember.id === '234395307759108106'
-//     || newMember.id === '811422368752336936'
-// 	) {} else if (newMember.channelID === voiceChannelID) {
-// 		// Don't remove ""
-// 		// User Joins a voice channel
-// 		if (
-// 			newUserChannel === voiceChannelID
-//       && oldUserChannel !== voiceChannelID
-// 		) {
-// 			// Camera and screenshare logic
-// 			setTimeout(() => {
-// 				if (
-// 					newMember.selfVideo === true
-//           || newMember.streaming === true
-//           || (oldUserChannel === voiceChannelID
-//             && newUserChannel !== voiceChannelID)
-// 				) {} else if (
-// 					(newMember.selfVideo === false
-//             && newMember.channelID === voiceChannelID)
-//           || (newMember.streaming === false
-//             && newMember.channelID === voiceChannelID)
-// 				) {
-// 					textChannel.send(
-// 						`<@${newMember.id}> Hey, I noticed that you're in hard mode but you haven't put on cams or screen-shared for the past **2 minutes**. You have another **2 minutes** to do that or you will get moved to AFK/Break!`,
-// 					);
-// 					setTimeout(() => {
-// 						if (
-// 							newMember.selfVideo === true
-//               || newMember.streaming === true
-//               || (oldUserChannel === voiceChannelID
-//                 && newUserChannel !== voiceChannelID)
-// 						) {} else if (
-// 							(newMember.selfVideo === false
-//                 && newMember.channelID === voiceChannelID)
-//               || (newMember.streaming === false
-//                 && newMember.channelID === voiceChannelID)
-// 						) {
-// 							newMember.setChannel('817111025819975700');
-// 							textChannel.send(
-// 								`<@${newMember.id}> You've been kicked due to no cams or screensharing. Make sure to turn on cams when joining this VC or it will happen again!`,
-// 							);
-// 						}
-// 					}, minuteTime * 2);
-// 				}
-// 			}, minuteTime * 2);
-//
-// 			// User is in channel
-// 		} else if (
-// 			(newMember.streaming === false
-//         && oldMember.selfVideo === true
-//         && oldMember.streaming === true)
-//       || (newMember.selfVideo === false
-//         && oldMember.selfVideo === true
-//         && oldMember.streaming)
-// 		) {} else if (
-// 			(newMember.selfVideo === false && oldMember.selfVideo === true)
-//       || (newMember.streaming === false
-//         && oldMember.streaming === true
-//         && oldMember.selfVideo === false)
-// 		) {
-// 			setTimeout(() => {
-// 				if (
-// 					newMember.selfVideo === true
-//           || newMember.streaming === true
-//           || (oldUserChannel === voiceChannelID
-//             && newUserChannel !== voiceChannelID)
-// 				) {} else if (
-// 					oldMember.channelID === voiceChannelID
-//           && newMember.channelID === voiceChannelID
-// 				) {
-// 					textChannel.send(
-// 						`<@${newMember.id}> Hey! It's been **3 minutes** since you turned off cam or stopped screensharing, please turn it back on or you will be **kicked** in the next **two minutes** to the AFK/Break channel!`,
-// 					);
-// 					setTimeout(() => {
-// 						if (
-// 							newMember.selfVideo === true
-//               || newMember.streaming === true
-//               || oldMember.channelID !== voiceChannelID
-// 						) {} else if (
-// 							newMember.selfVideo === false
-//               || newMember.streaming === false
-// 						) {
-// 							textChannel.send('Sorry, you were kicked!');
-// 							newMember.setChannel('817111025819975700');
-// 						}
-// 					}, minuteTime * 2);
-// 				}
-// 			}, minuteTime * 3);
-// 		}
-// 	} else if (
-// 		oldUserChannel === voiceChannelID
-//     && newUserChannel !== voiceChannelID
-// 	) {
-// 		// User leaves a voice channel
-//
-// 	}
-// });
 
 client.login(config.token);
 
