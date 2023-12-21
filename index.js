@@ -416,7 +416,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   // If user enters voice channel
   if (userEnters && !containsTracked(newUserChannel)) {
-    console.log("user enters", newUserChannel)
     // check if user is Beef
     if (isBeef) {
       newMember.setMute(true);
@@ -668,117 +667,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
       newMember.setChannel(null);
     }, 5000);
   }
-
-  const userEnters = (newUserChannel && oldUserChannel === null) || (newUserChannel && newUserChannel !== oldUserChannel)
-  const userExits = (newUserChannel === null && oldUserChannel) || (oldUserChannel && newUserChannel !== oldUserChannel)
 });
-
-// Real working hard mode system
-// client.on('voiceStateUpdate', (oldMember, newMember) => {
-// 	const newUserChannel = newMember.channelID;
-// 	const oldUserChannel = oldMember.channelID;
-// 	const voiceChannelID = '822696684139315261';
-// 	const textChannel = client.channels.cache.get('821951428717183006');
-// 	const minuteTime = 1000 * 60;
-//
-// 	if (
-// 		newMember.id === '234395307759108106'
-//     || newMember.id === '811422368752336936'
-// 	) {} else if (newMember.channelID === voiceChannelID) {
-// 		// Don't remove ""
-// 		// User Joins a voice channel
-// 		if (
-// 			newUserChannel === voiceChannelID
-//       && oldUserChannel !== voiceChannelID
-// 		) {
-// 			// Camera and screenshare logic
-// 			setTimeout(() => {
-// 				if (
-// 					newMember.selfVideo === true
-//           || newMember.streaming === true
-//           || (oldUserChannel === voiceChannelID
-//             && newUserChannel !== voiceChannelID)
-// 				) {} else if (
-// 					(newMember.selfVideo === false
-//             && newMember.channelID === voiceChannelID)
-//           || (newMember.streaming === false
-//             && newMember.channelID === voiceChannelID)
-// 				) {
-// 					textChannel.send(
-// 						`<@${newMember.id}> Hey, I noticed that you're in hard mode but you haven't put on cams or screen-shared for the past **2 minutes**. You have another **2 minutes** to do that or you will get moved to AFK/Break!`,
-// 					);
-// 					setTimeout(() => {
-// 						if (
-// 							newMember.selfVideo === true
-//               || newMember.streaming === true
-//               || (oldUserChannel === voiceChannelID
-//                 && newUserChannel !== voiceChannelID)
-// 						) {} else if (
-// 							(newMember.selfVideo === false
-//                 && newMember.channelID === voiceChannelID)
-//               || (newMember.streaming === false
-//                 && newMember.channelID === voiceChannelID)
-// 						) {
-// 							newMember.setChannel('817111025819975700');
-// 							textChannel.send(
-// 								`<@${newMember.id}> You've been kicked due to no cams or screensharing. Make sure to turn on cams when joining this VC or it will happen again!`,
-// 							);
-// 						}
-// 					}, minuteTime * 2);
-// 				}
-// 			}, minuteTime * 2);
-//
-// 			// User is in channel
-// 		} else if (
-// 			(newMember.streaming === false
-//         && oldMember.selfVideo === true
-//         && oldMember.streaming === true)
-//       || (newMember.selfVideo === false
-//         && oldMember.selfVideo === true
-//         && oldMember.streaming)
-// 		) {} else if (
-// 			(newMember.selfVideo === false && oldMember.selfVideo === true)
-//       || (newMember.streaming === false
-//         && oldMember.streaming === true
-//         && oldMember.selfVideo === false)
-// 		) {
-// 			setTimeout(() => {
-// 				if (
-// 					newMember.selfVideo === true
-//           || newMember.streaming === true
-//           || (oldUserChannel === voiceChannelID
-//             && newUserChannel !== voiceChannelID)
-// 				) {} else if (
-// 					oldMember.channelID === voiceChannelID
-//           && newMember.channelID === voiceChannelID
-// 				) {
-// 					textChannel.send(
-// 						`<@${newMember.id}> Hey! It's been **3 minutes** since you turned off cam or stopped screensharing, please turn it back on or you will be **kicked** in the next **two minutes** to the AFK/Break channel!`,
-// 					);
-// 					setTimeout(() => {
-// 						if (
-// 							newMember.selfVideo === true
-//               || newMember.streaming === true
-//               || oldMember.channelID !== voiceChannelID
-// 						) {} else if (
-// 							newMember.selfVideo === false
-//               || newMember.streaming === false
-// 						) {
-// 							textChannel.send('Sorry, you were kicked!');
-// 							newMember.setChannel('817111025819975700');
-// 						}
-// 					}, minuteTime * 2);
-// 				}
-// 			}, minuteTime * 3);
-// 		}
-// 	} else if (
-// 		oldUserChannel === voiceChannelID
-//     && newUserChannel !== voiceChannelID
-// 	) {
-// 		// User leaves a voice channel
-//
-// 	}
-// });
 
 client.login(config.token);
 
