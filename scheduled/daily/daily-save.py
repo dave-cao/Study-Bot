@@ -22,7 +22,7 @@ def main():
         if date == today:
             write_path_name = f"/home/milk/personalBot/Personal-Bot/scheduled/daily/members/{name}_{id}_days.txt"
             with open(write_path_name, "a") as file:
-                file.write(f"{date},{time}")
+                file.write(f"{date},{time}\n")
     print("Tracking successful!")
 
 
