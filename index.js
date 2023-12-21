@@ -135,8 +135,8 @@ Client.on('message', async message =>{
 //
 
 
-// lounge, tavern, break/afk, prologue
-const nonTrackedChannels = ["787354978523545631", "827744777163243551", "817111025819975700", "817298113169195029"]
+// Create Room, lounge, tavern, break/afk, prologue
+const nonTrackedChannels = ["818353454996520990", "787354978523545631", "827744777163243551", "817111025819975700", "817298113169195029"]
 const containsTracked = (channelId) => {
   for (const channel of nonTrackedChannels) {
     if (channel === channelId) {
