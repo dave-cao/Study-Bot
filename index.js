@@ -355,7 +355,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   // user exits voice channel
   if (userExits && !containsTracked(oldUserChannel) && !isBeef) {
-    console.log("user exits")
     const person = client.users.cache.get(newMember.id);
     for (let i = 0; i < userData.length; i++) {
       if (userData[i].userID === newMember.id) {
@@ -477,7 +476,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   // If user enters voice channel
   if (userEnters && !containsTracked(newUserChannel)) {
-    console.log("user enters")
     // check if user is Beef
     if (isBeef) {
       newMember.setMute(true);
