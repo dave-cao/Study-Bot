@@ -69,7 +69,7 @@ function get(object, key, default_value) {
 }
 
 /* CONSTANT VARIABLES */
-SLACKER_ID = "1187319638246293606"
+SLACKER_ID = "787836823300472894"
 
 const ranks = [
   [
@@ -256,13 +256,11 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const person = client.users.cache.get(newMember.id);
   let hasMember = 0;
 
-  // CHANGE THESE !!!
   const grindTimeVC = '787354978523545634'; // changed
-  const streakChannel = client.channels.cache.get('1187303609772281886'); // changed
-  const accountabilityChannel = client.channels.cache.get('1187303609772281886'); // changed
-  const announcementsChannel = client.channels.cache.get('1187303609772281886');
-  // CHANGE THESE !!!
-  //
+  const streakChannel = client.channels.cache.get('839226206276812800'); // changed
+  const accountabilityChannel = client.channels.cache.get('821951428717183006'); // changed
+  const announcementsChannel = client.channels.cache.get('795155126208823297');
+
   const minute = 1000 * 60;
 
   let userData = [];
@@ -274,7 +272,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 
   // lounge, tavern, break/afk, prologue
-  // CHANGE NON TRACKED CHANNELS
   const nonTrackedChannels = ["787354978523545631", "827744777163243551", "817111025819975700", "817298113169195029"]
   const containsTracked = (channel_id) => {
     for (const channel of nonTrackedChannels) {
@@ -291,7 +288,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   // if user exits voice channel
   if (userExits && !containsTracked(oldUserChannel) && !isBeef) {
-    console.log("user exits", oldUserChannel)
     const person = client.users.cache.get(newMember.id);
     for (let i = 0; i < userData.length; i++) {
       if (userData[i].userID === newMember.id) {
@@ -319,7 +315,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         userData[i].totalTime += timeDif;
 
         accountabilityChannel.send(
-          `**${userData[i].userName}**: You have grinded for \`${sessionTime[0]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[2]} second(s)\` in **<#${oldUserChannel}>**!\n\nThis comes to a total of \`${dayTime[0]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[2]} second(s)\` grinded **Today**!`,
+          `**<@${userData[i].userID}>** You have grinded for \`${sessionTime[0]} hour(s), ${sessionTime[1]} minute(s) and ${sessionTime[2]} second(s)\` in **<#${oldUserChannel}>**!\n\nThis comes to a total of \`${dayTime[0]} hour(s), ${dayTime[1]} minutes(s), and ${dayTime[2]} second(s)\` grinded **Today**!`,
         );
         // ========================================================
         // SEASONAL ADDING ROLES
@@ -634,8 +630,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 
   // ADD CURRENTLY GRINDING ROLE
-  // CHANGE THESE
-  const currentlyGrindingRole = '1187317555501740033';
+  const currentlyGrindingRole = '788248531927695421';
   if (userEnters && !containsTracked(newUserChannel)) {
     // Add currently grinding role
     const role = oldMember.guild.roles.cache.get(currentlyGrindingRole);
