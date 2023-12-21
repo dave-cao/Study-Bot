@@ -50,12 +50,12 @@ client.once('ready', () => {
   client.on('guildMemberAdd', (member) => {
     member.send(
       '**Hello! Welcome to Grind Time**! \n'
-        + 'Grind Time is a server meant to facilitate a community that supports accountability and productivity. \n'
-        + 'We encourage this through gamification! There are many features that you can test and try out like a **leveling system** and a **streaks system**. \n'
-        + "If you don't want to read the tutorial in the beginning, you can also watch the short video below to get a handle of everything on Grind Time. \n\n"
-        + 'Have fun grinding, I look forward to seeing you on the other side! ~ David (Cow) '
-        + '```The more you grind, the higher the level. The current highest is the Grindmaster Supreme...till this day, none has yet to achieve this feat. Can you?``` \n'
-        + 'https://youtu.be/mvplUjRQPqw',
+      + 'Grind Time is a server meant to facilitate a community that supports accountability and productivity. \n'
+      + 'We encourage this through gamification! There are many features that you can test and try out like a **leveling system** and a **streaks system**. \n'
+      + "If you don't want to read the tutorial in the beginning, you can also watch the short video below to get a handle of everything on Grind Time. \n\n"
+      + 'Have fun grinding, I look forward to seeing you on the other side! ~ David (Cow) '
+      + '```The more you grind, the higher the level. The current highest is the Grindmaster Supreme...till this day, none has yet to achieve this feat. Can you?``` \n'
+      + 'https://youtu.be/mvplUjRQPqw',
     );
   });
 
@@ -333,6 +333,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     const jsonString = fs.readFileSync('userData.json', 'utf8');
     userData = JSON.parse(jsonString);
   }
+
+  // lounge, tavern, break/afk, 
+  const nonTrackedChannels = ["787354978523545631", "827744777163243551", "817111025819975700"]
 
   // If user enters voice channel
   if (newUserChannel === grindTimeVC && oldUserChannel !== grindTimeVC) {
@@ -1210,17 +1213,17 @@ client.on('message', (message) => {
       case 'leaderboard':
         message.channel.send(
           'To view **your current position** on the leaderboard please type:\n'
-            + '`-d` for the Daily Leaderboard\n'
-            + '`-w` for the Weekly Leaderboard\n'
-            + '`-m` for the Monthly Leaderboard\n'
-            + '`-s` for the Seasonal Leaderboard\n'
-            + '`-t` for the All-time Leaderboard\n\n'
-            + 'To view the **Top 20 leaderboards** please type:\n'
-            + '`top -d` for the Daily Leaderboard\n'
-            + '`top -w` for the Weekly Leaderboard\n'
-            + '`top -m` for the Monthly Leaderboard\n'
-            + '`top -s` for the Seasonal Leaderboard\n'
-            + '`top -t` for the All-time Leaderboard\n\n',
+          + '`-d` for the Daily Leaderboard\n'
+          + '`-w` for the Weekly Leaderboard\n'
+          + '`-m` for the Monthly Leaderboard\n'
+          + '`-s` for the Seasonal Leaderboard\n'
+          + '`-t` for the All-time Leaderboard\n\n'
+          + 'To view the **Top 20 leaderboards** please type:\n'
+          + '`top -d` for the Daily Leaderboard\n'
+          + '`top -w` for the Weekly Leaderboard\n'
+          + '`top -m` for the Monthly Leaderboard\n'
+          + '`top -s` for the Seasonal Leaderboard\n'
+          + '`top -t` for the All-time Leaderboard\n\n',
         );
         break;
     }
@@ -1622,15 +1625,15 @@ client.on('message', (message) => {
                   rankName,
                   1,
                 )}**\n${progressPercent}% |  ${displayBar[0]}\n`
-                  + '```'
-                  + 'Time Frame          Time Grinded         Ranking\n'
-                  + '----------          ------------         -------\n'
-                  + `${dayDisplay}\n`
-                  + `${weekDisplay}\n`
-                  + `${monthDisplay}\n`
-                  + `${seasonDisplay}\n\n`
-                  + `Daily Average (${monthNames[currentMonth]}): ${displayDailyAverage}`
-                  + '```---',
+                + '```'
+                + 'Time Frame          Time Grinded         Ranking\n'
+                + '----------          ------------         -------\n'
+                + `${dayDisplay}\n`
+                + `${weekDisplay}\n`
+                + `${monthDisplay}\n`
+                + `${seasonDisplay}\n\n`
+                + `Daily Average (${monthNames[currentMonth]}): ${displayDailyAverage}`
+                + '```---',
               )
               .addFields(
                 {
