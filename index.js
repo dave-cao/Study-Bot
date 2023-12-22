@@ -353,12 +353,14 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const userEnters = (newUserChannel && oldUserChannel === null) || (newUserChannel && newUserChannel !== oldUserChannel)
   const userExits = (newUserChannel === null && oldUserChannel) || (oldUserChannel && newUserChannel !== oldUserChannel)
 
+
   // user exits voice channel
   if (userExits && !containsTracked(oldUserChannel) && !isBeef) {
     const person = client.users.cache.get(newMember.id);
     for (let i = 0; i < userData.length; i++) {
       if (userData[i].userID === newMember.id) {
         userData[i].inVoiceChannel = false;
+
 
         // TIME TRACKER
         const endTime = new Date();
@@ -394,6 +396,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         // Assign role based on string
         const seasonTime = getTimeDifference(userData[i].seasonTime);
         const seasonHours = seasonTime[0];
+
 
         // Get the rank info
         const userRankInfo = getRankInfo(seasonHours);
@@ -438,10 +441,13 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
               newMember.member.roles.remove(removeRole).catch(console.error);
             }
           });
+          console.log("hello")
 
+          console.log("RIGHT BEFORE adding roles")
           // add rank role based on hours
           oldMember.member.roles.add(roleAdd).catch(console.error);
           oldMember.member.roles.add(legacyAdd).catch(console.error);
+
 
           // counter for ranks - THIS GET METHOD IS GOOD
           userData[i][rankName] = get(userData[i], rankName, 0) + 1;

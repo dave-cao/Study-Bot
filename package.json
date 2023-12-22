@@ -9,7 +9,8 @@
   "author": "David",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.1",
+    "@discordjs/voice": "^0.16.1",
+    "discord.js": "^12.5.3",
     "string-progressbar": "^1.0.4"
   },
   "devDependencies": {
