@@ -28,8 +28,10 @@ client.once('ready', () => {
   // Delete messages
   command(client, ['cc', 'clearchannel'], (message) => {
     if (message.member.hasPermission('ADMINISTRATOR')) {
-      message.channel.messages.fetch().then((results) => {
-        message.channel.bulkDelete(results);
+      message.channel.messages.fetch({ limit: 100 }).then((results) => {
+        message.channel.bulkDelete(results, true).catch((error) => {
+          console.error('Failed to bulk delete messages:', error);
+        });
       });
     }
   });
