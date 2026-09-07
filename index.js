@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 const fs = require('fs');
 const progressbar = require('string-progressbar');
-const config = require('./config.json');
+
 const command = require('./command');
 
 // My own files
@@ -939,7 +939,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 // 	}
 // });
 
-client.login(config.token);
+client.login(process.env.DISCORD_TOKEN);
 
 function displayLeaderboardFunction(message, timeframe, displayTop) {
   // message is from the message object of discord
