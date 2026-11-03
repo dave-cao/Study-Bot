@@ -37,10 +37,10 @@ client.once('ready', () => {
   const channel = client.channels.cache.get('790658695834763296');
 
   if (guild && channel) {
-    if (fs.existsSync('/home/milk/personalBot/Personal-Bot/userData.json')) {
+    if (fs.existsSync('/home/david/personalBot/Personal-Bot/userData.json')) {
       // get array of user data
       const jsonString = fs.readFileSync(
-        '/home/milk/personalBot/Personal-Bot/userData.json',
+        '/home/david/personalBot/Personal-Bot/userData.json',
         'utf8',
       );
       const userData = JSON.parse(jsonString);

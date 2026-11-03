@@ -10,8 +10,8 @@ const fs = require('fs');
 const config = require('../../config.json');
 
 // File names
-const userDataFileName = '/home/milk/personalBot/Personal-Bot/userData.json';
-const seasonalDataName = '/home/milk/personalBot/Personal-Bot/scheduled/seasonal/seasonal.json';
+const userDataFileName = '/home/david/personalBot/Personal-Bot/userData.json';
+const seasonalDataName = '/home/david/personalBot/Personal-Bot/scheduled/seasonal/seasonal.json';
 
 const ranks = [
   [0, 'slacker', 'Slacker', '787836823300472894', '801137353623076864'],

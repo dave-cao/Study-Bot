@@ -2,7 +2,7 @@
 
 from git import Repo
 
-git_path = "/home/milk/personalBot/Personal-Bot/"
+git_path = "/home/david/personalBot/Personal-Bot/"
 
 def git_push(commit_message):
     try:

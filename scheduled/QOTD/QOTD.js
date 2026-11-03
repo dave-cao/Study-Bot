@@ -8,9 +8,9 @@ const client = new Discord.Client();
 const fs = require('fs');
 const config = require('../../config.json');
 
-const saveFileName = '/home/milk/personalBot/Personal-Bot/scheduled/QOTD/QOTDData.json';
-const quoteFile = '/home/milk/personalBot/Personal-Bot/scheduled/QOTD/quotes.txt';
-const questionFile = '/home/milk/personalBot/Personal-Bot/scheduled/QOTD/questions.txt';
+const saveFileName = '/home/david/personalBot/Personal-Bot/scheduled/QOTD/QOTDData.json';
+const quoteFile = '/home/david/personalBot/Personal-Bot/scheduled/QOTD/quotes.txt';
+const questionFile = '/home/david/personalBot/Personal-Bot/scheduled/QOTD/questions.txt';
 // const saveFileName = 'QOTDData.json';
 // const quoteFile = 'quotes.txt';
 // const questionFile = 'questions.txt';

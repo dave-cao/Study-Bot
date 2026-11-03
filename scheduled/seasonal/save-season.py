@@ -10,9 +10,9 @@ def main():
     season_string = f"season_{current_year}"
 
     # users_file_name = "../../userData.json"
-    users_file_name = "/home/milk/personalBot/Personal-Bot/userData.json"
+    users_file_name = "/home/david/personalBot/Personal-Bot/userData.json"
     # save_season_json = "./save-season.json"
-    save_season_json = "/home/milk/personalBot/Personal-Bot/scheduled/seasonal/save-season.json"
+    save_season_json = "/home/david/personalBot/Personal-Bot/scheduled/seasonal/save-season.json"
 
     # opens user data
     with open(users_file_name, "r") as file:
